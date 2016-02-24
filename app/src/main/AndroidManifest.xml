@@ -19,26 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TemperatureActivity"
-            android:label="@string/title_activity_temperature"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LengthActivity"
-            android:label="@string/title_activity_length"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".TimeActivity"
-            android:label="@string/title_activity_time"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".WeightActivity"
-            android:label="@string/title_activity_weight"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".VolumeActivity"
-            android:label="@string/title_activity_volume"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
