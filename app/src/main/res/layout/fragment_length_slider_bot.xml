@@ -19,7 +19,6 @@
             android:textAlignment="center"
             android:textSize="100sp"
             android:background="@color/colorLengthLight"
-            android:typeface="sans"
             android:textStyle="normal"
             android:textIsSelectable="false" />
 
