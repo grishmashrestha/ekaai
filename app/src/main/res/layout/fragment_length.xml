@@ -1,26 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.lftechnology.unito.LengthFragment">
 
-    <android.support.v4.view.ViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/length_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello from length fragment"
-        android:layout_below="@id/pager"/>
+        android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pager2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
-</LinearLayout>
+        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorLengthLight" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/swap"
+        android:background="@drawable/swap_btn_cont"
+        android:contentDescription="@string/swap_btn"/>
+
+</RelativeLayout>

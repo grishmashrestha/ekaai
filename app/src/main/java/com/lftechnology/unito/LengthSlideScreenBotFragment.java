@@ -15,6 +15,7 @@ public class LengthSlideScreenBotFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private int mPosition;
+    private String[] mDataset;
 
     public LengthSlideScreenBotFragment() {
         // Required empty public constructor
@@ -37,9 +38,10 @@ public class LengthSlideScreenBotFragment extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mDataset = getActivity().getResources().getStringArray(R.array.length_options);
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_length_slider_bot, container, false);
         TextView tv = (TextView) rootView.findViewById(R.id.length_scroll_bot);
-        tv.setText(""+mPosition+"");
+        tv.setText(mDataset[mPosition]);
         return rootView;
     }
 }

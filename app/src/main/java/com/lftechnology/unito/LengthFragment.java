@@ -16,7 +16,7 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class LengthFragment extends Fragment {
-    private static final int NUM_PAGES = R.array.length_options;
+    private int mPages;
     private ViewPager mPager1, mPager2;
     private PagerAdapter mPagerAdapter1, mPagerAdapter2;
 
@@ -28,14 +28,14 @@ public class LengthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mPages = getContext().getResources().getStringArray(R.array.length_options).length;
         View view = inflater.inflate(R.layout.fragment_length, container, false);
 
         mPager1 = (ViewPager) view.findViewById(R.id.pager);
         mPagerAdapter1 = new ScreenSlidePagerAdapter(getFragmentManager());
         mPager1.setAdapter(mPagerAdapter1);
 
-        mPager2= (ViewPager) view.findViewById(R.id.pager2);
-        mPager2.setBackgroundColor(Color.BLUE);
+        mPager2 = (ViewPager) view.findViewById(R.id.pager2);
         mPagerAdapter2 = new ScreenSlideBotPagerAdapter(getFragmentManager());
         mPager2.setAdapter(mPagerAdapter2);
 
@@ -55,7 +55,7 @@ public class LengthFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return mPages;
         }
     }
 
@@ -70,7 +70,7 @@ public class LengthFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return mPages;
         }
     }
 }

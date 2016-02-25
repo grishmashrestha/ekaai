@@ -4,11 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView style="?android:textAppearanceMedium"
-        android:id="@+id/length_scroll_top"
-        android:padding="16dp"
-        android:lineSpacingMultiplier="1.2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_dark" />
+        android:orientation="vertical"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:numeric="decimal"
+            android:text="1"
+            android:textAlignment="center"
+            android:textSize="100sp"
+            android:background="@android:color/white"
+            android:typeface="sans"
+            android:textStyle="normal"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/length_scroll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorGrayFont"/>
+    </LinearLayout>
 </ScrollView>
