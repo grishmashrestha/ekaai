@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.inflated_content_main, fragment, "Fragment");
+        fragmentTransaction.replace(R.id.inflated_content_main, fragment, fragment.getClass().getName());
         fragmentTransaction.commit();
     }
 }
