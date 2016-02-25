@@ -5,10 +5,9 @@
     android:layout_height="wrap_content">
 
     <TextView style="?android:textAppearanceMedium"
-        android:id="@+id/length_scroll_top"
+        android:id="@+id/length_scroll_bot"
         android:padding="16dp"
         android:lineSpacingMultiplier="1.2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_dark" />
+        android:layout_height="wrap_content" />
 </ScrollView>
