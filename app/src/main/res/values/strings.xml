@@ -7,6 +7,26 @@
     <string name="title_activity_weight">WeightActivity</string>
     <string name="title_activity_volume">VolumeActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="unito_options">
+        <item>Length</item>
+        <item>Temperature</item>
+        <item>Time</item>
+        <item>Volume</item>
+        <item>Weight</item>
+    </string-array>
+
+    <string-array name="length_options">
+        <item>Nautical Mile</item>
+        <item>Kilometre (km)</item>
+        <item>Centimeter (cm)</item>
+        <item>Yard (yd)</item>
+        <item>Inch (in)</item>
+        <item>Feet (ft)</item>
+        <item>Meter (m)</item>
+        <item>Millimeter (mm)</item>
+        <item>Mile (ml)</item>
+        <item>Micrometers (um)</item>
+        <item>Nanometers (nm)</item>
+        <item>Micron (u)</item>
+    </string-array>
 </resources>
