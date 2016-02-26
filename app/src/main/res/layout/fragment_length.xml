@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/swap"
-        android:background="@drawable/swap_btn_cont"
+        android:background="@drawable/swap_btn_cont_blue"
         android:contentDescription="@string/swap_btn"/>
 
 </RelativeLayout>

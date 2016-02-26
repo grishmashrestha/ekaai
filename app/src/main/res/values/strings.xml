@@ -30,5 +30,45 @@
         <item>Micron (u)</item>
     </string-array>
 
+    <string-array name="temperature_options">
+        <item>Celsius (C)</item>
+        <item>Fahrenheit (F)</item>
+        <item>kelvin (K)</item>
+    </string-array>
+
+    <string-array name="weight_options">
+        <item>Kilogram (kg)</item>
+        <item>Pound (lb)</item>
+        <item>Tonne (t)</item>
+        <item>Gram (g)</item>
+        <item>Carat (metric)</item>
+        <item>Milligram (mg)</item>
+        <item>Grain (gr)</item>
+        <item>Newton (Earth)</item>
+        <item>Ounce (oz)</item>
+    </string-array>
+
+    <string-array name="volume_options">
+        <item>Gallon (fluid)</item>
+        <item>Barrel (petroleum)</item>
+        <item>Cubic yard (yd3)</item>
+        <item>Cubic meter (m3)</item>
+        <item>Cubic centimeter (cm3)</item>
+        <item>milliliter (ml)</item>
+        <item>Cubic feet (ft3)</item>
+    </string-array>
+
+    <string-array name="time_options">
+        <item>Minute (min)</item>
+        <item>Second (s)</item>
+        <item>Week</item>
+        <item>Century</item>
+        <item>Year</item>
+        <item>Milliseconds (ms)</item>
+        <item>Millennium</item>
+        <item>Microsecond</item>
+        <item>Nanosecond</item>
+    </string-array>
+
     <string name="swap_btn">Swap Button</string>
 </resources>

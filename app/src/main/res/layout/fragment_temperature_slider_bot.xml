@@ -17,12 +17,12 @@
             android:text="1"
             android:textAlignment="center"
             android:textSize="100sp"
-            android:background="@color/colorLengthLight"
+            android:background="@color/colorTemperatureLight"
             android:textStyle="normal"
             android:textIsSelectable="false" />
 
         <TextView
-            android:id="@+id/length_scroll_bot"
+            android:id="@+id/temperature_scroll_bot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"

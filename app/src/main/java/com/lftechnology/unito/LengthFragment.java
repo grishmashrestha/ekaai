@@ -1,10 +1,10 @@
 package com.lftechnology.unito;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -32,19 +32,20 @@ public class LengthFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_length, container, false);
 
         mPager1 = (ViewPager) view.findViewById(R.id.pager);
-        mPagerAdapter1 = new ScreenSlidePagerAdapter(getFragmentManager());
+        mPagerAdapter1 = new ScreenSlideTopPagerAdapter(getFragmentManager());
         mPager1.setAdapter(mPagerAdapter1);
 
         mPager2 = (ViewPager) view.findViewById(R.id.pager2);
         mPagerAdapter2 = new ScreenSlideBotPagerAdapter(getFragmentManager());
+        mPager2.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorLengthLight));
         mPager2.setAdapter(mPagerAdapter2);
 
 
         return view;
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+    private class ScreenSlideTopPagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlideTopPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 

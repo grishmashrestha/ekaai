@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             default:
                 break;
         }
-        Toast.makeText(MainActivity.this, selectedConversion, Toast.LENGTH_SHORT).show();
     }
 
     @Override
