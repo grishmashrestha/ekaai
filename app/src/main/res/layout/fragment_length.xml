@@ -30,8 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/swap"
         android:background="@drawable/swap_btn_cont_blue"
-        android:contentDescription="@string/swap_btn"/>
+        android:contentDescription="@string/swap_btn"
+        android:src="@drawable/swap" />
 
 </RelativeLayout>

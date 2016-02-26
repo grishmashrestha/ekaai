@@ -7,17 +7,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="50dp"
-        android:paddingBottom="50dp">
+        android:paddingBottom="50dp"
+        android:paddingTop="50dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="1"
             android:textAlignment="center"
+            android:textIsSelectable="false"
             android:textSize="100sp"
-            android:textStyle="normal"
-            android:textIsSelectable="false" />
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/scroll_bot"

@@ -7,26 +7,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="50dp"
-        android:paddingBottom="50dp">
+        android:paddingBottom="50dp"
+        android:paddingTop="50dp">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:numeric="decimal"
+            android:background="@android:color/white"
+            android:inputType="numberDecimal"
+            
+            android:singleLine="true"
             android:text="1"
             android:textAlignment="center"
+            android:textIsSelectable="false"
             android:textSize="100sp"
-            android:background="@android:color/white"
-            android:textStyle="normal"
-            android:textIsSelectable="false" />
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/scroll_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:textColor="@color/colorGrayFont"/>
+            android:textColor="@color/colorGrayFont"
+            android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>
