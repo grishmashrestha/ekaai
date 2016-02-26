@@ -15,7 +15,6 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class TemperatureFragment extends Fragment {
-    private int mPages;
     ViewPager mPager1, mPager2;
     PagerAdapter mPagerAdapter1, mPagerAdapter2;
 
@@ -27,50 +26,16 @@ public class TemperatureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mPages = getContext().getResources().getStringArray(R.array.temperature_options).length;
         View view = inflater.inflate(R.layout.fragment_temperature, container, false);
 
         mPager1 = (ViewPager) view.findViewById(R.id.pager);
-        mPagerAdapter1 = new ScreenSlideTopPagerAdapter(getFragmentManager());
+        mPagerAdapter1 = new ScreenSlidePageAdapter(getFragmentManager(), this, true);
         mPager1.setAdapter(mPagerAdapter1);
 
         mPager2 = (ViewPager) view.findViewById(R.id.pager2);
-        mPagerAdapter2 = new ScreenSlideBotPagerAdapter(getFragmentManager());
+        mPagerAdapter2 = new ScreenSlidePageAdapter(getFragmentManager(), this, false);
         mPager2.setAdapter(mPagerAdapter2);
         return view;
     }
 
-    public class ScreenSlideTopPagerAdapter extends FragmentStatePagerAdapter {
-
-        public ScreenSlideTopPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return TemperatureSlideScreenTopFragment.newInstance(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mPages;
-        }
-    }
-
-    public class ScreenSlideBotPagerAdapter extends FragmentStatePagerAdapter {
-
-        public ScreenSlideBotPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return TemperatureSlideScreenBotFragment.newInstance(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mPages;
-        }
-    }
 }

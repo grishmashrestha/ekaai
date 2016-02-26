@@ -1,4 +1,3 @@
-<!-- fragment_screen_slide_page.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/content"
     android:layout_width="match_parent"
@@ -11,18 +10,19 @@
         android:paddingTop="50dp"
         android:paddingBottom="50dp">
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:numeric="decimal"
             android:text="1"
             android:textAlignment="center"
             android:textSize="100sp"
-            android:background="@color/colorLengthLight"
+            android:background="@android:color/white"
             android:textStyle="normal"
             android:textIsSelectable="false" />
 
         <TextView
-            android:id="@+id/length_scroll_bot"
+            android:id="@+id/scroll_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
