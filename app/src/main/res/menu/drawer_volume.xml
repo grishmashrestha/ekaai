@@ -3,25 +3,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_gallon"
+            android:icon="@drawable/burger_menu"
             android:title="Gallon (fluid)" />
         <item
             android:id="@+id/nav_barrel"
+            android:icon="@drawable/burger_menu"
             android:title="Barrel (petroleum)" />
         <item
             android:id="@+id/nav_cubic_yard"
+            android:icon="@drawable/burger_menu"
             android:title="Cubic yard (yd3)" />
         <item
             android:id="@+id/nav_cubic_meter"
+            android:icon="@drawable/burger_menu"
             android:title="Cubic meter (m3)" />
         <item
             android:id="@+id/nav_cubic_centimeter"
+            android:icon="@drawable/burger_menu"
             android:title="Cubic centimeter (cm3)" />
         <item
             android:id="@+id/nav_milliliter"
+            android:icon="@drawable/burger_menu"
             android:title="milliliter (ml)" />
 
         <item
             android:id="@+id/nav_cubic_feet"
+            android:icon="@drawable/burger_menu"
             android:title="Cubic feet (ft3)" />
 
     </group>

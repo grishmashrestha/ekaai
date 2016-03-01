@@ -3,39 +3,51 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_nautical_mile"
+            android:icon="@drawable/burger_menu"
             android:title="Nautical Mile" />
         <item
             android:id="@+id/nav_kilometer"
+            android:icon="@drawable/burger_menu"
             android:title="Kilometre (km)" />
         <item
             android:id="@+id/nav_centimeter"
+            android:icon="@drawable/burger_menu"
             android:title="Centimeter (cm)" />
         <item
             android:id="@+id/nav_yard"
+            android:icon="@drawable/burger_menu"
             android:title="Yard (yd)" />
         <item
             android:id="@+id/nav_inch"
+            android:icon="@drawable/burger_menu"
             android:title="Inch (in)" />
         <item
             android:id="@+id/nav_feet"
+            android:icon="@drawable/burger_menu"
             android:title="Feet (ft)" />
         <item
             android:id="@+id/nav_meter"
+            android:icon="@drawable/burger_menu"
             android:title="Meter (m)" />
         <item
             android:id="@+id/nav_millimeter"
+            android:icon="@drawable/burger_menu"
             android:title="Millimeter (mm)" />
         <item
             android:id="@+id/nav_mile"
+            android:icon="@drawable/burger_menu"
             android:title="Mile (ml)" />
         <item
             android:id="@+id/nav_micrometer"
+            android:icon="@drawable/burger_menu"
             android:title="Micrometers (um)" />
         <item
             android:id="@+id/nav_nanometer"
+            android:icon="@drawable/burger_menu"
             android:title="Nanometers (nm)" />
         <item
             android:id="@+id/nav_micron"
+            android:icon="@drawable/burger_menu"
             android:title="Micron (u)" />
     </group>
 </menu>

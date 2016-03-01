@@ -3,30 +3,39 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_kilogram"
+            android:icon="@drawable/burger_menu"
             android:title="Kilogram (kg)" />
         <item
             android:id="@+id/nav_pound"
+            android:icon="@drawable/burger_menu"
             android:title="Pound (lb)" />
         <item
             android:id="@+id/nav_tonne"
+            android:icon="@drawable/burger_menu"
             android:title="Tonne (t)" />
         <item
             android:id="@+id/nav_gram"
+            android:icon="@drawable/burger_menu"
             android:title="Gram (g)" />
         <item
             android:id="@+id/nav_carat"
+            android:icon="@drawable/burger_menu"
             android:title="Carat (metric)" />
         <item
             android:id="@+id/nav_milligram"
+            android:icon="@drawable/burger_menu"
             android:title="Milligram (mg)" />
         <item
             android:id="@+id/nav_grain"
+            android:icon="@drawable/burger_menu"
             android:title="Grain (gr)" />
         <item
             android:id="@+id/nav_newton"
+            android:icon="@drawable/burger_menu"
             android:title="Newton (Earth)" />
         <item
             android:id="@+id/nav_ounce"
+            android:icon="@drawable/burger_menu"
             android:title="Ounce (oz)" />
     </group>
 

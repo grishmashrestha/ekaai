@@ -3,30 +3,39 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_minute"
+            android:icon="@drawable/burger_menu"
             android:title="Minute (min)" />
         <item
             android:id="@+id/nav_second"
+            android:icon="@drawable/burger_menu"
             android:title="Second (s)" />
         <item
             android:id="@+id/nav_week"
+            android:icon="@drawable/burger_menu"
             android:title="Week" />
         <item
             android:id="@+id/nav_century"
+            android:icon="@drawable/burger_menu"
             android:title="Century" />
         <item
             android:id="@+id/nav_year"
+            android:icon="@drawable/burger_menu"
             android:title="Year" />
         <item
             android:id="@+id/nav_milliseconds"
+            android:icon="@drawable/burger_menu"
             android:title="Milliseconds (ms)" />
         <item
             android:id="@+id/nav_millennium"
+            android:icon="@drawable/burger_menu"
             android:title="Millennium" />
         <item
             android:id="@+id/nav_microsecond"
+            android:icon="@drawable/burger_menu"
             android:title="Microsecond" />
         <item
             android:id="@+id/nav_nanosecond"
+            android:icon="@drawable/burger_menu"
             android:title="Nanosecond" />
     </group>
 </menu>
