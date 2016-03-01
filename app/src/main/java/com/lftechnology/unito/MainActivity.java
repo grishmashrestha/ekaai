@@ -1,7 +1,6 @@
 package com.lftechnology.unito;
 
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,9 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DrawerLayout mDrawer;
@@ -64,28 +60,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
-    }
-
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
-    }
-
-    public void selectDrawerItem(MenuItem menuItem) {
-        // Create a new fragment and specify the planet to show based on
-        // position
-//        Fragment fragment = null;
-
-        // Highlight the selected item, update the title, and close the drawer
-        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-//        setTitle(menuItem.getTitle());
-        mDrawer.closeDrawers();
     }
 
     @Override
@@ -181,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         View view1 = nvDrawer.getHeaderView(0);
         setHeaderTextByFragment(view1);
         setMenuByFragment(mMenu);
-        setupDrawerContent(nvDrawer);
     }
 
     @Override
