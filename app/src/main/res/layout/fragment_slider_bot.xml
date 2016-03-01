@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:textAlignment="center"
+            android:textColor="@android:color/white"
             android:textIsSelectable="false"
             android:textSize="100sp"
             android:textStyle="normal" />
@@ -24,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textColor="@android:color/white"
             android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>
