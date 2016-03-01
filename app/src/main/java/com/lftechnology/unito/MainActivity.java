@@ -120,9 +120,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void setMenuByFragment(Menu menu) {
         menu.clear();
-        getMenuInflater().inflate(R.menu.drawer_view, menu);
-//        menu.add("lalala");
-//        menu.add("zuzuz");
+
+        switch (mselectedConversion) {
+            case "Length":
+                getMenuInflater().inflate(R.menu.drawer_length, menu);;
+                break;
+            case "Temperature":
+                getMenuInflater().inflate(R.menu.drawer_temperature, menu);;
+                break;
+            case "Time":
+                getMenuInflater().inflate(R.menu.drawer_time, menu);;
+                break;
+            case "Volume":
+                getMenuInflater().inflate(R.menu.drawer_volume, menu);;
+                break;
+            case "Weight":
+                getMenuInflater().inflate(R.menu.drawer_weight, menu);;
+                break;
+            default:
+                break;
+        }
     }
 
     private void setHeaderTextByFragment(View view) {

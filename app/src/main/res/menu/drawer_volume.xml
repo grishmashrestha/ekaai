@@ -12,7 +12,7 @@
             android:title="Cubic yard (yd3)" />
         <item
             android:id="@+id/nav_cubic_meter"
-            android:title=">Cubic meter (m3)" />
+            android:title="Cubic meter (m3)" />
         <item
             android:id="@+id/nav_cubic_centimeter"
             android:title="Cubic centimeter (cm3)" />
