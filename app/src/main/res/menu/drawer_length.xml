@@ -1,0 +1,41 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_nautical_mile"
+            android:title="Nautical Mile" />
+        <item
+            android:id="@+id/nav_kilometer"
+            android:title="Kilometre (km)" />
+        <item
+            android:id="@+id/nav_centimeter"
+            android:title="Centimeter (cm)" />
+        <item
+            android:id="@+id/nav_yard"
+            android:title="Yard (yd)" />
+        <item
+            android:id="@+id/nav_inch"
+            android:title="Inch (in)" />
+        <item
+            android:id="@+id/nav_feet"
+            android:title="Feet (ft)" />
+        <item
+            android:id="@+id/nav_meter"
+            android:title="Meter (m)" />
+        <item
+            android:id="@+id/nav_millimeter"
+            android:title="Millimeter (mm)" />
+        <item
+            android:id="@+id/nav_mile"
+            android:title="Mile (ml)" />
+        <item
+            android:id="@+id/nav_micrometer"
+            android:title="Micrometers (um)" />
+        <item
+            android:id="@+id/nav_nanometer"
+            android:title="Nanometers (nm)" />
+        <item
+            android:id="@+id/nav_micron"
+            android:title="Micron (u)" />
+    </group>
+</menu>

@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_minute"
+            android:title="Minute (min)" />
+        <item
+            android:id="@+id/nav_second"
+            android:title="Second (s)" />
+        <item
+            android:id="@+id/nav_week"
+            android:title="Week" />
+        <item
+            android:id="@+id/nav_century"
+            android:title="Century" />
+        <item
+            android:id="@+id/nav_year"
+            android:title="Year" />
+        <item
+            android:id="@+id/nav_milliseconds"
+            android:title="Milliseconds (ms)" />
+        <item
+            android:id="@+id/nav_millennium"
+            android:title="Millennium" />
+        <item
+            android:id="@+id/nav_microsecond"
+            android:title="Microsecond" />
+        <item
+            android:id="@+id/nav_nanosecond"
+            android:title="Nanosecond" />
+    </group>
+</menu>

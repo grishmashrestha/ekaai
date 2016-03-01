@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_kilogram"
+            android:title="Kilogram (kg)" />
+        <item
+            android:id="@+id/nav_pound"
+            android:title="Pound (lb)" />
+        <item
+            android:id="@+id/nav_tonne"
+            android:title="Tonne (t)" />
+        <item
+            android:id="@+id/nav_gram"
+            android:title="Gram (g)" />
+        <item
+            android:id="@+id/nav_carat"
+            android:title="Carat (metric)" />
+        <item
+            android:id="@+id/nav_milligram"
+            android:title="Milligram (mg)" />
+        <item
+            android:id="@+id/nav_grain"
+            android:title="Grain (gr)" />
+        <item
+            android:id="@+id/nav_newton"
+            android:title="Newton (Earth)" />
+        <item
+            android:id="@+id/nav_ounce"
+            android:title="Ounce (oz)" />
+    </group>
+
+</menu>

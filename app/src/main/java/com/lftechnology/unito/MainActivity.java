@@ -1,12 +1,12 @@
 package com.lftechnology.unito;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,13 +17,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
+    private String mselectedConversion;
+    private Menu mMenu;
 
 
     @Override
@@ -31,13 +36,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         toolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(toolbar);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        // Setup drawer view
-        setupDrawerContent(nvDrawer);
+        View view = nvDrawer.getHeaderView(0);
+        mMenu = nvDrawer.getMenu();
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -52,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+//        setHeaderTextByFragment(view);
+//        setMenuByFragment(mMenu);
+//        setupDrawerContent(nvDrawer);
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -110,7 +118,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
-    public void changeFragment(String selectedConversion) {
+    private void setMenuByFragment(Menu menu) {
+        menu.clear();
+        getMenuInflater().inflate(R.menu.drawer_view, menu);
+//        menu.add("lalala");
+//        menu.add("zuzuz");
+    }
+
+    private void setHeaderTextByFragment(View view) {
+        ((TextView) view.findViewById(R.id.nav_header)).setText(mselectedConversion);
+    }
+
+    private void changeFragment(String selectedConversion) {
+        mselectedConversion = selectedConversion;
         switch (selectedConversion) {
             case "Length":
                 replaceByAnotherFragment(new LengthFragment());
@@ -138,6 +158,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setSelection(position);
         String selectedConversion = spinner.getSelectedItem().toString();
         changeFragment(selectedConversion);
+
+
+        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        View view1 = nvDrawer.getHeaderView(0);
+        setHeaderTextByFragment(view1);
+        setMenuByFragment(mMenu);
+        setupDrawerContent(nvDrawer);
     }
 
     @Override
