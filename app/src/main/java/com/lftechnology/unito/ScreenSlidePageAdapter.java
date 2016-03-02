@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import timber.log.Timber;
+
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
  */
@@ -41,7 +43,7 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
             case "com.lftechnology.unito.LengthFragment":
                 dataset = fragment.getResources().getStringArray(R.array.length_options);
                 break;
-            case "com.lftechnology.unito.Temperature":
+            case "com.lftechnology.unito.TemperatureFragment":
                 dataset = fragment.getResources().getStringArray(R.array.temperature_options);
                 break;
             case "com.lftechnology.unito.TimeFragment":
