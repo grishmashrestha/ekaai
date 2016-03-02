@@ -52,7 +52,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
-        TextView tv = (TextView) rootView.findViewById(R.id.scroll_top);
+        final TextView tv = (TextView) rootView.findViewById(R.id.scroll_top);
         tv.setText(mDataset[mPosition]);
         EditText fromUnit = (EditText) rootView.findViewById(R.id.from_unit);
         fromUnit.addTextChangedListener(new TextWatcher() {
@@ -67,10 +67,11 @@ public class ScreenSlideTopFragment extends BaseFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 // condition and default value check and set
-
-                EventBus.post(new ConvertedValue(s.toString()));
+                EventBus.post(new ConvertedValue(s.toString().trim(), (String) tv.getText()));
             }
         });
         return rootView;
     }
+
+
 }

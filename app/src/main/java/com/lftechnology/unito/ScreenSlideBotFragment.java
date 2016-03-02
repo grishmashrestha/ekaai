@@ -36,6 +36,7 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
     @Subscribe
     public void answerAvailable(ConvertedValue val) {
+//        convertToCurrentUnit(val);
         TextView tv = (TextView) mView.findViewById(R.id.to_unit);
         tv.setText(val.value);
     }
