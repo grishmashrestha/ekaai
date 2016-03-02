@@ -5,8 +5,10 @@ package com.lftechnology.unito.bus;
  */
 public class ConvertedValue {
     public String  value;
+    public String from;
 
-    public ConvertedValue(String val) {
+    public ConvertedValue(String val, String frm) {
         value = val;
+        from = frm;
     }
 }
