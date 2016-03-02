@@ -9,10 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lftechnology.unito.bus.ConvertedValue;
+import com.lftechnology.unito.bus.EventBus;
+import com.squareup.otto.Subscribe;
+
+import org.w3c.dom.Text;
+
+import timber.log.Timber;
+
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
  */
-public class ScreenSlideBotFragment  extends Fragment {
+public class ScreenSlideBotFragment extends BaseFragment {
 
     private static final String POSITION = "position";
     private static final String DATASET = "dataset";
@@ -20,9 +28,16 @@ public class ScreenSlideBotFragment  extends Fragment {
     // TODO: Rename and change types of parameters
     private int mPosition;
     private String[] mDataset;
+    private ViewGroup mView;
 
     public ScreenSlideBotFragment() {
         // Required empty public constructor
+    }
+
+    @Subscribe
+    public void answerAvailable(ConvertedValue val) {
+        TextView tv = (TextView) mView.findViewById(R.id.to_unit);
+        tv.setText(val.value);
     }
 
     public static ScreenSlideBotFragment newInstance(int position, String[] dataset) {
@@ -45,9 +60,11 @@ public class ScreenSlideBotFragment  extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_bot, container, false);
-        TextView tv = (TextView) rootView.findViewById(R.id.scroll_bot);
+        mView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_bot, container, false);
+        TextView tv = (TextView) mView.findViewById(R.id.scroll_bot);
         tv.setText(mDataset[mPosition]);
-        return rootView;
+        return mView;
     }
+
+
 }
