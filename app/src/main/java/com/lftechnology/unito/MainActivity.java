@@ -10,20 +10,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
-    private String mselectedConversion;
+    private String mSelectedConversion;
     private Menu mMenu;
 
 
@@ -36,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setSupportActionBar(toolbar);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        View view = nvDrawer.getHeaderView(0);
         mMenu = nvDrawer.getMenu();
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -53,9 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-//        setHeaderTextByFragment(view);
-//        setMenuByFragment(mMenu);
-//        setupDrawerContent(nvDrawer);
+
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -95,21 +97,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void setMenuByFragment(Menu menu) {
         menu.clear();
 
-        switch (mselectedConversion) {
+        switch (mSelectedConversion) {
             case "Length":
-                getMenuInflater().inflate(R.menu.drawer_length, menu);;
+                getMenuInflater().inflate(R.menu.drawer_length, menu);
+                ;
                 break;
             case "Temperature":
-                getMenuInflater().inflate(R.menu.drawer_temperature, menu);;
+                getMenuInflater().inflate(R.menu.drawer_temperature, menu);
+                ;
                 break;
             case "Time":
-                getMenuInflater().inflate(R.menu.drawer_time, menu);;
+                getMenuInflater().inflate(R.menu.drawer_time, menu);
+                ;
                 break;
             case "Volume":
-                getMenuInflater().inflate(R.menu.drawer_volume, menu);;
+                getMenuInflater().inflate(R.menu.drawer_volume, menu);
+                ;
                 break;
             case "Weight":
-                getMenuInflater().inflate(R.menu.drawer_weight, menu);;
+                getMenuInflater().inflate(R.menu.drawer_weight, menu);
+                ;
                 break;
             default:
                 break;
@@ -117,11 +124,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void setHeaderTextByFragment(View view) {
-        ((TextView) view.findViewById(R.id.nav_header)).setText(mselectedConversion);
+        ((TextView) view.findViewById(R.id.nav_header)).setText(mSelectedConversion);
     }
 
     private void changeFragment(String selectedConversion) {
-        mselectedConversion = selectedConversion;
+        mSelectedConversion = selectedConversion;
         switch (selectedConversion) {
             case "Length":
                 replaceByAnotherFragment(new LengthFragment());
@@ -170,3 +177,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction.commit();
     }
 }
+
+
