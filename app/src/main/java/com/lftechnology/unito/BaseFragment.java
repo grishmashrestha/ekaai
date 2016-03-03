@@ -1,6 +1,5 @@
 package com.lftechnology.unito;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.lftechnology.unito.bus.EventBus;
@@ -10,8 +9,8 @@ import com.lftechnology.unito.bus.EventBus;
  */
 public class BaseFragment extends Fragment {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onResume() {
+        super.onResume();
         EventBus.register(this);
     }
 
