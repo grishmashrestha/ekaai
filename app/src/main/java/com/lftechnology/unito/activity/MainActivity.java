@@ -1,4 +1,4 @@
-package com.lftechnology.unito;
+package com.lftechnology.unito.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -10,18 +10,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.lftechnology.unito.R;
+import com.lftechnology.unito.fragment.LengthFragment;
+import com.lftechnology.unito.fragment.TemperatureFragment;
+import com.lftechnology.unito.fragment.TimeFragment;
+import com.lftechnology.unito.fragment.VolumeFragment;
+import com.lftechnology.unito.fragment.WeightFragment;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DrawerLayout mDrawer;

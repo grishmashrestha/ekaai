@@ -12,9 +12,8 @@
 
         <EditText
             android:id="@+id/from_unit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:background="@android:color/white"
             android:inputType="numberDecimal"
             android:singleLine="true"

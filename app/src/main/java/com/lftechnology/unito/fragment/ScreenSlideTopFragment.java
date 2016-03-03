@@ -1,7 +1,6 @@
-package com.lftechnology.unito;
+package com.lftechnology.unito.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -10,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.bus.EventBus;
-import com.squareup.otto.Bus;
-import com.squareup.otto.Produce;
-import com.squareup.otto.Subscribe;
 
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.

@@ -1,21 +1,14 @@
-package com.lftechnology.unito;
+package com.lftechnology.unito.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
-import com.lftechnology.unito.bus.EventBus;
 import com.squareup.otto.Subscribe;
-
-import org.w3c.dom.Text;
-
-import timber.log.Timber;
 
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
@@ -36,12 +29,10 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
     @Subscribe
     public void answerAvailable(ConvertedValue val) {
-//        convertToCurrentUnit(val);
-        TextView tv = (TextView) mView.findViewById(R.id.to_unit);
-        tv.setText(val.value);
+        convertToCurrentUnit(val);
     }
 
-    public static ScreenSlideBotFragment newInstance(int position, String[] dataset) {
+    public static ScreenSlideBotFragment newInstance(int position, String[] dataset, String fragmentName) {
         ScreenSlideBotFragment fragment = new ScreenSlideBotFragment();
         Bundle args = new Bundle();
         args.putInt(POSITION, position);
@@ -67,5 +58,20 @@ public class ScreenSlideBotFragment extends BaseFragment {
         return mView;
     }
 
+    public void convertToCurrentUnit(ConvertedValue val) {
+        double currentValue = changeToDouble(val.value);
+        TextView tv = (TextView) mView.findViewById(R.id.to_unit);
+        tv.setText(String.valueOf(currentValue));
+    }
+
+    public Double changeToDouble(String val) {
+        Double returnValue;
+        try {
+            returnValue = Double.parseDouble(val);
+        } catch (NumberFormatException e) {
+            returnValue = 0.0;
+        }
+        return returnValue;
+    }
 
 }
