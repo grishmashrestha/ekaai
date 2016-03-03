@@ -17,11 +17,13 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
     private int mPages = 5;
     private Boolean isTop;
     private String[] mDataset;
+    private String mCurrentFragmentName;
     private  String fragmentName;
 
     public ScreenSlidePageAdapter(FragmentManager fm, Boolean isTop) {
         super(fm);
         this.isTop = isTop;
+        mCurrentFragmentName = fm.getFragments().get(0).getClass().getName();
         setDatasetAndPageCount();
     }
 
@@ -40,9 +42,8 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
     }
 
     private void setDatasetAndPageCount() {
-        String className = Unito.getContext().getClass().getName();
         String[] dataset;
-        switch (className) {
+        switch (mCurrentFragmentName) {
             case AppConstant.LENGTH_FRAGMENT_NAME:
                 dataset = Unito.getContext().getResources().getStringArray(R.array.length_options);
                 fragmentName = AppConstant.LENGTH;

@@ -15,5 +15,4 @@ public class AppConstant {
     public static final String WEIGHT_FRAGMENT_NAME = "com.lftechnology.unito.fragment.WeightFragment";
     public static final String VOLUME_FRAGMENT_NAME = "com.lftechnology.unito.fragment.VolumeFragment";
     public static final String TIME_FRAGMENT_NAME = "com.lftechnology.unito.fragment.TimeFragment";
-
 }

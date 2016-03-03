@@ -63,8 +63,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // condition and default value check and set
-                EventBus.post(new ConvertedValue(s.toString().trim(), (String) tv.getText()));
+                EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition]));
             }
         });
         return rootView;
