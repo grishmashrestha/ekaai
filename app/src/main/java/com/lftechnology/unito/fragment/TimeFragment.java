@@ -32,10 +32,14 @@ public class TimeFragment extends Fragment {
         mPager1 = (ViewPager) view.findViewById(R.id.pager);
         mPagerAdapter1 = new ScreenSlidePageAdapter(getFragmentManager(), true);
         mPager1.setAdapter(mPagerAdapter1);
+        mPager1.setOffscreenPageLimit(9);
 
         mPager2 = (ViewPager) view.findViewById(R.id.pager2);
         mPagerAdapter2 = new ScreenSlidePageAdapter(getFragmentManager(), false);
         mPager2.setAdapter(mPagerAdapter2);
+        mPager2.setOffscreenPageLimit(9);
+        mPager2.setCurrentItem(1);
+
         return  view;
     }
 }
