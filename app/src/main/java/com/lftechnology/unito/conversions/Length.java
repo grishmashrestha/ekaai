@@ -9,7 +9,7 @@ public class Length {
     private String to, from;
     private Double value;
 
-    public Length (Double val, String to, String from) {
+    public Length (Double val, String from, String to) {
         value = val;
         this.to = to;
         this.from = from;
@@ -17,9 +17,9 @@ public class Length {
 
     private Double getConstant(String from, String to) {
         Double constant = 0.0;
-        switch (to) {
+        switch (from) {
             case LengthConstant.NAUTICAL_MILE:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 1.0;
                         break;
@@ -62,7 +62,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.KILOMETER:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.5399568034557235;
                         break;
@@ -105,7 +105,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.CENTIMETER:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.000005399568034557236;
                         break;
@@ -147,7 +147,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.YARD:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.0004937365010799136;
                         break;
@@ -189,7 +189,7 @@ public class Length {
                 }
                 break;
             case  LengthConstant.INCH:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.000013714902807775378;
                         break;
@@ -231,7 +231,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.FEET:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.00016457883369330455;
                         break;
@@ -273,7 +273,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.METER:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.0005399568034557236;
                         break;
@@ -315,7 +315,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.MILLIMETER:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.0000005399568;
                         break;
@@ -357,7 +357,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.MILE:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.8689762419006479;
                         break;
@@ -399,7 +399,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.MICROMETER:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.0000000005399568;
                         break;
@@ -441,7 +441,7 @@ public class Length {
                 }
                 break;
             case  LengthConstant.NANOMETER:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.0000000000005399568;
                         break;
@@ -483,7 +483,7 @@ public class Length {
                 }
                 break;
             case LengthConstant.MICRON:
-                switch (from) {
+                switch (to) {
                     case LengthConstant.NAUTICAL_MILE:
                         constant = 0.0000000005399568;
                         break;
