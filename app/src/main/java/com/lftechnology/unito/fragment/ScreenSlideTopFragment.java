@@ -13,6 +13,8 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.bus.EventBus;
 
+import timber.log.Timber;
+
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
  */
@@ -48,10 +50,13 @@ public class ScreenSlideTopFragment extends BaseFragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
+
         final TextView tv = (TextView) rootView.findViewById(R.id.scroll_top);
         tv.setText(mDataset[mPosition]);
-        EditText fromUnit = (EditText) rootView.findViewById(R.id.from_unit);
+
+        final EditText fromUnit = (EditText) rootView.findViewById(R.id.from_unit);
+
         fromUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -59,6 +64,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                changeFontSize(s, fromUnit);
             }
 
             @Override
@@ -69,5 +75,27 @@ public class ScreenSlideTopFragment extends BaseFragment {
         return rootView;
     }
 
+    private void changeFontSize(CharSequence s, EditText et) {
+        float stringLength = s.length();
+        Timber.d(String.valueOf(stringLength));
+        float fontSize;
+        if (stringLength <= 6) {
+            fontSize = 100;
+        } else if (stringLength <= 7) {
+            fontSize = 90;
+        } else if (stringLength <= 8) {
+            fontSize = 80;
+        } else if (stringLength <= 9) {
+            fontSize = 70;
+        } else if (stringLength <= 10) {
+            fontSize = 60;
+        } else if (stringLength <= 12) {
+            fontSize = 50;
+        } else {
+            fontSize = 20;
+        }
+        Timber.d(String.valueOf(fontSize));
+        et.setTextSize(fontSize);
+    }
 
 }
