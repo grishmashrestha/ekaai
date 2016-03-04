@@ -1,5 +1,8 @@
 package com.lftechnology.unito.utils;
 
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.Gravity;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -7,7 +10,8 @@ import android.widget.TextView;
  */
 public class AutoResizeFontTextView {
 
-    public static void changeFontSize(CharSequence s, TextView et) {
+    public static void changeFontSize(CharSequence s, TextView tv) {
+        int currentHeight = tv.getHeight();
         float stringLength = s.length();
         float fontSize;
         if (stringLength <= 6) {
@@ -23,8 +27,9 @@ public class AutoResizeFontTextView {
         } else if (stringLength <= 12) {
             fontSize = 50;
         } else {
-            fontSize = 20;
+            fontSize = 40;
         }
-        et.setTextSize(fontSize);
+        tv.setTextSize(fontSize);
+        tv.setHeight(currentHeight);
     }
 }
