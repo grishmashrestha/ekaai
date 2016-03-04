@@ -10,6 +10,7 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.conversions.Length;
+import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.squareup.otto.Subscribe;
 
 /**
@@ -71,6 +72,7 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
         TextView tv = (TextView) mView.findViewById(R.id.to_unit);
         tv.setText(String.valueOf(returnValue));
+        AutoResizeFontTextView.changeFontSize(String.valueOf(returnValue), tv);
     }
 
     private Double applyConversion(double currentValue, String mFragmentName, String from) {
