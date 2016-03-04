@@ -1,6 +1,7 @@
 package com.lftechnology.unito.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -25,6 +26,9 @@ public class ScreenSlideTopFragment extends BaseFragment {
     // TODO: Rename and change types of parameters
     private int mPosition;
     private String[] mDataset;
+    ViewGroup mRootView;
+    EditText mFromUnit;
+    int i = 0;
 
     public ScreenSlideTopFragment() {
     }
@@ -49,21 +53,32 @@ public class ScreenSlideTopFragment extends BaseFragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
+        mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
+        return mRootView;
+    }
 
-        final TextView tv = (TextView) rootView.findViewById(R.id.scroll_top);
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final TextView tv = (TextView) mRootView.findViewById(R.id.scroll_top);
         tv.setText(mDataset[mPosition]);
 
-        final EditText fromUnit = (EditText) rootView.findViewById(R.id.from_unit);
+        mFromUnit = (EditText) mRootView.findViewById(R.id.from_unit);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[mPosition]));
+            }
+        }, 2);
 
-        fromUnit.addTextChangedListener(new TextWatcher() {
+        mFromUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                AutoResizeFontTextView.changeFontSize (s, fromUnit);
+                AutoResizeFontTextView.changeFontSize(s, mFromUnit);
             }
 
             @Override
@@ -71,7 +86,13 @@ public class ScreenSlideTopFragment extends BaseFragment {
                 EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition]));
             }
         });
-        return rootView;
     }
 
+//    @Subscribe
+//    public void syncValueAcrossAllPages(final ConvertedValue val) {
+////        if (val.position != mPosition) {
+////            mFromUnit.setText(val.value);
+////        }
+//        Timber.d(val.value);
+//    }
 }

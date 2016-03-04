@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.ScreenSlidePageAdapter;
 
+import timber.log.Timber;
+
 
 /**
  * A simple {@link Fragment} subclass.

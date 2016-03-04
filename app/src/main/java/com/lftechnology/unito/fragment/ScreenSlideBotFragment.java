@@ -10,6 +10,7 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.conversions.Length;
+import com.lftechnology.unito.conversions.Temperature;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.squareup.otto.Subscribe;
 
@@ -60,9 +61,14 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_bot, container, false);
+        return mView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         TextView tv = (TextView) mView.findViewById(R.id.scroll_bot);
         tv.setText(mDataset[mPosition]);
-        return mView;
     }
 
     public void convertToCurrentUnit(ConvertedValue val) {
@@ -107,7 +113,8 @@ public class ScreenSlideBotFragment extends BaseFragment {
     }
 
     private Double temperatureConversion(double currentValue, String from, String to) {
-        return null;
+        Temperature temperature = new Temperature(currentValue, from, to);
+        return temperature.convert();
     }
 
     private Double timeConversion(double currentValue, String from, String to) {
@@ -121,9 +128,6 @@ public class ScreenSlideBotFragment extends BaseFragment {
     private Double weightConversion(double currentValue, String from, String to) {
         return null;
     }
-
-
-
 
     public Double changeToDouble(String val) {
         Double returnValue;
