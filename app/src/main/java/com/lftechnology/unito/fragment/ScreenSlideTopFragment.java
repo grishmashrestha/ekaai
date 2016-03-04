@@ -64,12 +64,15 @@ public class ScreenSlideTopFragment extends BaseFragment {
         tv.setText(mDataset[mPosition]);
 
         mFromUnit = (EditText) mRootView.findViewById(R.id.from_unit);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[mPosition]));
-            }
-        }, 2);
+        if (mPosition == 0) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[mPosition]));
+                }
+            }, 2);
+        }
+
 
         mFromUnit.addTextChangedListener(new TextWatcher() {
             @Override
