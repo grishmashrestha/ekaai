@@ -59,12 +59,16 @@
     </string-array>
 
     <string-array name="time_options">
-        <item>Minute (min)</item>
         <item>Second (s)</item>
+        <item>Minute (min)</item>
+        <item>Hour</item>
+        <item>Day</item>
         <item>Week</item>
-        <item>Century</item>
+        <item>Month</item>
         <item>Year</item>
-        <item>Milliseconds (ms)</item>
+        <item>Decade</item>
+        <item>Century</item>
+        <item>Millisecond (ms)</item>
         <item>Millennium</item>
         <item>Microsecond</item>
         <item>Nanosecond</item>

@@ -36,4 +36,20 @@ public class AppConstant {
         public static final String FAHRENHEIT = "Fahrenheit (F)";
         public static final String KELVIN = "kelvin (K)";
     }
+
+    public class TimeConstant {
+        public static final String MINUTE = "Minute (min)";
+        public static final String SECOND = "Second (s)";
+        public static final String HOUR = "Hour";
+        public static final String DAY = "Day";
+        public static final String WEEK = "Week";
+        public static final String MONTH = "Month";
+        public static final String YEAR = "Year";
+        public static final String DECADE = "Decade";
+        public static final String CENTURY = "Century";
+        public static final String MILLENNIUM = "Millennium";
+        public static final String MILLISECOND = "Millisecond (ms)";
+        public static final String MICROSECOND = "Microsecond";
+        public static final String NANOSECOND = "Nanosecond";
+    }
 }

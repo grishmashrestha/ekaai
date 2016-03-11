@@ -2,25 +2,41 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_second"
+            android:icon="@drawable/burger_menu"
+            android:title="Second (s)" />
+        <item
             android:id="@+id/nav_minute"
             android:icon="@drawable/burger_menu"
             android:title="Minute (min)" />
         <item
-            android:id="@+id/nav_second"
+            android:id="@+id/nav_hour"
             android:icon="@drawable/burger_menu"
-            android:title="Second (s)" />
+            android:title="Hour" />
+        <item
+            android:id="@+id/nav_day"
+            android:icon="@drawable/burger_menu"
+            android:title="Day" />
         <item
             android:id="@+id/nav_week"
             android:icon="@drawable/burger_menu"
             android:title="Week" />
         <item
-            android:id="@+id/nav_century"
+            android:id="@+id/nav_month"
             android:icon="@drawable/burger_menu"
-            android:title="Century" />
+            android:title="Month" />
         <item
             android:id="@+id/nav_year"
             android:icon="@drawable/burger_menu"
             android:title="Year" />
+        <item
+            android:id="@+id/nav_decade"
+            android:icon="@drawable/burger_menu"
+            android:title="Decade" />
+        <item
+            android:id="@+id/nav_century"
+            android:icon="@drawable/burger_menu"
+            android:title="Century" />
         <item
             android:id="@+id/nav_milliseconds"
             android:icon="@drawable/burger_menu"
