@@ -52,4 +52,26 @@ public class AppConstant {
         public static final String MICROSECOND = "Microsecond";
         public static final String NANOSECOND = "Nanosecond";
     }
+
+    public class VolumeConstant {
+        public static final String GALLON = "Gallon (fluid)";
+        public static final String BARREL = "Barrel (petroleum)";
+        public static final String CUBIC_YARD = "Cubic yard (yd3)";
+        public static final String CUBIC_METER = "Cubic meter (m3)";
+        public static final String CUBIC_CENTIMETER = "Cubic centimeter (cm3)";
+        public static final String MILLILITER = "milliliter (ml)";
+        public static final String CUBIC_FEET = "Cubic feet (ft3)";
+    }
+
+    public class WeightConstant {
+        public static final String KILOGRAM = "Kilogram (kg)";
+        public static final String POUND = "Pound (lb)";
+        public static final String TONNE = "Tonne (t)";
+        public static final String GRAM = "Gram (g)";
+        public static final String CARAT = "Carat (metric)";
+        public static final String MILLIGRAM = "Milligram (mg)";
+        public static final String GRAIN = "Grain (gr)";
+        public static final String NEWTON = "Newton (Earth)";
+        public static final String OUNCE = "Ounce (oz)";
+    }
 }

@@ -12,6 +12,8 @@ import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.conversions.Length;
 import com.lftechnology.unito.conversions.Temperature;
 import com.lftechnology.unito.conversions.Time;
+import com.lftechnology.unito.conversions.Volume;
+import com.lftechnology.unito.conversions.Weight;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.squareup.otto.Subscribe;
 
@@ -124,11 +126,13 @@ public class ScreenSlideBotFragment extends BaseFragment {
     }
 
     private Double volumeConversion(double currentValue, String from, String to) {
-        return null;
+        Volume volume = new Volume(currentValue, from, to);
+        return volume.convert();
     }
 
     private Double weightConversion(double currentValue, String from, String to) {
-        return null;
+        Weight weight = new Weight(currentValue, from, to);
+        return weight.convert();
     }
 
     public Double changeToDouble(String val) {
