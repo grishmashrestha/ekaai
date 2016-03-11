@@ -6,9 +6,11 @@ package com.lftechnology.unito.bus;
 public class ConvertedValue {
     public String  value;
     public String from;
+    public int position;
 
-    public ConvertedValue(String val, String frm) {
+    public ConvertedValue(String val, String frm, int pos) {
         value = val;
         from = frm;
+        position = pos;
     }
 }

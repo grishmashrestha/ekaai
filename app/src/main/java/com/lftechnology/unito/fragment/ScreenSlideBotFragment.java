@@ -11,6 +11,7 @@ import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.conversions.Length;
 import com.lftechnology.unito.conversions.Temperature;
+import com.lftechnology.unito.conversions.Time;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.squareup.otto.Subscribe;
 
@@ -118,7 +119,8 @@ public class ScreenSlideBotFragment extends BaseFragment {
     }
 
     private Double timeConversion(double currentValue, String from, String to) {
-        return null;
+        Time time = new Time(currentValue, from, to);
+        return time.convert();
     }
 
     private Double volumeConversion(double currentValue, String from, String to) {

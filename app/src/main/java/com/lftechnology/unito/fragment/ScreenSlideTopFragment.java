@@ -14,6 +14,7 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
@@ -68,7 +69,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[mPosition]));
+                    EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[mPosition], mPosition));
                 }
             }, 2);
         }
@@ -86,16 +87,15 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition]));
+                EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition], mPosition));
             }
         });
     }
 
-//    @Subscribe
-//    public void syncValueAcrossAllPages(final ConvertedValue val) {
-////        if (val.position != mPosition) {
-////            mFromUnit.setText(val.value);
-////        }
-//        Timber.d(val.value);
-//    }
+    @Subscribe
+    public void syncValueAcrossAllPages(final ConvertedValue val) {
+        if (!(val.value.equals(mFromUnit.getText().toString())) && val.position != mPosition) {
+            mFromUnit.setText(val.value);
+        }
+    }
 }
