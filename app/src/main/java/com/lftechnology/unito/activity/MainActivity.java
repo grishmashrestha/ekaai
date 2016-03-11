@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.lftechnology.unito.R;
+import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.fragment.LengthFragment;
 import com.lftechnology.unito.fragment.TemperatureFragment;
 import com.lftechnology.unito.fragment.TimeFragment;
@@ -100,25 +101,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         menu.clear();
 
         switch (mSelectedConversion) {
-            case "Length":
+            case AppConstant.LENGTH:
                 getMenuInflater().inflate(R.menu.drawer_length, menu);
-                ;
                 break;
-            case "Temperature":
+            case AppConstant.TEMPERATURE:
                 getMenuInflater().inflate(R.menu.drawer_temperature, menu);
-                ;
                 break;
-            case "Time":
+            case AppConstant.TIME:
                 getMenuInflater().inflate(R.menu.drawer_time, menu);
-                ;
                 break;
-            case "Volume":
+            case AppConstant.VOLUME:
                 getMenuInflater().inflate(R.menu.drawer_volume, menu);
-                ;
                 break;
-            case "Weight":
+            case AppConstant.WEIGHT:
                 getMenuInflater().inflate(R.menu.drawer_weight, menu);
-                ;
                 break;
             default:
                 break;
@@ -132,19 +128,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void changeFragment(String selectedConversion) {
         mSelectedConversion = selectedConversion;
         switch (selectedConversion) {
-            case "Length":
+            case AppConstant.LENGTH:
                 replaceByAnotherFragment(new LengthFragment());
                 break;
-            case "Temperature":
+            case AppConstant.TEMPERATURE:
                 replaceByAnotherFragment(new TemperatureFragment());
                 break;
-            case "Time":
+            case AppConstant.TIME:
                 replaceByAnotherFragment(new TimeFragment());
                 break;
-            case "Volume":
+            case AppConstant.VOLUME:
                 replaceByAnotherFragment(new VolumeFragment());
                 break;
-            case "Weight":
+            case AppConstant.WEIGHT:
                 replaceByAnotherFragment(new WeightFragment());
                 break;
             default:
