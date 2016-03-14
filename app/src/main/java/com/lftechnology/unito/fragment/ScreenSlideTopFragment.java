@@ -19,6 +19,8 @@ import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
 
+import timber.log.Timber;
+
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
  */
@@ -28,7 +30,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
     private static final String DATASET = "dataset";
 
     // TODO: Rename and change types of parameters
-    private int mPosition;
+    private int mPosition, mVisibleFragmentPosition;
     private String[] mDataset;
     ViewGroup mRootView;
     EditText mFromUnit;
@@ -76,7 +78,6 @@ public class ScreenSlideTopFragment extends BaseFragment {
             }, 2);
         }
 
-
         mFromUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -89,7 +90,9 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition], mPosition));
+                if (mPosition == mVisibleFragmentPosition) {
+                    EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition], mPosition));
+                }
             }
         });
 
@@ -104,6 +107,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
     @Subscribe
     public void syncValueAcrossAllPages(final ConvertedValue val) {
         if (!(val.value.equals(mFromUnit.getText().toString())) && val.position != mPosition) {
+            mVisibleFragmentPosition = val.position;
             mFromUnit.setText(val.value);
         }
     }
