@@ -12,12 +12,14 @@
 
         <EditText
             android:id="@+id/from_unit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@android:color/white"
             android:inputType="numberDecimal"
-            android:text="1"
             android:maxLength="12"
+            android:minWidth="50dp"
+            android:text="1"
             android:textAlignment="center"
             android:textIsSelectable="false"
             android:textSize="100sp"
