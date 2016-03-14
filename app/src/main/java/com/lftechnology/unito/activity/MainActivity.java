@@ -172,13 +172,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setMenuByFragment(mMenu);
     }
 
-    private void hideSoftKeyboard() {
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (inputMethodManager.isAcceptingText()) {
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        }
-    }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }

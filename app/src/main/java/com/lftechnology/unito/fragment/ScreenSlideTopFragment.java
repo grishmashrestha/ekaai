@@ -97,10 +97,6 @@ public class ScreenSlideTopFragment extends BaseFragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 SoftKeyBoard.hideSoftKeyboard(getContext(), v);
-//                InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                if (inputMethodManager.isAcceptingText()) {
-//                    inputMethodManager.hideSoftInputFromWindow(mFromUnit.getWindowToken(), 0);
-//                }
             }
         });
     }
