@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.bus.EventBus;
+import com.lftechnology.unito.bus.PageScrollPosition;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
@@ -28,10 +29,10 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
     private static final String POSITION = "position";
     private static final String DATASET = "dataset";
-
-    // TODO: Rename and change types of parameters
-    private int mPosition, mVisibleFragmentPosition;
+    private static int mVisibleFragmentPosition;
+    private int mPosition;
     private String[] mDataset;
+
     ViewGroup mRootView;
     EditText mFromUnit;
 
@@ -110,5 +111,14 @@ public class ScreenSlideTopFragment extends BaseFragment {
             mVisibleFragmentPosition = val.position;
             mFromUnit.setText(val.value);
         }
+    }
+
+    public static void changeVisibleFragmentPosition(int position) {
+        mVisibleFragmentPosition = position;
+    }
+
+    @Subscribe
+    public void syncOnPageScroll(final PageScrollPosition pageScrollPosition) {
+        EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pageScrollPosition.position], pageScrollPosition.position));
     }
 }

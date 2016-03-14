@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.ScreenSlidePageAdapter;
+import com.lftechnology.unito.bus.EventBus;
+import com.lftechnology.unito.bus.PageScrollPosition;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TemperatureFragment extends Fragment {
+public class TemperatureFragment extends Fragment implements ViewPager.OnPageChangeListener {
     ViewPager mPager1, mPager2;
     PagerAdapter mPagerAdapter1, mPagerAdapter2;
 
@@ -33,6 +35,7 @@ public class TemperatureFragment extends Fragment {
         mPagerAdapter1 = new ScreenSlidePageAdapter(getFragmentManager(), true);
         mPager1.setAdapter(mPagerAdapter1);
         mPager1.setOffscreenPageLimit(3);
+        mPager1.addOnPageChangeListener(this);
 
         mPager2 = (ViewPager) view.findViewById(R.id.pager2);
         mPagerAdapter2 = new ScreenSlidePageAdapter(getFragmentManager(), false);
@@ -42,4 +45,18 @@ public class TemperatureFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        ScreenSlideTopFragment.changeVisibleFragmentPosition(position);
+        EventBus.post(new PageScrollPosition(position));
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }
