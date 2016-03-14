@@ -1,5 +1,6 @@
 package com.lftechnology.unito.activity;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,11 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.constant.AppConstant;
@@ -25,6 +29,9 @@ import com.lftechnology.unito.fragment.TemperatureFragment;
 import com.lftechnology.unito.fragment.TimeFragment;
 import com.lftechnology.unito.fragment.VolumeFragment;
 import com.lftechnology.unito.fragment.WeightFragment;
+import com.lftechnology.unito.utils.SoftKeyBoard;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DrawerLayout mDrawer;
@@ -57,6 +64,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                SoftKeyBoard.hideSoftKeyboard(v.getContext(), v);
+                return false;
+            }
+        });
         spinner.setOnItemSelectedListener(this);
     }
 
@@ -156,6 +170,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         View view1 = nvDrawer.getHeaderView(0);
         setHeaderTextByFragment(view1);
         setMenuByFragment(mMenu);
+    }
+
+    private void hideSoftKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isAcceptingText()) {
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     @Override

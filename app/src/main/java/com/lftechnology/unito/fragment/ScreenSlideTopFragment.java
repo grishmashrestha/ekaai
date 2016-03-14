@@ -16,6 +16,7 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
+import com.lftechnology.unito.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
 
 /**
@@ -95,8 +96,11 @@ public class ScreenSlideTopFragment extends BaseFragment {
         mFromUnit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(mFromUnit.getWindowToken(), 0);
+                SoftKeyBoard.hideSoftKeyboard(getContext(), v);
+//                InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                if (inputMethodManager.isAcceptingText()) {
+//                    inputMethodManager.hideSoftInputFromWindow(mFromUnit.getWindowToken(), 0);
+//                }
             }
         });
     }
