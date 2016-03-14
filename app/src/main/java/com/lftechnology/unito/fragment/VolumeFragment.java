@@ -52,7 +52,6 @@ public class VolumeFragment extends Fragment implements ViewPager.OnPageChangeLi
 
     @Override
     public void onPageSelected(int position) {
-        ScreenSlideTopFragment.changeVisibleFragmentPosition(position);
         EventBus.post(new PageScrollPosition(position));
     }
 

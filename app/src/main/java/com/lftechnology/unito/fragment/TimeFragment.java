@@ -13,6 +13,8 @@ import com.lftechnology.unito.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
 
+import timber.log.Timber;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,11 +50,11 @@ public class TimeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
     }
 
     @Override
     public void onPageSelected(int position) {
-        ScreenSlideTopFragment.changeVisibleFragmentPosition(position);
         EventBus.post(new PageScrollPosition(position));
     }
 

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.ScreenSlidePageAdapter;
-import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
 
@@ -53,7 +52,6 @@ public class LengthFragment extends BaseFragment implements ViewPager.OnPageChan
 
     @Override
     public void onPageSelected(int position) {
-        ScreenSlideTopFragment.changeVisibleFragmentPosition(position);
         EventBus.post(new PageScrollPosition(position));
     }
 
