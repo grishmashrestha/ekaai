@@ -36,13 +36,13 @@ public class Temperature {
             case AppConstant.TemperatureConstant.FAHRENHEIT:
                 switch (to) {
                     case AppConstant.TemperatureConstant.CELSIUS:
-                        returnValue = ((value - 32) * (5/9));
+                        returnValue = ((value - 32) * 5/9);
                         break;
                     case AppConstant.TemperatureConstant.FAHRENHEIT:
                         returnValue = value;
                         break;
                     case AppConstant.TemperatureConstant.KELVIN:
-                        returnValue = ((value + 459.67) * (5/9));
+                        returnValue = ((value + 459.67) * 5/9);
                         break;
                     default:
                         returnValue = 0;
