@@ -51,7 +51,6 @@ public class TemperatureFragment extends Fragment implements ViewPager.OnPageCha
 
     @Override
     public void onPageSelected(int position) {
-        ScreenSlideTopFragment.changeVisibleFragmentPosition(position);
         EventBus.post(new PageScrollPosition(position));
     }
 

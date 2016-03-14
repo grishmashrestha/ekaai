@@ -29,7 +29,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
     private static final String POSITION = "position";
     private static final String DATASET = "dataset";
-    private static int mVisibleFragmentPosition;
+    private int mVisibleFragmentPosition;
     private int mPosition;
     private String[] mDataset;
 
@@ -113,12 +113,21 @@ public class ScreenSlideTopFragment extends BaseFragment {
         }
     }
 
-    public static void changeVisibleFragmentPosition(int position) {
+    public void changeVisibleFragmentPosition(int position) {
         mVisibleFragmentPosition = position;
     }
 
     @Subscribe
     public void syncOnPageScroll(final PageScrollPosition pageScrollPosition) {
-        EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pageScrollPosition.position], pageScrollPosition.position));
+        Timber.e("***************************");
+        Timber.e("mPosition Fragment:" + mPosition);
+        int pos = pageScrollPosition.position;
+        Timber.e("Current Visible Position:" + pos);
+        Timber.e("mDataset length:" + mDataset.length);
+        Timber.e("***************************");
+
+        changeVisibleFragmentPosition(pos);
+
+        EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos));
     }
 }
