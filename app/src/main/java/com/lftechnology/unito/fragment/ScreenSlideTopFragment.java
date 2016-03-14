@@ -1,5 +1,6 @@
 package com.lftechnology.unito.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -7,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -29,7 +31,6 @@ public class ScreenSlideTopFragment extends BaseFragment {
     private String[] mDataset;
     ViewGroup mRootView;
     EditText mFromUnit;
-    int i = 0;
 
     public ScreenSlideTopFragment() {
     }
@@ -88,6 +89,14 @@ public class ScreenSlideTopFragment extends BaseFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition], mPosition));
+            }
+        });
+
+        mFromUnit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(mFromUnit.getWindowToken(), 0);
             }
         });
     }

@@ -53,14 +53,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.setDrawerListener(drawerToggle);
 
-
         Spinner spinner = (Spinner) findViewById(R.id.unito_option_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-
-
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -154,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setSelection(position);
         String selectedConversion = spinner.getSelectedItem().toString();
         changeFragment(selectedConversion);
-
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         View view1 = nvDrawer.getHeaderView(0);
