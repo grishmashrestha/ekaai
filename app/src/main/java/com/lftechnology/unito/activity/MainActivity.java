@@ -42,13 +42,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         mMenu = nvDrawer.getMenu();
-
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         drawerToggle = setupDrawerToggle();
-
-        // Tie DrawerLayout events to the ActionBarToggle
-        mDrawer.setDrawerListener(drawerToggle);
+        mDrawer.addDrawerListener(drawerToggle);
 
         Spinner spinner = (Spinner) findViewById(R.id.unito_option_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
