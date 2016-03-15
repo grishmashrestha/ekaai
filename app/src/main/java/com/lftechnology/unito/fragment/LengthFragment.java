@@ -1,6 +1,7 @@
 package com.lftechnology.unito.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -57,6 +58,5 @@ public class LengthFragment extends BaseFragment implements ViewPager.OnPageChan
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 }

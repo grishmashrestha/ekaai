@@ -177,6 +177,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction.replace(R.id.inflated_content_main, fragment, fragment.getClass().getName());
         fragmentTransaction.commit();
     }
+
+    public void swap_fragments(View view) {
+
+    }
 }
 
 

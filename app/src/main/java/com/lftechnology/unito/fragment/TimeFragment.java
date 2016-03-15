@@ -1,6 +1,8 @@
 package com.lftechnology.unito.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -22,6 +24,7 @@ import timber.log.Timber;
 public class TimeFragment extends Fragment implements ViewPager.OnPageChangeListener {
     ViewPager mPager1, mPager2;
     PagerAdapter mPagerAdapter1, mPagerAdapter2;
+    Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class TimeFragment extends Fragment implements ViewPager.OnPageChangeList
         mPager2.setOffscreenPageLimit(13);
         mPager2.setCurrentItem(1);
 
-        return  view;
+        return view;
     }
 
     @Override

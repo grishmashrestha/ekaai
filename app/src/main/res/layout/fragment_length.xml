@@ -32,6 +32,7 @@
         android:layout_centerInParent="true"
         android:background="@drawable/swap_btn_cont_blue"
         android:contentDescription="@string/swap_btn"
-        android:src="@drawable/swap" />
+        android:src="@drawable/swap"
+        android:onClick="swapFragments"/>
 
 </RelativeLayout>
