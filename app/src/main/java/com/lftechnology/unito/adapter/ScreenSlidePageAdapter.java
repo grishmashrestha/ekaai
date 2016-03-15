@@ -17,13 +17,13 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
     private int mPages = 5;
     private Boolean isTop;
     private String[] mDataset;
-    private String mCurrentFragmentName;
-    private  String fragmentName;
+    private String fragmentName;
+    private String mSelectedConversion;
 
-    public ScreenSlidePageAdapter(FragmentManager fm, Boolean isTop) {
+    public ScreenSlidePageAdapter(FragmentManager fm, Boolean isTop, String selectedConversion) {
         super(fm);
         this.isTop = isTop;
-        mCurrentFragmentName = fm.getFragments().get(0).getClass().getName();
+        mSelectedConversion = selectedConversion;
         setDatasetAndPageCount();
     }
 
@@ -43,30 +43,30 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
 
     private void setDatasetAndPageCount() {
         String[] dataset;
-        switch (mCurrentFragmentName) {
-            case AppConstant.LENGTH_FRAGMENT_NAME:
+        switch (mSelectedConversion) {
+            case AppConstant.LENGTH:
                 dataset = Unito.getContext().getResources().getStringArray(R.array.length_options);
                 fragmentName = AppConstant.LENGTH;
                 break;
-            case AppConstant.TEMPERATURE_FRAGMENT_NAME:
+            case AppConstant.TEMPERATURE:
                 dataset = Unito.getContext().getResources().getStringArray(R.array.temperature_options);
                 fragmentName = AppConstant.TEMPERATURE;
                 break;
-            case AppConstant.TIME_FRAGMENT_NAME:
+            case AppConstant.TIME:
                 dataset = Unito.getContext().getResources().getStringArray(R.array.time_options);
-                fragmentName =  AppConstant.TIME;
+                fragmentName = AppConstant.TIME;
                 break;
-            case AppConstant.VOLUME_FRAGMENT_NAME:
+            case AppConstant.VOLUME:
                 dataset = Unito.getContext().getResources().getStringArray(R.array.volume_options);
-                fragmentName =  AppConstant.VOLUME;
+                fragmentName = AppConstant.VOLUME;
                 break;
-            case AppConstant.WEIGHT_FRAGMENT_NAME:
+            case AppConstant.WEIGHT:
                 dataset = Unito.getContext().getResources().getStringArray(R.array.weight_options);
-                fragmentName =  AppConstant.WEIGHT;
+                fragmentName = AppConstant.WEIGHT;
                 break;
             default:
                 dataset = Unito.getContext().getResources().getStringArray(R.array.length_options);
-                fragmentName =  AppConstant.LENGTH;
+                fragmentName = AppConstant.LENGTH;
                 break;
         }
         mDataset = dataset;

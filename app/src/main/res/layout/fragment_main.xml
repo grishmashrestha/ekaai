@@ -1,37 +1,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.WeightFragment">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/weight_fragment"
+        android:id="@+id/fragment_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/pager"
+            android:id="@+id/pagerTop"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@android:color/white" />
 
         <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/pager2"
+            android:id="@+id/pagerBottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/colorWeightLight" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/swapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@drawable/swap_btn_cont_green"
         android:contentDescription="@string/swap_btn"
-        android:src="@drawable/swap" />
+        android:src="@drawable/swap"
+        android:onClick="swapFragments"/>
 
 </RelativeLayout>

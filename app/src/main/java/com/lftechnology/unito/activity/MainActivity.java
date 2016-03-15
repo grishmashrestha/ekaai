@@ -3,7 +3,6 @@ package com.lftechnology.unito.activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -18,14 +17,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.constant.AppConstant;
-import com.lftechnology.unito.fragment.LengthFragment;
-import com.lftechnology.unito.fragment.TemperatureFragment;
-import com.lftechnology.unito.fragment.TimeFragment;
-import com.lftechnology.unito.fragment.VolumeFragment;
-import com.lftechnology.unito.fragment.WeightFragment;
+import com.lftechnology.unito.fragment.MainFragment;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -130,35 +126,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ((TextView) view.findViewById(R.id.nav_header)).setText(mSelectedConversion);
     }
 
-    private void changeFragment(String selectedConversion) {
-        mSelectedConversion = selectedConversion;
-        switch (selectedConversion) {
-            case AppConstant.LENGTH:
-                replaceByAnotherFragment(new LengthFragment());
-                break;
-            case AppConstant.TEMPERATURE:
-                replaceByAnotherFragment(new TemperatureFragment());
-                break;
-            case AppConstant.TIME:
-                replaceByAnotherFragment(new TimeFragment());
-                break;
-            case AppConstant.VOLUME:
-                replaceByAnotherFragment(new VolumeFragment());
-                break;
-            case AppConstant.WEIGHT:
-                replaceByAnotherFragment(new WeightFragment());
-                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Spinner spinner = (Spinner) parent;
         spinner.setSelection(position);
-        String selectedConversion = spinner.getSelectedItem().toString();
-        changeFragment(selectedConversion);
+        mSelectedConversion = spinner.getSelectedItem().toString();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
+        fragmentTransaction.commit();
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         View view1 = nvDrawer.getHeaderView(0);
@@ -170,16 +147,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
-    public void replaceByAnotherFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.inflated_content_main, fragment, fragment.getClass().getName());
-        fragmentTransaction.commit();
-    }
-
-    public void swap_fragments(View view) {
-
+    public void swapFragments(View view) {
+        Toast.makeText(MainActivity.this, "Swap Button Clicked!", Toast.LENGTH_SHORT).show();
     }
 }
 
