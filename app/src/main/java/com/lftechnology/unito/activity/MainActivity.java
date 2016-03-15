@@ -139,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void swapFragments(View view) {
-        Toast.makeText(MainActivity.this, "Swap Button Clicked!", Toast.LENGTH_SHORT).show();
         EventBus.post(new SwapFragment(true));
     }
 }
