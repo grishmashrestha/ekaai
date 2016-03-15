@@ -125,9 +125,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
         Timber.e("Current Visible Position:" + pos);
         Timber.e("mDataset length:" + mDataset.length);
         Timber.e("***************************");
-
         changeVisibleFragmentPosition(pos);
-
         EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos));
     }
 }
