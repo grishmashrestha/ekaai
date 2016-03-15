@@ -13,7 +13,9 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
+import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
+import com.squareup.otto.Subscribe;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +28,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
     private String mSelectedConversion;
     private int mBottomBackgroundColor, mSwapButtonColor;
-
+    private ViewPager mPagerTop, mPagerBottom;
 
     public MainFragment() {
         // Required empty public constructor
@@ -53,13 +55,13 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ViewPager mPagerTop = (ViewPager) view.findViewById(R.id.pagerTop);
+        mPagerTop = (ViewPager) view.findViewById(R.id.pagerTop);
         PagerAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
         mPagerTop.setAdapter(mPagerAdapterTop);
         mPagerTop.setOffscreenPageLimit(12);
         mPagerTop.addOnPageChangeListener(this);
 
-        ViewPager mPagerBottom = (ViewPager) view.findViewById(R.id.pagerBottom);
+        mPagerBottom = (ViewPager) view.findViewById(R.id.pagerBottom);
         PagerAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
         mPagerBottom.setAdapter(mPagerAdapterBottom);
         mPagerBottom.setOffscreenPageLimit(12);
@@ -113,5 +115,15 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Override
     public void onPageScrollStateChanged(int state) {
+    }
+
+    @Subscribe
+    public void swapFragments(SwapFragment swapFragment) {
+        if (swapFragment.swapFlag) {
+            int initialTopFragmentPosition = mPagerTop.getCurrentItem();
+            int initialBottomFragmentPosition = mPagerBottom.getCurrentItem();
+            mPagerTop.setCurrentItem(initialBottomFragmentPosition);
+            mPagerBottom.setCurrentItem(initialTopFragmentPosition);
+        }
     }
 }

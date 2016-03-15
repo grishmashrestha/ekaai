@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lftechnology.unito.R;
+import com.lftechnology.unito.bus.EventBus;
+import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.fragment.MainFragment;
 import com.lftechnology.unito.utils.SoftKeyBoard;
@@ -66,16 +68,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
@@ -140,9 +138,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
-
     public void swapFragments(View view) {
         Toast.makeText(MainActivity.this, "Swap Button Clicked!", Toast.LENGTH_SHORT).show();
+        EventBus.post(new SwapFragment(true));
     }
 }
 
