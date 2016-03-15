@@ -1,8 +1,5 @@
 package com.lftechnology.unito.fragment;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -18,9 +15,6 @@ import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
 import com.lftechnology.unito.constant.AppConstant;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -30,8 +24,6 @@ import butterknife.ButterKnife;
 public class MainFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
     private static final String SELECTED_CONVERSION = "selectedConversion";
 
-    private ViewPager mPagerTop, mPagerBottom;
-    private PagerAdapter mPagerAdapterTop, mPagerAdapterBottom;
     private String mSelectedConversion;
     private int mBottomBackgroundColor, mSwapButtonColor;
 
@@ -61,14 +53,14 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        mPagerTop = (ViewPager) view.findViewById(R.id.pagerTop);
-        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
+        ViewPager mPagerTop = (ViewPager) view.findViewById(R.id.pagerTop);
+        PagerAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
         mPagerTop.setAdapter(mPagerAdapterTop);
         mPagerTop.setOffscreenPageLimit(12);
         mPagerTop.addOnPageChangeListener(this);
 
-        mPagerBottom = (ViewPager) view.findViewById(R.id.pagerBottom);
-        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
+        ViewPager mPagerBottom = (ViewPager) view.findViewById(R.id.pagerBottom);
+        PagerAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
         mPagerBottom.setAdapter(mPagerAdapterBottom);
         mPagerBottom.setOffscreenPageLimit(12);
         mPagerBottom.setCurrentItem(1);

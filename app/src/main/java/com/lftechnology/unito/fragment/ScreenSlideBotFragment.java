@@ -74,7 +74,7 @@ public class ScreenSlideBotFragment extends BaseFragment {
         tv.setText(mDataset[mPosition]);
     }
 
-    public void convertToCurrentUnit(ConvertedValue val) {
+    private void convertToCurrentUnit(ConvertedValue val) {
         double currentValue = changeToDouble(val.value);
 
         Double returnValue = applyConversion(currentValue, mParentFragmentName, val.from);
@@ -135,7 +135,7 @@ public class ScreenSlideBotFragment extends BaseFragment {
         return weight.convert();
     }
 
-    public Double changeToDouble(String val) {
+    private Double changeToDouble(String val) {
         Double returnValue;
         try {
             returnValue = Double.parseDouble(val);

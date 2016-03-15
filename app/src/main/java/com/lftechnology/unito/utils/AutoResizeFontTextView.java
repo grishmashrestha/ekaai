@@ -1,8 +1,5 @@
 package com.lftechnology.unito.utils;
 
-import android.support.v7.widget.LinearLayoutCompat;
-import android.view.Gravity;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**

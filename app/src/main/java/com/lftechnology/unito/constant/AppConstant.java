@@ -10,12 +10,6 @@ public class AppConstant {
     public static final String VOLUME = "Volume";
     public static final String TIME = "Time";
 
-    public static final String LENGTH_FRAGMENT_NAME = "com.lftechnology.unito.fragment.LengthFragment";
-    public static final String TEMPERATURE_FRAGMENT_NAME = "com.lftechnology.unito.fragment.TemperatureFragment";
-    public static final String WEIGHT_FRAGMENT_NAME = "com.lftechnology.unito.fragment.WeightFragment";
-    public static final String VOLUME_FRAGMENT_NAME = "com.lftechnology.unito.fragment.VolumeFragment";
-    public static final String TIME_FRAGMENT_NAME = "com.lftechnology.unito.fragment.TimeFragment";
-
     public class LengthConstant {
         public static final String NAUTICAL_MILE = "Nautical Mile";
         public static final String KILOMETER = "Kilometre (km)";

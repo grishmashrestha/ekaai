@@ -16,12 +16,12 @@ public class Time {
     }
 
     private Double getConstant(String from, String to) {
-        Double constant = 0.0;
+        Double constant;
         switch (from) {
             case AppConstant.TimeConstant.SECOND:
                 switch (to) {
                     case AppConstant.TimeConstant.SECOND:
-                        constant = 0.0;
+                        constant = 1.0;
                         break;
                     case AppConstant.TimeConstant.MINUTE:
                         constant = 0.016666667;

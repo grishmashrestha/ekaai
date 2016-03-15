@@ -6,7 +6,7 @@ import android.content.Context;
 import timber.log.Timber;
 
 /**
- * Created by grishma on 2/24/16.
+ * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/24/16.
  */
 public class Unito extends Application {
 
