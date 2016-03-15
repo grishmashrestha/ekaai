@@ -1,6 +1,5 @@
 package com.lftechnology.unito.activity;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,12 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.constant.AppConstant;
@@ -31,8 +28,6 @@ import com.lftechnology.unito.fragment.VolumeFragment;
 import com.lftechnology.unito.fragment.WeightFragment;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 
-import timber.log.Timber;
-
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
@@ -40,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ActionBarDrawerToggle drawerToggle;
     private String mSelectedConversion;
     private Menu mMenu;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
-
 
     public void replaceByAnotherFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
