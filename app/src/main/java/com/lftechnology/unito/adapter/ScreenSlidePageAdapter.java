@@ -29,7 +29,7 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (isTop) {
-            return ScreenSlideTopFragment.newInstance(position, mDataset);
+            return ScreenSlideTopFragment.newInstance(position, mDataset, mSelectedConversion);
         } else {
             return ScreenSlideBotFragment.newInstance(position, mDataset, fragmentName);
         }

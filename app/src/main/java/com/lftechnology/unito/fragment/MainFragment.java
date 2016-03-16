@@ -117,7 +117,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Override
     public void onPageSelected(int position) {
-        EventBus.post(new PageScrollPosition(position));
+        EventBus.post(new PageScrollPosition(position, mSelectedConversion));
     }
 
     @Override

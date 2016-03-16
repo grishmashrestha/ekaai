@@ -27,20 +27,24 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
     private static final String POSITION = "position";
     private static final String DATASET = "dataset";
+    private static final String SELECTED_CONVERSION = "selectedConversion";
+
     private int mVisibleFragmentPosition;
     private int mPosition;
     private String[] mDataset;
     private ViewGroup mRootView;
     private EditText mFromUnit;
+    private String mSelectedConversion;
 
     public ScreenSlideTopFragment() {
     }
 
-    public static ScreenSlideTopFragment newInstance(int position, String[] dataset) {
+    public static ScreenSlideTopFragment newInstance(int position, String[] dataset, String selectedConversion) {
         ScreenSlideTopFragment fragment = new ScreenSlideTopFragment();
         Bundle args = new Bundle();
         args.putInt(POSITION, position);
         args.putStringArray(DATASET, dataset);
+        args.putString(SELECTED_CONVERSION, selectedConversion);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,6 +55,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
         if (getArguments() != null) {
             mPosition = getArguments().getInt(POSITION);
             mDataset = getArguments().getStringArray(DATASET);
+            mSelectedConversion = getArguments().getString(SELECTED_CONVERSION);
         }
     }
 
@@ -114,14 +119,11 @@ public class ScreenSlideTopFragment extends BaseFragment {
     }
 
     @Subscribe
-    public void syncOnPageScroll(final PageScrollPosition pageScrollPosition) {
-        Timber.e("***************************");
-        Timber.e("mPosition Fragment:" + mPosition);
-        int pos = pageScrollPosition.position;
-        Timber.e("Current Visible Position:" + pos);
-        Timber.e("mDataset length:" + mDataset.length);
-        Timber.e("***************************");
-        changeVisibleFragmentPosition(pos);
-        EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos));
+    public void syncOnPageScroll(PageScrollPosition pageScrollPosition) {
+        if (mSelectedConversion.equals(pageScrollPosition.getSelectedConversion())) {
+            int pos = pageScrollPosition.getPosition();
+            changeVisibleFragmentPosition(pos);
+            EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos));
+        }
     }
 }
