@@ -75,7 +75,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[mPosition], mPosition));
+                    EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[mPosition], mPosition, mSelectedConversion));
                 }
             }, 2);
         }
@@ -93,7 +93,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if (mPosition == mVisibleFragmentPosition) {
-                    EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition], mPosition));
+                    EventBus.post(new ConvertedValue(s.toString().trim(), mDataset[mPosition], mPosition, mSelectedConversion));
                 }
             }
         });
@@ -106,13 +106,27 @@ public class ScreenSlideTopFragment extends BaseFragment {
         });
     }
 
+    /**
+     * syncValueAcrossAllPages
+     *
+     * @param val is an object of ConvertedValue class.
+     *            This method listens for EventBus which is posted when the editText in ScreenSlideTopFragment is changed.
+     *            It updates all other instances of ScreenSlideTopFragment with the passed value of ConverterValue object.
+     */
     @Subscribe
     public void syncValueAcrossAllPages(final ConvertedValue val) {
-        if (!(val.value.equals(mFromUnit.getText().toString())) && val.position != mPosition) {
-            mVisibleFragmentPosition = val.position;
-            mFromUnit.setText(val.value);
+        if (!(val.getValue().equals(mFromUnit.getText().toString())) && val.getPosition() != mPosition && val.getSelectedConversion().equals(mSelectedConversion)) {
+            mVisibleFragmentPosition = val.getPosition();
+            mFromUnit.setText(val.getValue());
         }
     }
+
+    /**
+     * changeVisibleFragmentPosition
+     *
+     * @param position denotes the position of fragment which is currently visible/selected by the user from the viewpager
+     *                 it sets the mVisibleFragmentPosition as the position mentioned above
+     */
 
     public void changeVisibleFragmentPosition(int position) {
         mVisibleFragmentPosition = position;
@@ -125,16 +139,15 @@ public class ScreenSlideTopFragment extends BaseFragment {
      *                           position denotes which is the selected page, visible in the view
      *                           selectedConversion denotes from which conversion method this was invoked,
      *                           viz. length, temperature, time, weight or volume.
-     * if the invoking selectecConversion and the fragments mSelectedConversion matches,
-     * then only it will invoke the EventBus.
-     *
+     *                           if the invoking selectecConversion and the fragments mSelectedConversion matches,
+     *                           then only it will invoke the EventBus.
      */
     @Subscribe
     public void syncOnPageScroll(PageScrollPosition pageScrollPosition) {
         if (mSelectedConversion.equals(pageScrollPosition.getSelectedConversion())) {
             int pos = pageScrollPosition.getPosition();
             changeVisibleFragmentPosition(pos);
-            EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos));
+            EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos, mSelectedConversion));
         }
     }
 

@@ -75,9 +75,9 @@ public class ScreenSlideBotFragment extends BaseFragment {
     }
 
     private void convertToCurrentUnit(ConvertedValue val) {
-        double currentValue = changeToDouble(val.value);
+        double currentValue = changeToDouble(val.getValue());
 
-        Double returnValue = applyConversion(currentValue, mParentFragmentName, val.from);
+        Double returnValue = applyConversion(currentValue, mParentFragmentName, val.getFrom());
 
         TextView tv = (TextView) mView.findViewById(R.id.to_unit);
         tv.setText(String.valueOf(returnValue));
