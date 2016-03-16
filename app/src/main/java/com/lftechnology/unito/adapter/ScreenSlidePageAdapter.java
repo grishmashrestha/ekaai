@@ -14,7 +14,6 @@ import com.lftechnology.unito.fragment.ScreenSlideTopFragment;
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
  */
 public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
-    private int mPages = 5;
     private Boolean isTop;
     private String[] mDataset;
     private String fragmentName;
@@ -38,7 +37,7 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return mPages;
+        return mDataset.length;
     }
 
     private void setDatasetAndPageCount() {
@@ -70,6 +69,5 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
                 break;
         }
         mDataset = dataset;
-        mPages = mDataset.length;
     }
 }

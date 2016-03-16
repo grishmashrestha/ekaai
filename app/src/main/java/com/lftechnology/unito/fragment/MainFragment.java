@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.lftechnology.unito.R;
+import com.lftechnology.unito.Unito;
 import com.lftechnology.unito.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
@@ -27,7 +28,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     private static final String SELECTED_CONVERSION = "selectedConversion";
 
     private String mSelectedConversion;
-    private int mBottomBackgroundColor, mSwapButtonColor;
+    private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
     private ViewPager mPagerTop, mPagerBottom;
 
     public MainFragment() {
@@ -54,20 +55,20 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+        setBackgroundColorAndLengthBySelectedConversion();
 
         mPagerTop = (ViewPager) view.findViewById(R.id.pagerTop);
         PagerAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
         mPagerTop.setAdapter(mPagerAdapterTop);
-        mPagerTop.setOffscreenPageLimit(12);
+        mPagerTop.setOffscreenPageLimit(mDataCount);
         mPagerTop.addOnPageChangeListener(this);
 
         mPagerBottom = (ViewPager) view.findViewById(R.id.pagerBottom);
         PagerAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
         mPagerBottom.setAdapter(mPagerAdapterBottom);
-        mPagerBottom.setOffscreenPageLimit(12);
+        mPagerBottom.setOffscreenPageLimit(mDataCount);
         mPagerBottom.setCurrentItem(1);
 
-        setBackgroundColorBySelectedConversion();
         mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
         ImageView swapButton = (ImageView) view.findViewById(R.id.swapButton);
         swapButton.setBackgroundResource(mSwapButtonColor);
@@ -75,29 +76,35 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
         return view;
     }
 
-    private void setBackgroundColorBySelectedConversion() {
+    private void setBackgroundColorAndLengthBySelectedConversion() {
         switch (mSelectedConversion) {
             case AppConstant.LENGTH:
+                mDataCount = Unito.getContext().getResources().getStringArray(R.array.length_options).length;
                 mBottomBackgroundColor = R.color.colorLengthLight;
                 mSwapButtonColor = R.drawable.swap_btn_cont_blue;
                 break;
             case AppConstant.TEMPERATURE:
+                mDataCount = Unito.getContext().getResources().getStringArray(R.array.temperature_options).length;
                 mBottomBackgroundColor = R.color.colorTemperatureLight;
                 mSwapButtonColor = R.drawable.swap_btn_cont_red;
                 break;
             case AppConstant.TIME:
+                mDataCount = Unito.getContext().getResources().getStringArray(R.array.time_options).length;
                 mBottomBackgroundColor = R.color.colorTimeLight;
                 mSwapButtonColor = R.drawable.swap_btn_cont_yellow;
                 break;
             case AppConstant.VOLUME:
+                mDataCount = Unito.getContext().getResources().getStringArray(R.array.volume_options).length;
                 mBottomBackgroundColor = R.color.colorVolumeLight;
                 mSwapButtonColor = R.drawable.swap_btn_cont_purple;
                 break;
             case AppConstant.WEIGHT:
+                mDataCount = Unito.getContext().getResources().getStringArray(R.array.weight_options).length;
                 mBottomBackgroundColor = R.color.colorWeightLight;
                 mSwapButtonColor = R.drawable.swap_btn_cont_green;
                 break;
             default:
+                mDataCount = Unito.getContext().getResources().getStringArray(R.array.length_options).length;
                 mBottomBackgroundColor = R.color.colorLengthLight;
                 mSwapButtonColor = R.color.colorLengthDark;
                 break;

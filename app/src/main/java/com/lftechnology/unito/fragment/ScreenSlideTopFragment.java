@@ -30,13 +30,11 @@ public class ScreenSlideTopFragment extends BaseFragment {
     private int mVisibleFragmentPosition;
     private int mPosition;
     private String[] mDataset;
-
     private ViewGroup mRootView;
     private EditText mFromUnit;
 
     public ScreenSlideTopFragment() {
     }
-
 
     public static ScreenSlideTopFragment newInstance(int position, String[] dataset) {
         ScreenSlideTopFragment fragment = new ScreenSlideTopFragment();
