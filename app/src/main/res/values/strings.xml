@@ -78,6 +78,9 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2b495f97b731ebfa8756fc520f2515fca002d1eb
     <string name="title_activity_new">NewActivity</string>
 </resources>
