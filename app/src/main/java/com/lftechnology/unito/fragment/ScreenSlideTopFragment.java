@@ -118,6 +118,17 @@ public class ScreenSlideTopFragment extends BaseFragment {
         mVisibleFragmentPosition = position;
     }
 
+    /**
+     * syncOnPageScroll
+     *
+     * @param pageScrollPosition has two attribute, position and selectedConversion
+     *                           position denotes which is the selected page, visible in the view
+     *                           selectedConversion denotes from which conversion method this was invoked,
+     *                           viz. length, temperature, time, weight or volume.
+     * if the invoking selectecConversion and the fragments mSelectedConversion matches,
+     * then only it will invoke the EventBus.
+     *
+     */
     @Subscribe
     public void syncOnPageScroll(PageScrollPosition pageScrollPosition) {
         if (mSelectedConversion.equals(pageScrollPosition.getSelectedConversion())) {
@@ -126,4 +137,5 @@ public class ScreenSlideTopFragment extends BaseFragment {
             EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos));
         }
     }
+
 }
