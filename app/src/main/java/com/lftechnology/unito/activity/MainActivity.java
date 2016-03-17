@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ActionBarDrawerToggle drawerToggle;
     private String mSelectedConversion;
     private Menu mMenu;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         drawerToggle = setupDrawerToggle();
         mDrawer.addDrawerListener(drawerToggle);
 
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        addDrawerItems();
+
         Spinner spinner = (Spinner) findViewById(R.id.unito_option_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -60,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
         spinner.setOnItemSelectedListener(this);
+    }
+
+    private void addDrawerItems() {
+        String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(mAdapter);
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -91,30 +103,31 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void setMenuByFragment(Menu menu) {
         menu.clear();
+        getMenuInflater().inflate(R.menu.drawer_length, menu);
 
-        switch (mSelectedConversion) {
-            case AppConstant.LENGTH:
-                getMenuInflater().inflate(R.menu.drawer_length, menu);
-                break;
-            case AppConstant.TEMPERATURE:
-                getMenuInflater().inflate(R.menu.drawer_temperature, menu);
-                break;
-            case AppConstant.TIME:
-                getMenuInflater().inflate(R.menu.drawer_time, menu);
-                break;
-            case AppConstant.VOLUME:
-                getMenuInflater().inflate(R.menu.drawer_volume, menu);
-                break;
-            case AppConstant.WEIGHT:
-                getMenuInflater().inflate(R.menu.drawer_weight, menu);
-                break;
-            default:
-                break;
-        }
+//        switch (mSelectedConversion) {
+//            case AppConstant.LENGTH:
+//                getMenuInflater().inflate(R.menu.drawer_length, menu);
+//                break;
+//            case AppConstant.TEMPERATURE:
+//                getMenuInflater().inflate(R.menu.drawer_temperature, menu);
+//                break;
+//            case AppConstant.TIME:
+//                getMenuInflater().inflate(R.menu.drawer_time, menu);
+//                break;
+//            case AppConstant.VOLUME:
+//                getMenuInflater().inflate(R.menu.drawer_volume, menu);
+//                break;
+//            case AppConstant.WEIGHT:
+//                getMenuInflater().inflate(R.menu.drawer_weight, menu);
+//                break;
+//            default:
+//                break;
+//        }
     }
 
-    private void setHeaderTextByFragment(View view) {
-        ((TextView) view.findViewById(R.id.nav_header)).setText(mSelectedConversion);
+    private void setHeaderTextByFragment() {
+        ((TextView) findViewById(R.id.nav_header)).setText(mSelectedConversion);
     }
 
     @Override
@@ -129,9 +142,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction.commit();
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        View view1 = nvDrawer.getHeaderView(0);
-        setHeaderTextByFragment(view1);
-        setMenuByFragment(mMenu);
+//        View view1 = nvDrawer.getHeaderView(0);
+        setHeaderTextByFragment();
+//        setMenuByFragment(mMenu);
     }
 
     @Override
