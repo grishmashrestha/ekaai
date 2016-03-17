@@ -7,7 +7,9 @@ public class Person {
     private int age;
     private String name;
 
-    public Person() {
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
     public int getAge() {
@@ -29,5 +31,12 @@ public class Person {
     public void setName(String name) {
         System.out.println("set Name");
         this.name = name;
+    }
+
+    public void  addName(String name) {
+        if (this.name == null) {
+            this.name = this.name + name;
+        }
+
     }
 }

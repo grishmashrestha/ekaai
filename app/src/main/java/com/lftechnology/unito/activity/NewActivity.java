@@ -1,5 +1,6 @@
 package com.lftechnology.unito.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.lftechnology.unito.R;
+
+import timber.log.Timber;
 
 public class NewActivity extends AppCompatActivity {
 
@@ -31,10 +34,18 @@ public class NewActivity extends AppCompatActivity {
     }
 
     public void buttonClicked(View view) {
-        EditText editText = (EditText) findViewById(R.id.editText);
-        TextView textView = (TextView) findViewById(R.id.textView);
-        editText.setText("lala");
-        textView.setText("hehe");
+//        EditText editText = (EditText) findViewById(R.id.editText);
+//        TextView textView = (TextView) findViewById(R.id.textView);
+//        editText.setText("lala");
+//        textView.setText("hehe");
+        Intent intent = new Intent(this, NewSecondActivity.class);
+        startActivityForResult(intent, 1);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Bundle extra = data.getExtras();
+        Timber.e("I am here" + extra.getInt(Intent.EXTRA_EMAIL));
+    }
 }
