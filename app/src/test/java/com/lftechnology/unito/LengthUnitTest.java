@@ -1,11 +1,8 @@
 package com.lftechnology.unito;
 
 import com.lftechnology.unito.conversions.Length;
-import com.lftechnology.unito.testing.Person;
 
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.Spy;
 
 import static org.junit.Assert.assertEquals;
 

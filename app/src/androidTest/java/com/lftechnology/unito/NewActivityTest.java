@@ -30,10 +30,8 @@ public class NewActivityTest {
         Espresso.onView(ViewMatchers.withId(R.id.editText)).check(ViewAssertions.matches(getMyMatcher()));
     }
 
-
-    private Matcher<View> getMyMatcher(){
-        return new TypeSafeMatcher<View>(){
-
+    private Matcher<View> getMyMatcher() {
+        return new TypeSafeMatcher<View>() {
             @Override
             public void describeTo(Description description) {
 
@@ -41,10 +39,10 @@ public class NewActivityTest {
 
             @Override
             protected boolean matchesSafely(View item) {
-                if(item instanceof TextView)
-                    return ((TextView)item).getText().toString().length() > 0;
+                if (item instanceof TextView)
+                    return ((TextView) item).getText().toString().length() > 0;
                 return false;
             }
         };
     }
- }
+}
