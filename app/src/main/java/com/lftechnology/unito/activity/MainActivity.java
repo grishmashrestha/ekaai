@@ -45,14 +45,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         toolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(toolbar);
 
-        nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        mMenu = nvDrawer.getMenu();
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerToggle = setupDrawerToggle();
-        mDrawer.addDrawerListener(drawerToggle);
-
-        mDrawerList = (ListView)findViewById(R.id.navList);
-        addDrawerItems();
+//        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+//        mMenu = nvDrawer.getMenu();
+//        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawerToggle = setupDrawerToggle();
+//        mDrawer.addDrawerListener(drawerToggle);
+//
+//        mDrawerList = (ListView)findViewById(R.id.navList);
+//        addDrawerItems();
 
         Spinner spinner = (Spinner) findViewById(R.id.unito_option_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
         fragmentTransaction.commit();
 
-        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+//        nvDrawer = (NavigationView) findViewById(R.id.nvView);
 //        View view1 = nvDrawer.getHeaderView(0);
         setHeaderTextByFragment();
 //        setMenuByFragment(mMenu);

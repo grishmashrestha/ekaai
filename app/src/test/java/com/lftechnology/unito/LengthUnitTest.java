@@ -1,6 +1,11 @@
 package com.lftechnology.unito;
 
+import com.lftechnology.unito.conversions.Length;
+import com.lftechnology.unito.testing.Person;
+
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +15,14 @@ import static org.junit.Assert.assertEquals;
 public class LengthUnitTest {
 
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void length_conversion_is_correct() throws Exception {
+        Length length = new Length(1.0, "Nautical Mile", "Kilometre (km)");
+        assertEquals(length.convert(), 1.852, 0.0000000001);
+    }
+
+    @Test
+    public void length_conversion_kilometer_to_nautical_mile_is_correct() throws Exception {
+        Length length = new Length(1.0, "Kilometre (km)", "Nautical Mile");
+        assertEquals(length.convert(), 0.5399568034, 0.0000000001);
     }
 }
