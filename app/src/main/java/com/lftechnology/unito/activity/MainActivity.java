@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private String[] mDrawerRecyclerViewDataset;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +45,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(toolbar);
-
-        setNavigationDrawer();
         setSpinner();
+        setNavigationDrawer();
+    }
+
+    private void setRecyclerView() {
+        mRecyclerView = (RecyclerView) findViewById(R.id.drawer_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mDrawerRecyclerViewDataset = getDrawerRecyclerViewDataset();
+        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     private void setNavigationDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = setupDrawerToggle();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+    }
+
+    private String[] getDrawerRecyclerViewDataset() {
+        String[] drawerRecyclerViewDataset;
+        switch (mSelectedConversion) {
+            case AppConstant.LENGTH:
+                drawerRecyclerViewDataset = getResources().getStringArray(R.array.length_options);
+                break;
+            case AppConstant.TEMPERATURE:
+                drawerRecyclerViewDataset = getResources().getStringArray(R.array.temperature_options);
+                break;
+            case AppConstant.TIME:
+                drawerRecyclerViewDataset = getResources().getStringArray(R.array.time_options);
+                break;
+            case AppConstant.VOLUME:
+                drawerRecyclerViewDataset = getResources().getStringArray(R.array.volume_options);
+                break;
+            case AppConstant.WEIGHT:
+                drawerRecyclerViewDataset = getResources().getStringArray(R.array.weight_options);
+                break;
+            default:
+                drawerRecyclerViewDataset = new String[]{};
+                break;
+        }
+        return drawerRecyclerViewDataset;
     }
 
     @Override
@@ -115,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction.commit();
 
         setHeaderTextByFragment();
+        setRecyclerView();
     }
 
     @Override
