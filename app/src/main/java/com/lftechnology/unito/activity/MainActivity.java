@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -25,18 +26,21 @@ import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.fragment.MainFragment;
+import com.lftechnology.unito.helper.OnStartDragListener;
+import com.lftechnology.unito.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
     private Toolbar toolbar;
     private String mSelectedConversion;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private DrawerRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDrawerRecyclerViewDataset;
+    private ItemTouchHelper mItemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +59,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getDrawerRecyclerViewDataset();
-        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset);
+        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this);
         mRecyclerView.setAdapter(mAdapter);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
+
     }
 
     private void setNavigationDrawer() {
@@ -163,6 +172,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void swapFragments(View view) {
         EventBus.post(new SwapFragment(true));
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 }
 

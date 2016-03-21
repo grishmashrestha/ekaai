@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
 import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
+import com.lftechnology.unito.helper.OnStartDragListener;
 import com.squareup.otto.Subscribe;
 
 /**
