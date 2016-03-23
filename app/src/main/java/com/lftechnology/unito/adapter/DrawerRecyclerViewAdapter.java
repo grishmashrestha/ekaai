@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.helper.ItemTouchHelperAdapter;
 import com.lftechnology.unito.helper.ItemTouchHelperViewHolder;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import timber.log.Timber;
 
@@ -33,11 +33,13 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
 
     private final OnStartDragListener mDragStartListener;
     private Context mContext;
+    private String mSelectedConversion;
 
-    public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener, Context context) {
+    public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener, Context context, String selectedConversion) {
         mDataset = new ArrayList( Arrays.asList(dataset));
         this.mDragStartListener = mDragStartListener;
         mContext = context;
+        mSelectedConversion = selectedConversion;
     }
 
     @Override
@@ -83,7 +85,12 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
     }
 
     private void updateUserPreference() {
-        
+        Gson gson = new Gson();
+        String jsonDataset = gson.toJson(mDataset);
+        SharedPreferences sharedPref = mContext.getSharedPreferences("Unito", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(mSelectedConversion, jsonDataset);
+        editor.commit();
     }
 
 

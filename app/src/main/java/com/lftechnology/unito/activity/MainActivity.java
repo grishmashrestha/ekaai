@@ -1,5 +1,7 @@
 package com.lftechnology.unito.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.unito.bus.EventBus;
@@ -29,6 +32,8 @@ import com.lftechnology.unito.fragment.MainFragment;
 import com.lftechnology.unito.helper.OnStartDragListener;
 import com.lftechnology.unito.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.unito.utils.SoftKeyBoard;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
     private Toolbar toolbar;
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getDrawerRecyclerViewDataset();
-        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, getBaseContext());
+        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, getBaseContext(), mSelectedConversion);
         mRecyclerView.setAdapter(mAdapter);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
@@ -76,25 +81,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private String[] getDrawerRecyclerViewDataset() {
         String[] drawerRecyclerViewDataset;
-        switch (mSelectedConversion) {
-            case AppConstant.LENGTH:
-                drawerRecyclerViewDataset = getResources().getStringArray(R.array.length_options);
-                break;
-            case AppConstant.TEMPERATURE:
-                drawerRecyclerViewDataset = getResources().getStringArray(R.array.temperature_options);
-                break;
-            case AppConstant.TIME:
-                drawerRecyclerViewDataset = getResources().getStringArray(R.array.time_options);
-                break;
-            case AppConstant.VOLUME:
-                drawerRecyclerViewDataset = getResources().getStringArray(R.array.volume_options);
-                break;
-            case AppConstant.WEIGHT:
-                drawerRecyclerViewDataset = getResources().getStringArray(R.array.weight_options);
-                break;
-            default:
-                drawerRecyclerViewDataset = new String[]{};
-                break;
+        SharedPreferences sharedPref = getBaseContext().getSharedPreferences("Unito", Context.MODE_PRIVATE);
+        String preference = sharedPref.getString(mSelectedConversion, "N/A");
+        if (preference.equals("N/A")) {
+            switch (mSelectedConversion) {
+                case AppConstant.LENGTH:
+                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.length_options);
+                    break;
+                case AppConstant.TEMPERATURE:
+                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.temperature_options);
+                    break;
+                case AppConstant.TIME:
+                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.time_options);
+                    break;
+                case AppConstant.VOLUME:
+                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.volume_options);
+                    break;
+                case AppConstant.WEIGHT:
+                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.weight_options);
+                    break;
+                default:
+                    drawerRecyclerViewDataset = new String[]{};
+                    break;
+            }
+        } else {
+            Gson gson = new Gson();
+            String[] arrayList = gson.fromJson(preference, String[].class);
+            System.out.println(arrayList);
+            drawerRecyclerViewDataset = arrayList;
         }
         return drawerRecyclerViewDataset;
     }
