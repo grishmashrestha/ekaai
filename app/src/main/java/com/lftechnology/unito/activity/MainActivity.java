@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getDrawerRecyclerViewDataset();
-        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this);
+        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, getBaseContext());
         mRecyclerView.setAdapter(mAdapter);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
