@@ -78,21 +78,14 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
         Timber.e("*****************");
         Collections.swap(mDataset, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
-        updateSharedPreference();
+        updateUserPreference();
         return true;
     }
 
-    private void updateSharedPreference() {
-        SharedPreferences sharedPref = mContext.getSharedPreferences("Unito", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putInt("highScore", 1000);
-        editor.commit();
-
-        int hs = sharedPref.getInt("highScore", 0);
-        Timber.e(String.valueOf(hs));
-        Timber.e(String.valueOf(mContext));
-
+    private void updateUserPreference() {
+        
     }
+
 
     /**
      * Simple example of a view holder that implements {@link ItemTouchHelperViewHolder} and has a
