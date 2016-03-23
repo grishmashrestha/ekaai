@@ -33,8 +33,6 @@ import com.lftechnology.unito.helper.OnStartDragListener;
 import com.lftechnology.unito.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
     private Toolbar toolbar;
     private String mSelectedConversion;
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getDrawerRecyclerViewDataset();
-        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, getBaseContext(), mSelectedConversion);
+        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mRecyclerView.setAdapter(mAdapter);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
@@ -107,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else {
             Gson gson = new Gson();
             String[] arrayList = gson.fromJson(preference, String[].class);
-            System.out.println(arrayList);
             drawerRecyclerViewDataset = arrayList;
         }
         return drawerRecyclerViewDataset;

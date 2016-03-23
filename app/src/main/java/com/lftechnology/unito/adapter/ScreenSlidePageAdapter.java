@@ -1,9 +1,12 @@
 package com.lftechnology.unito.adapter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.google.gson.Gson;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.Unito;
 import com.lftechnology.unito.constant.AppConstant;
@@ -42,31 +45,41 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
 
     private void setDatasetAndPageCount() {
         String[] dataset;
-        switch (mSelectedConversion) {
-            case AppConstant.LENGTH:
-                dataset = Unito.getContext().getResources().getStringArray(R.array.length_options);
-                fragmentName = AppConstant.LENGTH;
-                break;
-            case AppConstant.TEMPERATURE:
-                dataset = Unito.getContext().getResources().getStringArray(R.array.temperature_options);
-                fragmentName = AppConstant.TEMPERATURE;
-                break;
-            case AppConstant.TIME:
-                dataset = Unito.getContext().getResources().getStringArray(R.array.time_options);
-                fragmentName = AppConstant.TIME;
-                break;
-            case AppConstant.VOLUME:
-                dataset = Unito.getContext().getResources().getStringArray(R.array.volume_options);
-                fragmentName = AppConstant.VOLUME;
-                break;
-            case AppConstant.WEIGHT:
-                dataset = Unito.getContext().getResources().getStringArray(R.array.weight_options);
-                fragmentName = AppConstant.WEIGHT;
-                break;
-            default:
-                dataset = Unito.getContext().getResources().getStringArray(R.array.length_options);
-                fragmentName = AppConstant.LENGTH;
-                break;
+        SharedPreferences sharedPref = Unito.getContext().getSharedPreferences("Unito", Context.MODE_PRIVATE);
+        String preference = sharedPref.getString(mSelectedConversion, "N/A");
+        if (preference.equals("N/A")) {
+            switch (mSelectedConversion) {
+                case AppConstant.LENGTH:
+                    dataset = Unito.getContext().getResources().getStringArray(R.array.length_options);
+                    fragmentName = AppConstant.LENGTH;
+                    break;
+                case AppConstant.TEMPERATURE:
+                    dataset = Unito.getContext().getResources().getStringArray(R.array.temperature_options);
+                    fragmentName = AppConstant.TEMPERATURE;
+                    break;
+                case AppConstant.TIME:
+                    dataset = Unito.getContext().getResources().getStringArray(R.array.time_options);
+                    fragmentName = AppConstant.TIME;
+                    break;
+                case AppConstant.VOLUME:
+                    dataset = Unito.getContext().getResources().getStringArray(R.array.volume_options);
+                    fragmentName = AppConstant.VOLUME;
+                    break;
+                case AppConstant.WEIGHT:
+                    dataset = Unito.getContext().getResources().getStringArray(R.array.weight_options);
+                    fragmentName = AppConstant.WEIGHT;
+                    break;
+                default:
+                    dataset = Unito.getContext().getResources().getStringArray(R.array.length_options);
+                    fragmentName = AppConstant.LENGTH;
+                    break;
+            }
+        }
+        else {
+            Gson gson = new Gson();
+            String[] arrayList = gson.fromJson(preference, String[].class);
+            dataset = arrayList;
+            fragmentName = mSelectedConversion;
         }
         mDataset = dataset;
     }

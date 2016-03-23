@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lftechnology.unito.R;
+import com.lftechnology.unito.Unito;
 import com.lftechnology.unito.helper.ItemTouchHelperAdapter;
 import com.lftechnology.unito.helper.ItemTouchHelperViewHolder;
 import com.lftechnology.unito.helper.OnStartDragListener;
@@ -32,13 +33,11 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
     private final List<String> mDataset;
 
     private final OnStartDragListener mDragStartListener;
-    private Context mContext;
     private String mSelectedConversion;
 
-    public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener, Context context, String selectedConversion) {
+    public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener, String selectedConversion) {
         mDataset = new ArrayList( Arrays.asList(dataset));
         this.mDragStartListener = mDragStartListener;
-        mContext = context;
         mSelectedConversion = selectedConversion;
     }
 
@@ -87,7 +86,7 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
     private void updateUserPreference() {
         Gson gson = new Gson();
         String jsonDataset = gson.toJson(mDataset);
-        SharedPreferences sharedPref = mContext.getSharedPreferences("Unito", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = Unito.getContext().getSharedPreferences("Unito", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(mSelectedConversion, jsonDataset);
         editor.commit();
