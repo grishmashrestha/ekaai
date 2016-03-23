@@ -1,5 +1,7 @@
 package com.lftechnology.unito.adapter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -29,10 +32,12 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
     private final List<String> mDataset;
 
     private final OnStartDragListener mDragStartListener;
+    private Context mContext;
 
-    public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener) {
+    public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener, Context context) {
         mDataset = new ArrayList( Arrays.asList(dataset));
         this.mDragStartListener = mDragStartListener;
+        mContext = context;
     }
 
     @Override
@@ -73,9 +78,21 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
         Timber.e("*****************");
         Collections.swap(mDataset, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
+        updateSharedPreference();
         return true;
     }
 
+    private void updateSharedPreference() {
+        SharedPreferences sharedPref = mContext.getSharedPreferences("Unito", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putInt("highScore", 1000);
+        editor.commit();
+
+        int hs = sharedPref.getInt("highScore", 0);
+        Timber.e(String.valueOf(hs));
+        Timber.e(String.valueOf(mContext));
+
+    }
 
     /**
      * Simple example of a view holder that implements {@link ItemTouchHelperViewHolder} and has a
