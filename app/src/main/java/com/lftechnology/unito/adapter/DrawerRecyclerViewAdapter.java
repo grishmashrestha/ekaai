@@ -20,22 +20,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import timber.log.Timber;
+
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/18/16.
  */
-public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ViewHolder> implements ItemTouchHelperAdapter {
+public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
     private final List<String> mDataset;
 
     private final OnStartDragListener mDragStartListener;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-
-        public ViewHolder(View v) {
-            super(v);
-            mTextView = (TextView) v.findViewById(R.id.tv_option);
-        }
-    }
 
     public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener) {
         mDataset = new ArrayList( Arrays.asList(dataset));
@@ -43,16 +36,27 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
     }
 
     @Override
-    public DrawerRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DrawerRecyclerViewAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.drawer_recycler_view_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        ItemViewHolder itemViewHolder = new ItemViewHolder(v);
+        return itemViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(DrawerRecyclerViewAdapter.ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset.get(position));
+    public void onBindViewHolder(final ItemViewHolder holder, int position) {
+        holder.textView.setText(mDataset.get(position));
+
+        // Start a drag whenever the handle view it touched
+        holder.handleView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mDragStartListener.onStartDrag(holder);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -62,8 +66,41 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+        Timber.e("*****************");
+        Timber.e(String.valueOf(mDataset.size()));
+        Timber.e(String.valueOf(fromPosition));
+        Timber.e(String.valueOf(toPosition));
+        Timber.e("*****************");
         Collections.swap(mDataset, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return true;
+    }
+
+
+    /**
+     * Simple example of a view holder that implements {@link ItemTouchHelperViewHolder} and has a
+     * "handle" view that initiates a drag event when touched.
+     */
+    public static class ItemViewHolder extends RecyclerView.ViewHolder implements
+            ItemTouchHelperViewHolder {
+
+        public final TextView textView;
+        public final ImageView handleView;
+
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.tv_option);
+            handleView = (ImageView) itemView.findViewById(R.id.burger);
+        }
+
+        @Override
+        public void onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY);
+        }
+
+        @Override
+        public void onItemClear() {
+            itemView.setBackgroundColor(0);
+        }
     }
 }
