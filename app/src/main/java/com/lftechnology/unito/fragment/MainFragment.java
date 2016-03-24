@@ -15,11 +15,14 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.Unito;
 import com.lftechnology.unito.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.unito.bus.EventBus;
+import com.lftechnology.unito.bus.NavigationMenuChangeDetails;
 import com.lftechnology.unito.bus.PageScrollPosition;
 import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.helper.OnStartDragListener;
 import com.squareup.otto.Subscribe;
+
+import timber.log.Timber;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +36,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     private String mSelectedConversion;
     private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
     private ViewPager mPagerTop, mPagerBottom;
+    private PagerAdapter mPagerAdapterTop, mPagerAdapterBottom;
 
     public MainFragment() {
         // Required empty public constructor
@@ -61,13 +65,13 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
         setBackgroundColorAndLengthBySelectedConversion();
 
         mPagerTop = (ViewPager) view.findViewById(R.id.pagerTop);
-        PagerAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
+        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
         mPagerTop.setAdapter(mPagerAdapterTop);
         mPagerTop.setOffscreenPageLimit(mDataCount);
         mPagerTop.addOnPageChangeListener(this);
 
         mPagerBottom = (ViewPager) view.findViewById(R.id.pagerBottom);
-        PagerAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
+        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
         mPagerBottom.setAdapter(mPagerAdapterBottom);
         mPagerBottom.setOffscreenPageLimit(mDataCount);
         mPagerBottom.setCurrentItem(1);
@@ -134,6 +138,18 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
             int initialBottomFragmentPosition = mPagerBottom.getCurrentItem();
             mPagerTop.setCurrentItem(initialBottomFragmentPosition);
             mPagerBottom.setCurrentItem(initialTopFragmentPosition);
+        }
+    }
+
+    @Subscribe
+    public void updateViewpagers(NavigationMenuChangeDetails navigationMenuChangeDetails) {
+
+        if (mSelectedConversion.equals(navigationMenuChangeDetails.getSelectedConversion())) {
+//            Timber.e("This is Manas. Trying to be Barbie Girl!");
+//            mPagerAdapterTop.notifyDataSetChanged();
+//            mPagerAdapterBottom.notifyDataSetChanged();
+            mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
+            mPagerTop.setAdapter(mPagerAdapterTop);
         }
     }
 }

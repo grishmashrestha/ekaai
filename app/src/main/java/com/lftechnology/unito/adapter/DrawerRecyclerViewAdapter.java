@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.Unito;
+import com.lftechnology.unito.bus.EventBus;
+import com.lftechnology.unito.bus.NavigationMenuChangeDetails;
 import com.lftechnology.unito.helper.ItemTouchHelperAdapter;
 import com.lftechnology.unito.helper.ItemTouchHelperViewHolder;
 import com.lftechnology.unito.helper.OnStartDragListener;
@@ -29,7 +31,7 @@ import timber.log.Timber;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/18/16.
  */
-public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
+public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
     private final List<String> mDataset;
 
     private final OnStartDragListener mDragStartListener;
@@ -90,15 +92,14 @@ public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecycl
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(mSelectedConversion, jsonDataset);
         editor.commit();
+        EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
     }
-
 
     /**
      * Simple example of a view holder that implements {@link ItemTouchHelperViewHolder} and has a
      * "handle" view that initiates a drag event when touched.
      */
-    public static class ItemViewHolder extends RecyclerView.ViewHolder implements
-            ItemTouchHelperViewHolder {
+    public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
         public final TextView textView;
         public final ImageView handleView;
