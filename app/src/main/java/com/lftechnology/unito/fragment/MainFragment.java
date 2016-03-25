@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +17,7 @@ import com.lftechnology.unito.bus.NavigationMenuChangeDetails;
 import com.lftechnology.unito.bus.PageScrollPosition;
 import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
-import com.lftechnology.unito.helper.OnStartDragListener;
 import com.squareup.otto.Subscribe;
-
-import timber.log.Timber;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,18 +60,10 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
         setBackgroundColorAndLengthBySelectedConversion();
 
         mPagerTop = (ViewPager) view.findViewById(R.id.pagerTop);
-        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
-        mPagerTop.setAdapter(mPagerAdapterTop);
-        mPagerTop.setOffscreenPageLimit(mDataCount);
-        mPagerTop.addOnPageChangeListener(this);
-
         mPagerBottom = (ViewPager) view.findViewById(R.id.pagerBottom);
-        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
-        mPagerBottom.setAdapter(mPagerAdapterBottom);
-        mPagerBottom.setOffscreenPageLimit(mDataCount);
-        mPagerBottom.setCurrentItem(1);
 
-        mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
+        setAdapters();
+
         ImageView swapButton = (ImageView) view.findViewById(R.id.swapButton);
         swapButton.setBackgroundResource(mSwapButtonColor);
 
@@ -143,13 +130,23 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Subscribe
     public void updateViewpagers(NavigationMenuChangeDetails navigationMenuChangeDetails) {
-
         if (mSelectedConversion.equals(navigationMenuChangeDetails.getSelectedConversion())) {
-//            Timber.e("This is Manas. Trying to be Barbie Girl!");
-//            mPagerAdapterTop.notifyDataSetChanged();
-//            mPagerAdapterBottom.notifyDataSetChanged();
-            mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
-            mPagerTop.setAdapter(mPagerAdapterTop);
+            setAdapters();
         }
+    }
+
+    public void setAdapters() {
+        mPagerTop.removeOnPageChangeListener(this);
+        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
+        mPagerTop.setAdapter(mPagerAdapterTop);
+        mPagerTop.setOffscreenPageLimit(mDataCount);
+        mPagerTop.addOnPageChangeListener(this);
+
+        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
+        mPagerBottom.setAdapter(mPagerAdapterBottom);
+        mPagerBottom.setOffscreenPageLimit(mDataCount);
+        mPagerBottom.setCurrentItem(1);
+
+        mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
     }
 }

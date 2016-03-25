@@ -15,8 +15,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.Unito;
-import com.lftechnology.unito.bus.EventBus;
-import com.lftechnology.unito.bus.NavigationMenuChangeDetails;
 import com.lftechnology.unito.helper.ItemTouchHelperAdapter;
 import com.lftechnology.unito.helper.ItemTouchHelperViewHolder;
 import com.lftechnology.unito.helper.OnStartDragListener;
@@ -74,11 +72,11 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        Timber.e("*****************");
-        Timber.e(String.valueOf(mDataset.size()));
-        Timber.e(String.valueOf(fromPosition));
-        Timber.e(String.valueOf(toPosition));
-        Timber.e("*****************");
+//        Timber.e("*****************");
+//        Timber.e(String.valueOf(mDataset.size()));
+//        Timber.e(String.valueOf(fromPosition));
+//        Timber.e(String.valueOf(toPosition));
+//        Timber.e("*****************");
         Collections.swap(mDataset, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         updateUserPreference();
@@ -92,7 +90,6 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(mSelectedConversion, jsonDataset);
         editor.commit();
-        EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
     }
 
     /**

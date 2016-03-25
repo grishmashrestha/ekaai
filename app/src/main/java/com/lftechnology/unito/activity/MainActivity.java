@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -26,12 +27,17 @@ import com.google.gson.Gson;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.unito.bus.EventBus;
+import com.lftechnology.unito.bus.NavigationMenuChangeDetails;
 import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.fragment.MainFragment;
 import com.lftechnology.unito.helper.OnStartDragListener;
 import com.lftechnology.unito.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.unito.utils.SoftKeyBoard;
+
+import java.util.Arrays;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
     private Toolbar toolbar;
@@ -130,9 +136,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return super.onOptionsItemSelected(item);
     }
 
-
     private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+        return new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+
+                if (!Arrays.equals(getDrawerRecyclerViewDataset(), mDrawerRecyclerViewDataset)) {
+                    EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
+                }
+            }
+        };
     }
 
     @Override
