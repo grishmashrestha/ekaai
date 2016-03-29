@@ -23,9 +23,9 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
                             float distanceY) {
         // User attempted to scroll
         if (e1.getY() > e2.getY()) {
-            EventBus.post(new ScrollListener(true, e1.getY(), e2.getY()));
+            EventBus.post(new ScrollListener(true, distanceX, distanceY));
         } else {
-            EventBus.post(new ScrollListener(false, e1.getY(), e2.getY()));
+            EventBus.post(new ScrollListener(false, distanceX, distanceY));
         }
         return false;
     }

@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -40,6 +41,8 @@ import com.lftechnology.unito.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
     private Toolbar toolbar;
@@ -221,14 +224,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Subscribe
     public void toggleToolBar(ScrollListener scrollListener) {
+        float y2 = scrollListener.y2;
 
         if (scrollListener.moveUp) {
             if (GeneralUtils.convertPixelsToDp(mToolbarContainer.getTranslationY(), this) > -56.0) {
+                Timber.e("Translation Y: %f",mToolbarContainer.getTranslationY());
+                Timber.e("Distance moved: %f", y2);
                 mToolbarContainer.setTranslationY(mToolbarContainer.getTranslationY() - 5);
+
+//                int newHeight = (int) (56 + GeneralUtils.convertPixelsToDp(mToolbarContainer.getTranslationY(), this));
+//                Timber.e("newHeight: %d", newHeight);
+//                mToolbarContainer.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, newHeight));
             }
         } else {
             if (mToolbarContainer.getTranslationY() < 0.0) {
                 mToolbarContainer.setTranslationY(mToolbarContainer.getTranslationY() + 5);
+//                mToolbarContainer.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, newHeight));
+//                mToolbarContainer.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, newHeight));
             }
         }
     }
