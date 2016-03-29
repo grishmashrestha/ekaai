@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -14,6 +16,7 @@ import com.lftechnology.unito.R;
 import com.lftechnology.unito.bus.ConvertedValue;
 import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
+import com.lftechnology.unito.helper.GestureListener;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
@@ -61,6 +64,33 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
+
+        View gestureView = mRootView.findViewById(R.id.content_top);
+        gestureView.setClickable(true);
+        gestureView.setFocusable(true);
+//
+//        // BEGIN_INCLUDE(init_detector)
+//
+//        // First create the GestureListener that will include all our callbacks.
+//        // Then create the GestureDetector, which takes that listener as an argument.
+        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
+        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
+//
+//        /* For the view where gestures will occur, create an onTouchListener that sends
+//         * all motion events to the gesture detector.  When the gesture detector
+//         * actually detects an event, it will use the callbacks you created in the
+//         * SimpleOnGestureListener to alert your application.
+//        */
+//
+        assert gestureView != null;
+        gestureView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                gd.onTouchEvent(motionEvent);
+                return false;
+            }
+        });
+
         return mRootView;
     }
 

@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ import com.lftechnology.unito.bus.NavigationMenuChangeDetails;
 import com.lftechnology.unito.bus.PageScrollPosition;
 import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
+import com.lftechnology.unito.helper.GestureListener;
 import com.squareup.otto.Subscribe;
 
 /**

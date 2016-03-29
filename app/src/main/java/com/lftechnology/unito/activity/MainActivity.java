@@ -13,13 +13,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,20 +27,23 @@ import com.google.gson.Gson;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.unito.bus.EventBus;
+import com.lftechnology.unito.bus.FlingListener;
 import com.lftechnology.unito.bus.NavigationMenuChangeDetails;
+import com.lftechnology.unito.bus.ScrollListener;
 import com.lftechnology.unito.bus.SwapFragment;
 import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.fragment.MainFragment;
 import com.lftechnology.unito.helper.OnStartDragListener;
 import com.lftechnology.unito.helper.SimpleItemTouchHelperCallback;
+import com.lftechnology.unito.utils.GeneralUtils;
 import com.lftechnology.unito.utils.SoftKeyBoard;
+import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
 
-import timber.log.Timber;
-
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
     private Toolbar toolbar;
+    private LinearLayout mToolbarContainer;
     private String mSelectedConversion;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -52,11 +55,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ItemTouchHelper mItemTouchHelper;
 
     @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.unregister(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_top);
+        mToolbarContainer = (LinearLayout) findViewById(R.id.toolbarContainer);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setSpinner();
         setNavigationDrawer();
@@ -74,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-
     }
 
     private void setNavigationDrawer() {
@@ -203,6 +218,33 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
     }
+
+    @Subscribe
+    public void toggleToolBar(ScrollListener scrollListener) {
+
+        if (scrollListener.moveUp) {
+            if (GeneralUtils.convertPixelsToDp(mToolbarContainer.getTranslationY(), this) > -56.0) {
+                mToolbarContainer.setTranslationY(mToolbarContainer.getTranslationY() - 5);
+            }
+        } else {
+            if (mToolbarContainer.getTranslationY() < 0.0) {
+                mToolbarContainer.setTranslationY(mToolbarContainer.getTranslationY() + 5);
+            }
+        }
+    }
+
+    @Subscribe
+    public void hideOrShowToolbarAfterScrollComplete(FlingListener flingListener) {
+//        float yTranslationInDP = GeneralUtils.convertPixelsToDp(toolbar.getTranslationY(), this);
+//        if ((yTranslationInDP < 0.0) && (yTranslationInDP < -56.0/2)) {
+//            Timber.e("The toolbar needs to be hidden");
+//            toolbar.animate().translationY(GeneralUtils.convertDpToPixel(-56, this));
+//        } else if ((yTranslationInDP < 0.0) && (yTranslationInDP >= -56.0/2)) {
+//            Timber.e("The toolbar needs to be shown");
+//            toolbar.animate().translationY(GeneralUtils.convertDpToPixel(0, this));
+//        }
+    }
+
 }
 
 
