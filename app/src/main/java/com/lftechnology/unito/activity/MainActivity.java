@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDrawerRecyclerViewDataset;
     private ItemTouchHelper mItemTouchHelper;
+    private LinearLayout linearLayout;
+    private int DY = 10;
 
     @Override
     public void onResume() {
@@ -93,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
+
+        linearLayout = (LinearLayout) findViewById(R.id.inflated_content_main);
     }
 
     private void setNavigationDrawer() {
@@ -188,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
     }
 
-
     private void setHeaderTextByFragment() {
         TextView tv = ((TextView) findViewById(R.id.nav_header));
         tv.setText(mSelectedConversion);
@@ -224,37 +227,41 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Subscribe
     public void toggleToolBar(ScrollListener scrollListener) {
-        float y2 = scrollListener.y2;
-
+        int dy;
         if (scrollListener.moveUp) {
             if (GeneralUtils.convertPixelsToDp(mToolbarContainer.getTranslationY(), this) > -56.0) {
-                Timber.e("Translation Y: %f",mToolbarContainer.getTranslationY());
-                Timber.e("Distance moved: %f", y2);
-                mToolbarContainer.setTranslationY(mToolbarContainer.getTranslationY() - 5);
-
-//                int newHeight = (int) (56 + GeneralUtils.convertPixelsToDp(mToolbarContainer.getTranslationY(), this));
-//                Timber.e("newHeight: %d", newHeight);
-//                mToolbarContainer.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, newHeight));
+                float diff = mToolbarContainer.getTranslationY() - DY;
+                if ((GeneralUtils.convertPixelsToDp(diff, this) < -56.0)) {
+                    dy = Math.round(diff + GeneralUtils.convertDpToPixel(56, this));
+                    diff = mToolbarContainer.getTranslationY() - dy;
+                } else {
+                    dy = DY;
+                }
+                mToolbarContainer.setTranslationY(diff);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), linearLayout.getHeight() + dy);
+                linearLayout.setLayoutParams(layoutParams);
+                linearLayout.animate().translationY(linearLayout.getY() - dy);
             }
         } else {
             if (mToolbarContainer.getTranslationY() < 0.0) {
-                mToolbarContainer.setTranslationY(mToolbarContainer.getTranslationY() + 5);
-//                mToolbarContainer.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, newHeight));
-//                mToolbarContainer.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, newHeight));
+                float diff = mToolbarContainer.getTranslationY() + DY;
+                if ((diff) > 0.0) {
+                    dy = Math.round(diff);
+                    diff = mToolbarContainer.getTranslationY() + dy;
+                } else {
+                    dy = DY;
+                }
+                mToolbarContainer.setTranslationY(diff);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), linearLayout.getHeight() - dy);
+                linearLayout.setLayoutParams(layoutParams);
+                linearLayout.animate().translationY(linearLayout.getY() + dy);
             }
         }
     }
 
     @Subscribe
     public void hideOrShowToolbarAfterScrollComplete(FlingListener flingListener) {
-//        float yTranslationInDP = GeneralUtils.convertPixelsToDp(toolbar.getTranslationY(), this);
-//        if ((yTranslationInDP < 0.0) && (yTranslationInDP < -56.0/2)) {
-//            Timber.e("The toolbar needs to be hidden");
-//            toolbar.animate().translationY(GeneralUtils.convertDpToPixel(-56, this));
-//        } else if ((yTranslationInDP < 0.0) && (yTranslationInDP >= -56.0/2)) {
-//            Timber.e("The toolbar needs to be shown");
-//            toolbar.animate().translationY(GeneralUtils.convertDpToPixel(0, this));
-//        }
+
     }
 
 }
