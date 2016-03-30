@@ -42,8 +42,6 @@ import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
 
-import timber.log.Timber;
-
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
     private Toolbar toolbar;
     private LinearLayout mToolbarContainer;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String[] mDrawerRecyclerViewDataset;
     private ItemTouchHelper mItemTouchHelper;
     private LinearLayout linearLayout;
-    private int DY = 10;
+    private int DY = 5;
 
     @Override
     public void onResume() {
@@ -240,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mToolbarContainer.setTranslationY(diff);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), linearLayout.getHeight() + dy);
                 linearLayout.setLayoutParams(layoutParams);
-                linearLayout.animate().translationY(linearLayout.getY() - dy);
+                linearLayout.setTranslationY(linearLayout.getY() - dy);
             }
         } else {
             if (mToolbarContainer.getTranslationY() < 0.0) {
@@ -254,13 +252,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mToolbarContainer.setTranslationY(diff);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), linearLayout.getHeight() - dy);
                 linearLayout.setLayoutParams(layoutParams);
-                linearLayout.animate().translationY(linearLayout.getY() + dy);
+                linearLayout.setTranslationY(linearLayout.getY() + dy);
             }
         }
     }
 
     @Subscribe
     public void hideOrShowToolbarAfterScrollComplete(FlingListener flingListener) {
+        int dy;
+        float yTranslationInDP = GeneralUtils.convertPixelsToDp(mToolbarContainer.getTranslationY(), this);
+
+        if (flingListener.flingedUp && (yTranslationInDP > -56) && (yTranslationInDP < 0)) {
+            float diff = Math.round(GeneralUtils.convertDpToPixel(-56, this));
+            mToolbarContainer.setTranslationY(diff);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), (int) (linearLayout.getHeight() + linearLayout.getY()));
+            linearLayout.setLayoutParams(layoutParams);
+            linearLayout.setTranslationY(0);
+        } else if (!flingListener.flingedUp && (yTranslationInDP < 56.0) && (GeneralUtils.convertPixelsToDp(linearLayout.getY(), this) < 56)) {
+            float diff = 0;
+            dy = Math.round(GeneralUtils.convertDpToPixel(56, this));
+            mToolbarContainer.setTranslationY(diff);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), (int) (linearLayout.getHeight() - diff));
+            linearLayout.setLayoutParams(layoutParams);
+            linearLayout.setTranslationY(dy);
+        }
 
     }
 
