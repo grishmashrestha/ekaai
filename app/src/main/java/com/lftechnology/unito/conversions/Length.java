@@ -5,12 +5,13 @@ import com.lftechnology.unito.constant.AppConstant;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/1/16.
  */
-public class Length extends Unit {
+public class Length extends ProportionalUnit {
 
     public Length(Double val, String from, String to) {
         super(val, from, to);
     }
 
+    @Override
     public Double getConstant(String from, String to) {
         Double constant = 0.0;
         switch (from) {
