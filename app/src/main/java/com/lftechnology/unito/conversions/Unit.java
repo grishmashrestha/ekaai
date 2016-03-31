@@ -4,9 +4,12 @@ package com.lftechnology.unito.conversions;
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/31/16.
  */
 public abstract class Unit {
-    private String to, from;
-    private Double value;
+    private String to;
+    private String from;
 
+    private String referenceUnit;
+
+    private Double value;
     public Unit(Double val, String from, String to) {
         this.value = val;
         this.from = from;
@@ -23,6 +26,14 @@ public abstract class Unit {
 
     public Double getValue() {
         return value;
+    }
+
+    public String getReferenceUnit() {
+        return referenceUnit;
+    }
+
+    public void setReferenceUnit(String referenceUnit) {
+        this.referenceUnit = referenceUnit;
     }
 
     public abstract Double convert();
