@@ -8,10 +8,11 @@ import com.lftechnology.unito.constant.AppConstant;
 public class Time extends ProportionalUnit {
     public Time(Double val, String from, String to) {
         super(val, from, to);
+        setReferenceUnit(AppConstant.TimeConstant.SECOND);
     }
 
     @Override
-    public Double getConstant(String from, String to) {
+    public Double calculateConstant(String from, String to) {
         Double constant;
         switch (from) {
             case AppConstant.TimeConstant.SECOND:
@@ -617,5 +618,6 @@ public class Time extends ProportionalUnit {
                 break;
         }
         return constant;
+
     }
 }

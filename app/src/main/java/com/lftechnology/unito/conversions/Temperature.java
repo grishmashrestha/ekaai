@@ -9,6 +9,7 @@ public class Temperature extends Unit {
 
     public Temperature(Double val, String from, String to) {
         super(val, from, to);
+        setReferenceUnit(AppConstant.TemperatureConstant.CELSIUS);
     }
 
     @Override

@@ -8,10 +8,11 @@ import com.lftechnology.unito.constant.AppConstant;
 public class Volume extends ProportionalUnit {
     public Volume(Double val, String from, String to) {
         super(val, from, to);
+        setReferenceUnit(AppConstant.VolumeConstant.MILLILITER);
     }
 
     @Override
-    public Double getConstant(String from, String to) {
+    public Double calculateConstant(String from, String to) {
         Double constant = 0.0;
         switch (from) {
             case AppConstant.VolumeConstant.GALLON:
@@ -212,4 +213,5 @@ public class Volume extends ProportionalUnit {
         }
         return constant;
     }
+
 }

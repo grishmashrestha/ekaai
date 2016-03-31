@@ -8,10 +8,11 @@ import com.lftechnology.unito.constant.AppConstant;
 public class Weight extends ProportionalUnit {
     public Weight(Double val, String from, String to) {
         super(val, from, to);
+        setReferenceUnit(AppConstant.WeightConstant.KILOGRAM);
     }
 
     @Override
-    public Double getConstant(String from, String to) {
+    public Double calculateConstant(String from, String to) {
         Double constant = 0.0;
         switch (from) {
             case AppConstant.WeightConstant.KILOGRAM:
@@ -319,5 +320,7 @@ public class Weight extends ProportionalUnit {
                 break;
         }
         return constant;
+
     }
+
 }
