@@ -5,17 +5,13 @@ import com.lftechnology.unito.constant.AppConstant;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/1/16.
  */
-public class Time {
-    private String to, from;
-    private Double value;
-
+public class Time extends ProportionalUnit {
     public Time(Double val, String from, String to) {
-        value = val;
-        this.to = to;
-        this.from = from;
+        super(val, from, to);
     }
 
-    private Double getConstant(String from, String to) {
+    @Override
+    public Double getConstant(String from, String to) {
         Double constant;
         switch (from) {
             case AppConstant.TimeConstant.SECOND:
@@ -621,10 +617,5 @@ public class Time {
                 break;
         }
         return constant;
-    }
-
-    public double convert() {
-        Double constant = getConstant(from, to);
-        return value * constant;
     }
 }
