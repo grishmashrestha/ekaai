@@ -15,6 +15,19 @@ public abstract class ProportionalUnit extends Unit {
         return getValue() * constant;
     }
 
-    public abstract Double getConstant(String from, String to);
+    public Double getConstant(String from, String to) {
+        Double constant;
+        if (from.equals(to)) {
+            constant = 1.0;
+        } else {
+            Double constantInTermsOfReferenceUnit = calculateConstant(from, getReferenceUnit());
+            Double constantInTermsOfFinalUnit = calculateConstant(getReferenceUnit(), to);
+            constant = constantInTermsOfReferenceUnit * constantInTermsOfFinalUnit;
+        }
+        return constant;
+    }
+
+    public abstract Double calculateConstant(String from, String to);
+
 
 }
