@@ -5,17 +5,13 @@ import com.lftechnology.unito.constant.AppConstant;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/1/16.
  */
-public class Length {
-    private String to, from;
-    private Double value;
+public class Length extends Unit {
 
     public Length(Double val, String from, String to) {
-        value = val;
-        this.to = to;
-        this.from = from;
+        super(val, from, to);
     }
 
-    private Double getConstant(String from, String to) {
+    public Double getConstant(String from, String to) {
         Double constant = 0.0;
         switch (from) {
             case AppConstant.LengthConstant.NAUTICAL_MILE:
@@ -528,10 +524,5 @@ public class Length {
                 break;
         }
         return constant;
-    }
-
-    public double convert() {
-        Double constant = getConstant(from, to);
-        return value * constant;
     }
 }
