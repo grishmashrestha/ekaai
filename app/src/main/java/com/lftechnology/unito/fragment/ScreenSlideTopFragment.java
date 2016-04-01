@@ -68,20 +68,8 @@ public class ScreenSlideTopFragment extends BaseFragment {
         View gestureView = mRootView.findViewById(R.id.content_top);
         gestureView.setClickable(true);
         gestureView.setFocusable(true);
-//
-//        // BEGIN_INCLUDE(init_detector)
-//
-//        // First create the GestureListener that will include all our callbacks.
-//        // Then create the GestureDetector, which takes that listener as an argument.
         GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
         final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
-//
-//        /* For the view where gestures will occur, create an onTouchListener that sends
-//         * all motion events to the gesture detector.  When the gesture detector
-//         * actually detects an event, it will use the callbacks you created in the
-//         * SimpleOnGestureListener to alert your application.
-//        */
-//
         assert gestureView != null;
         gestureView.setOnTouchListener(new View.OnTouchListener() {
             @Override

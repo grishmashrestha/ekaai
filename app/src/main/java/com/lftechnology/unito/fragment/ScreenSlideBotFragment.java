@@ -1,7 +1,9 @@
 package com.lftechnology.unito.fragment;
 
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import com.lftechnology.unito.conversions.Temperature;
 import com.lftechnology.unito.conversions.Time;
 import com.lftechnology.unito.conversions.Volume;
 import com.lftechnology.unito.conversions.Weight;
+import com.lftechnology.unito.helper.GestureListener;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
 import com.squareup.otto.Subscribe;
 
@@ -64,6 +67,20 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_bot, container, false);
+        View gestureView = mView.findViewById(R.id.content_bot);
+        gestureView.setClickable(true);
+        gestureView.setFocusable(true);
+        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
+        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
+        assert gestureView != null;
+        gestureView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                gd.onTouchEvent(motionEvent);
+                return false;
+            }
+        });
+
         return mView;
     }
 
