@@ -22,10 +22,12 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
                             float distanceY) {
         // User attempted to scroll
-        if (e1.getY() > e2.getY()) {
-            EventBus.post(new ScrollListener(true, distanceX, distanceY));
-        } else {
-            EventBus.post(new ScrollListener(false, distanceX, distanceY));
+        if (e1 != null && e2 != null) {
+            if (e1.getY() > e2.getY()) {
+                EventBus.post(new ScrollListener(true, distanceX, distanceY));
+            } else {
+                EventBus.post(new ScrollListener(false, distanceX, distanceY));
+            }
         }
         return false;
     }
@@ -34,10 +36,12 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                            float velocityY) {
         // Fling event occurred.  Notification of this one happens after an "up" event.
-        if (e1.getY() > e2.getY()) {
-            EventBus.post(new FlingListener(true));
-        } else {
-            EventBus.post(new FlingListener(false));
+        if (e1 != null && e2 != null) {
+            if (e1.getY() > e2.getY()) {
+                EventBus.post(new FlingListener(true));
+            } else {
+                EventBus.post(new FlingListener(false));
+            }
         }
         return false;
     }
