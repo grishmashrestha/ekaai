@@ -21,6 +21,7 @@
             android:minWidth="50dp"
             android:text="1"
             android:textAlignment="center"
+            android:cursorVisible="false"
             android:textIsSelectable="false"
             android:textSize="100sp"
             android:textStyle="normal" />
