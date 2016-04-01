@@ -276,8 +276,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             linearLayout.setLayoutParams(layoutParams);
             linearLayout.setTranslationY(dy);
         }
-
-
     }
 
 }
