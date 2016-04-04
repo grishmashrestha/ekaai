@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.lftechnology.unito.utils.OnKeyEvents;
 import com.lftechnology.unito.R;
 import com.lftechnology.unito.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.unito.bus.EventBus;
@@ -42,7 +44,7 @@ import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener, OnKeyEvents {
     private Toolbar toolbar;
     private LinearLayout mToolbarContainer;
     private String mSelectedConversion;
@@ -278,6 +280,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    @Override
+    public void keyboardHidden() {
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        linearLayout.setLayoutParams(layoutParams);
+    }
 }
 
 

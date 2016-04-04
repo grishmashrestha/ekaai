@@ -21,6 +21,7 @@ import com.lftechnology.unito.bus.EventBus;
 import com.lftechnology.unito.bus.PageScrollPosition;
 import com.lftechnology.unito.helper.GestureListener;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
+import com.lftechnology.unito.utils.CustomEditText;
 import com.lftechnology.unito.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
 
@@ -39,7 +40,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
     private int mPosition;
     private String[] mDataset;
     private ViewGroup mRootView;
-    private EditText mFromUnit;
+    private CustomEditText mFromUnit;
     private String mSelectedConversion;
 
     public ScreenSlideTopFragment() {
@@ -91,7 +92,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
         final TextView tv = (TextView) mRootView.findViewById(R.id.scroll_top);
         tv.setText(mDataset[mPosition]);
 
-        mFromUnit = (EditText) mRootView.findViewById(R.id.from_unit);
+        mFromUnit = (CustomEditText) mRootView.findViewById(R.id.from_unit);
         if (mPosition == 0) {
             new Handler().postDelayed(new Runnable() {
                 @Override
