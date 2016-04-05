@@ -134,7 +134,7 @@ public class Length extends ProportionalUnit {
             case AppConstant.LengthConstant.MICROMETER:
                 switch (to) {
                     case AppConstant.LengthConstant.KILOMETER:
-                        constant = 1E9;
+                        constant = 0.000000001;
                         break;
                     default:
                         break;
@@ -143,7 +143,7 @@ public class Length extends ProportionalUnit {
             case AppConstant.LengthConstant.NANOMETER:
                 switch (to) {
                     case AppConstant.LengthConstant.KILOMETER:
-                        constant = 1E12;
+                        constant = 0.000000000001;
                         break;
                     default:
                         break;
@@ -152,7 +152,7 @@ public class Length extends ProportionalUnit {
             case AppConstant.LengthConstant.MICRON:
                 switch (to) {
                     case AppConstant.LengthConstant.KILOMETER:
-                        constant = 1E9;
+                        constant = 0.000000001;
                         break;
                     default:
                         break;
