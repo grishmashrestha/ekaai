@@ -14,6 +14,7 @@ import com.lftechnology.unito.constant.AppConstant;
 import com.lftechnology.unito.conversions.Length;
 import com.lftechnology.unito.conversions.Temperature;
 import com.lftechnology.unito.conversions.Time;
+import com.lftechnology.unito.conversions.Unit;
 import com.lftechnology.unito.conversions.Volume;
 import com.lftechnology.unito.conversions.Weight;
 import com.lftechnology.unito.helper.GestureListener;
@@ -109,53 +110,27 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
     private Double applyConversion(double currentValue, String mFragmentName, String from) {
         String to = mDataset[mPosition];
-        Double returnValue;
+        Unit unit = null;
         switch (mFragmentName) {
             case AppConstant.LENGTH:
-                returnValue = lengthConversion(currentValue, from, to);
+                unit = new Length(currentValue, from, to);
                 break;
             case AppConstant.TEMPERATURE:
-                returnValue = temperatureConversion(currentValue, from, to);
+                unit = new Temperature(currentValue, from, to);
                 break;
             case AppConstant.TIME:
-                returnValue = timeConversion(currentValue, from, to);
+                unit = new Time(currentValue, from, to);
                 break;
             case AppConstant.WEIGHT:
-                returnValue = weightConversion(currentValue, from, to);
+                unit = new Weight(currentValue, from, to);
                 break;
             case AppConstant.VOLUME:
-                returnValue = volumeConversion(currentValue, from, to);
+                unit = new Volume(currentValue, from, to);
                 break;
             default:
-                returnValue = 0.0;
                 break;
         }
-        return returnValue;
-    }
-
-    private Double lengthConversion(double currentValue, String from, String to) {
-        Length length = new Length(currentValue, from, to);
-        return length.convert();
-    }
-
-    private Double temperatureConversion(double currentValue, String from, String to) {
-        Temperature temperature = new Temperature(currentValue, from, to);
-        return temperature.convert();
-    }
-
-    private Double timeConversion(double currentValue, String from, String to) {
-        Time time = new Time(currentValue, from, to);
-        return time.convert();
-    }
-
-    private Double volumeConversion(double currentValue, String from, String to) {
-        Volume volume = new Volume(currentValue, from, to);
-        return volume.convert();
-    }
-
-    private Double weightConversion(double currentValue, String from, String to) {
-        Weight weight = new Weight(currentValue, from, to);
-        return weight.convert();
+        return unit.convert();
     }
 
     private Double changeToDouble(String val) {
