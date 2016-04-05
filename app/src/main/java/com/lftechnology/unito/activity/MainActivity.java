@@ -18,8 +18,11 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ItemTouchHelper mItemTouchHelper;
     private LinearLayout linearLayout;
     private int DY = 5;
+    private boolean spinDirection = true;
 
     @Override
     public void onResume() {
@@ -217,7 +221,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void swapFragments(View view) {
+        ImageView swapButton = (ImageView) findViewById(R.id.swapButton);
+        animateSwapButton(swapButton);
+
         EventBus.post(new SwapFragment(true));
+    }
+
+    private void animateSwapButton(ImageView swapButton) {
+        Animation an;
+        if (spinDirection) {
+            an = new RotateAnimation(0.0f, 180.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);
+        } else {
+            an = new RotateAnimation(180.0f, 0.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);
+        }
+        spinDirection = !spinDirection;
+        an.setDuration(300);
+        an.setRepeatCount(0);
+        an.setRepeatMode(Animation.REVERSE);
+        an.setFillAfter(true);
+        swapButton.setAnimation(an);
     }
 
     @Override
