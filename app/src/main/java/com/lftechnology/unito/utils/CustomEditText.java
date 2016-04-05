@@ -36,6 +36,9 @@ public class CustomEditText extends EditText {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == 66) {
+            if (getText().toString().equals("")) {
+                setText("1");
+            }
             ((OnKeyEvents) getContext()).keyboardHidden();
         }
         return super.onKeyUp(keyCode, event);
