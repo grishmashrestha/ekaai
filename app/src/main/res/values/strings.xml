@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Unito</string>
+    <string name="app_name">D’unite</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_temperature">TemperatureActivity</string>
     <string name="title_activity_length">LengthActivity</string>
