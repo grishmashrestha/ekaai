@@ -31,7 +31,6 @@ public class ScreenSlideBotFragment extends BaseFragment {
     private static final String DATASET = "dataset";
     private static final String FRAGMENT_NAME = "fragmentName";
 
-    // TODO: Rename and change types of parameters
     private int mPosition;
     private String[] mDataset;
     private ViewGroup mView;
