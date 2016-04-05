@@ -18,6 +18,7 @@ import com.lftechnology.unito.conversions.Volume;
 import com.lftechnology.unito.conversions.Weight;
 import com.lftechnology.unito.helper.GestureListener;
 import com.lftechnology.unito.utils.AutoResizeFontTextView;
+import com.lftechnology.unito.utils.ResultFormatter;
 import com.squareup.otto.Subscribe;
 
 /**
@@ -95,10 +96,15 @@ public class ScreenSlideBotFragment extends BaseFragment {
         double currentValue = changeToDouble(val.getValue());
 
         Double returnValue = applyConversion(currentValue, mParentFragmentName, val.getFrom());
-
         TextView tv = (TextView) mView.findViewById(R.id.to_unit);
-        tv.setText(String.valueOf(returnValue));
-        AutoResizeFontTextView.changeFontSize(String.valueOf(returnValue), tv);
+        String result;
+        if (mParentFragmentName.equals(AppConstant.TEMPERATURE)) {
+            result = ResultFormatter.format(returnValue, 2);
+        } else {
+            result = ResultFormatter.format(returnValue, 3);
+        }
+        tv.setText(result);
+        AutoResizeFontTextView.changeFontSize(result, tv);
     }
 
     private Double applyConversion(double currentValue, String mFragmentName, String from) {
