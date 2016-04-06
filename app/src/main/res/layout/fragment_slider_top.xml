@@ -10,7 +10,7 @@
         android:paddingBottom="50dp"
         android:paddingTop="50dp">
 
-        <com.lftechnology.unito.utils.CustomEditText
+        <com.lftechnology.Dunite.utils.CustomEditText
             android:id="@+id/from_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

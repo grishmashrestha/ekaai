@@ -1,4 +1,4 @@
-package com.lftechnology.unito;
+package com.lftechnology.Dunite;
 
 import org.junit.Test;
 
