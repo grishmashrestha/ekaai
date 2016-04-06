@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @Bind(R.id.nav_header)
-    TextView tv;
+    TextView mTv;
     @Bind(R.id.unito_option_spinner)
     Spinner spinner;
 
-    private static int DY = 5;
+    private static int DY = 5; // increment/decrement of toolbar on swipe up/down
     private static final int ROTATE_ANIMATION_DURATION = 300;
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -102,8 +102,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setNavigationDrawer();
     }
 
-    private void setRecyclerView() {
+    private void setSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                SoftKeyBoard.hideSoftKeyboard(v.getContext(), v);
+                return false;
+            }
+        });
+        spinner.setOnItemSelectedListener(this);
+    }
 
+    private void setNavigationDrawer() {
+        mDrawerToggle = setupDrawerToggle();
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+    }
+
+    private void setRecyclerView() {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -114,11 +132,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-    }
-
-    private void setNavigationDrawer() {
-        mDrawerToggle = setupDrawerToggle();
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     private String[] getDrawerRecyclerViewDataset() {
@@ -193,22 +206,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return true;
     }
 
-    private void setSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                SoftKeyBoard.hideSoftKeyboard(v.getContext(), v);
-                return false;
-            }
-        });
-        spinner.setOnItemSelectedListener(this);
-    }
-
     private void setHeaderTextByFragment() {
-        tv.setText(mSelectedConversion);
+        mTv.setText(mSelectedConversion);
     }
 
     @Override
@@ -230,10 +229,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    /**
+     * Is called when swap button is clicked, it interchanges the top and bottom fragments
+     * Also, animates the swap button
+     * @param view
+     */
     public void swapFragments(View view) {
         ImageView swapButton = (ImageView) findViewById(R.id.swapButton);
         animateSwapButton(swapButton);
         EventBus.post(new SwapFragment(true));
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 
     private void animateSwapButton(ImageView swapButton) {
@@ -251,9 +260,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         swapButton.setAnimation(an);
     }
 
+    /**
+     * Make sure the height of the linear layout matches full screen when the soft-keyboard is hidden
+     */
     @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
+    public void keyboardHidden() {
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        mLinearLayout.setLayoutParams(layoutParams);
     }
 
     @Subscribe
@@ -309,12 +322,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             mLinearLayout.setLayoutParams(layoutParams);
             mLinearLayout.setTranslationY(dy);
         }
-    }
-
-    @Override
-    public void keyboardHidden() {
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        mLinearLayout.setLayoutParams(layoutParams);
     }
 }
 
