@@ -16,6 +16,10 @@ import com.lftechnology.Dunite.fragment.ScreenSlideTopFragment;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
  */
+
+/**
+ * PageAdapter for ViewPager
+ */
 public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
     private Boolean isTop;
     private String[] mDataset;

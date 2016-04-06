@@ -28,6 +28,10 @@ import java.util.List;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/18/16.
  */
+
+/**
+ * RecyclerView Adapter for Drawer Layout
+ */
 public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
     private final List<String> mDataset;
 

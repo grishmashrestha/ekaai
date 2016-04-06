@@ -3,6 +3,10 @@ package com.lftechnology.Dunite.bus;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/2/16.
  */
+
+/**
+ * Is used to pass message from top fragment to bottom fragment for unit conversion, via an EventBus
+ */
 public class ConvertedValue {
     private String  value, from, selectedConversion;
     private int position;
