@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Bind(R.id.toolbarContainer)
     LinearLayout mToolbarContainer;
     @Bind(R.id.toolbar)
-    Toolbar toolbar;
+    Toolbar mToolbar;
     @Bind(R.id.drawer_recycler_view)
     RecyclerView mRecyclerView;
     @Bind(R.id.inflated_content_main)
@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Bind(R.id.nav_header)
     TextView mTv;
     @Bind(R.id.unito_option_spinner)
-    Spinner spinner;
+    Spinner mSpinner;
 
-    private static int DY = 5; // increment/decrement of toolbar on swipe up/down
+    private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
     private static final int ROTATE_ANIMATION_DURATION = 300;
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
         setSpinner();
         setNavigationDrawer();
     }
@@ -105,15 +105,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void setSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnTouchListener(new View.OnTouchListener() {
+        mSpinner.setAdapter(adapter);
+        mSpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 SoftKeyBoard.hideSoftKeyboard(v.getContext(), v);
                 return false;
             }
         });
-        spinner.setOnItemSelectedListener(this);
+        mSpinner.setOnItemSelectedListener(this);
     }
 
     private void setNavigationDrawer() {
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+        return new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
