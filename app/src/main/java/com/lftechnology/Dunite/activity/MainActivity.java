@@ -161,8 +161,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         } else {
             Gson gson = new Gson();
-            String[] arrayList = gson.fromJson(preference, String[].class);
-            drawerRecyclerViewDataset = arrayList;
+            drawerRecyclerViewDataset = gson.fromJson(preference, String[].class);
         }
         return drawerRecyclerViewDataset;
     }

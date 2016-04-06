@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.Dunite;
+import com.lftechnology.Dunite.constant.AppConstant;
 import com.lftechnology.Dunite.helper.ItemTouchHelperAdapter;
 import com.lftechnology.Dunite.helper.ItemTouchHelperViewHolder;
 import com.lftechnology.Dunite.helper.OnStartDragListener;
@@ -70,11 +71,6 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-//        Timber.e("*****************");
-//        Timber.e(String.valueOf(mDataset.size()));
-//        Timber.e(String.valueOf(fromPosition));
-//        Timber.e(String.valueOf(toPosition));
-//        Timber.e("*****************");
         Collections.swap(mDataset, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         updateUserPreference();
@@ -84,14 +80,14 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
     private void updateUserPreference() {
         Gson gson = new Gson();
         String jsonDataset = gson.toJson(mDataset);
-        SharedPreferences sharedPref = Dunite.getContext().getSharedPreferences("Dunite", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = Dunite.getContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(mSelectedConversion, jsonDataset);
         editor.commit();
     }
 
     /**
-     * Simple example of a view holder that implements {@link ItemTouchHelperViewHolder} and has a
+     * Simple implementation of a view holder that implements {@link ItemTouchHelperViewHolder} and has a
      * "handle" view that initiates a drag event when touched.
      */
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
