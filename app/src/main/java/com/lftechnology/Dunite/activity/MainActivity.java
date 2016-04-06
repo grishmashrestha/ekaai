@@ -48,6 +48,7 @@ import com.squareup.otto.Subscribe;
 import java.util.Arrays;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Handles all the interactions with the app as it is a one-page application
@@ -68,9 +69,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView tv;
     @Bind(R.id.unito_option_spinner)
     Spinner spinner;
-    @Bind(R.id.swapButton) ImageView swapButton;
 
     private static int DY = 5;
+    private static final int ROTATE_ANIMATION_DURATION = 300;
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerRecyclerViewAdapter mAdapter;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         setSpinner();
         setNavigationDrawer();
@@ -121,9 +123,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private String[] getDrawerRecyclerViewDataset() {
         String[] drawerRecyclerViewDataset;
-        SharedPreferences sharedPref = getBaseContext().getSharedPreferences("Dunite", Context.MODE_PRIVATE);
-        String preference = sharedPref.getString(mSelectedConversion, "N/A");
-        if (preference.equals("N/A")) {
+        SharedPreferences sharedPref = getBaseContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
+        String preference = sharedPref.getString(mSelectedConversion, AppConstant.NOT_AVAILABLE);
+        if (preference.equals(AppConstant.NOT_AVAILABLE)) {
             switch (mSelectedConversion) {
                 case AppConstant.LENGTH:
                     drawerRecyclerViewDataset = getResources().getStringArray(R.array.length_options);
@@ -229,8 +231,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void swapFragments(View view) {
+        ImageView swapButton = (ImageView) findViewById(R.id.swapButton);
         animateSwapButton(swapButton);
-
         EventBus.post(new SwapFragment(true));
     }
 
@@ -242,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             an = new RotateAnimation(180.0f, 0.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);
         }
         spinDirection = !spinDirection;
-        an.setDuration(300);
+        an.setDuration(ROTATE_ANIMATION_DURATION);
         an.setRepeatCount(0);
         an.setRepeatMode(Animation.REVERSE);
         an.setFillAfter(true);

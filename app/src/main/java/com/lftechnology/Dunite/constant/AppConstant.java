@@ -4,11 +4,14 @@ package com.lftechnology.Dunite.constant;
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/3/16.
  */
 public class AppConstant {
+    public static final String DUNITE = "Dunite";
     public static final String LENGTH = "Length";
     public static final String TEMPERATURE = "Temperature";
     public static final String WEIGHT = "Weight";
     public static final String VOLUME = "Volume";
     public static final String TIME = "Time";
+
+    public static final String NOT_AVAILABLE = "N/A";
 
     public class LengthConstant {
         public static final String NAUTICAL_MILE = "Nautical Mile";
