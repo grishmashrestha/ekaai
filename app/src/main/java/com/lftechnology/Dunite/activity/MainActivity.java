@@ -246,18 +246,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void animateSwapButton(ImageView swapButton) {
-        Animation an;
+        Animation animation;
         if (spinDirection) {
-            an = new RotateAnimation(0.0f, 180.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);
+            animation = new RotateAnimation(0.0f, 180.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);
         } else {
-            an = new RotateAnimation(180.0f, 0.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);
+            animation = new RotateAnimation(180.0f, 0.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);
         }
         spinDirection = !spinDirection;
-        an.setDuration(ROTATE_ANIMATION_DURATION);
-        an.setRepeatCount(0);
-        an.setRepeatMode(Animation.REVERSE);
-        an.setFillAfter(true);
-        swapButton.setAnimation(an);
+        animation.setDuration(ROTATE_ANIMATION_DURATION);
+        animation.setRepeatCount(0);
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setFillAfter(true);
+        swapButton.setAnimation(animation);
     }
 
     /**
