@@ -29,7 +29,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.lftechnology.Dunite.utils.OnKeyEvents;
 import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.Dunite.bus.EventBus;
@@ -42,29 +41,42 @@ import com.lftechnology.Dunite.fragment.MainFragment;
 import com.lftechnology.Dunite.helper.OnStartDragListener;
 import com.lftechnology.Dunite.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.Dunite.utils.GeneralUtils;
+import com.lftechnology.Dunite.utils.OnKeyEvents;
 import com.lftechnology.Dunite.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
+
+import butterknife.Bind;
 
 /**
  * Handles all the interactions with the app as it is a one-page application
  */
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener, OnKeyEvents {
-    private static int DY = 5;
-    private Toolbar toolbar;
-    private LinearLayout mToolbarContainer;
-    private String mSelectedConversion;
-    private DrawerLayout mDrawerLayout;
+    @Bind(R.id.toolbarContainer)
+    LinearLayout mToolbarContainer;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.drawer_recycler_view)
+    RecyclerView mRecyclerView;
+    @Bind(R.id.inflated_content_main)
+    LinearLayout mLinearLayout;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @Bind(R.id.nav_header)
+    TextView tv;
+    @Bind(R.id.unito_option_spinner)
+    Spinner spinner;
+    @Bind(R.id.swapButton) ImageView swapButton;
 
+    private static int DY = 5;
+    private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
-    private RecyclerView mRecyclerView;
     private DrawerRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDrawerRecyclerViewDataset;
     private ItemTouchHelper mItemTouchHelper;
-    private LinearLayout mLinearLayout;
     private boolean spinDirection = true;
 
     @Override
@@ -83,16 +95,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mToolbarContainer = (LinearLayout) findViewById(R.id.toolbarContainer);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setSpinner();
         setNavigationDrawer();
     }
 
     private void setRecyclerView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.drawer_recycler_view);
+
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -103,12 +112,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-
-        mLinearLayout = (LinearLayout) findViewById(R.id.inflated_content_main);
     }
 
     private void setNavigationDrawer() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = setupDrawerToggle();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
@@ -186,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void setSpinner() {
-        Spinner spinner = (Spinner) findViewById(R.id.unito_option_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -201,7 +206,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void setHeaderTextByFragment() {
-        TextView tv = ((TextView) findViewById(R.id.nav_header));
         tv.setText(mSelectedConversion);
     }
 
@@ -225,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void swapFragments(View view) {
-        ImageView swapButton = (ImageView) findViewById(R.id.swapButton);
         animateSwapButton(swapButton);
 
         EventBus.post(new SwapFragment(true));
