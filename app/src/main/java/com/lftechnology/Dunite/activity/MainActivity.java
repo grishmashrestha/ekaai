@@ -47,20 +47,24 @@ import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
 
+/**
+ * Handles all the interactions with the app as it is a one-page application
+ */
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener, OnKeyEvents {
+    private static int DY = 5;
     private Toolbar toolbar;
     private LinearLayout mToolbarContainer;
     private String mSelectedConversion;
     private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
 
+    private ActionBarDrawerToggle mDrawerToggle;
     private RecyclerView mRecyclerView;
     private DrawerRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDrawerRecyclerViewDataset;
     private ItemTouchHelper mItemTouchHelper;
-    private LinearLayout linearLayout;
-    private int DY = 5;
+    private LinearLayout mLinearLayout;
     private boolean spinDirection = true;
 
     @Override
@@ -100,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
 
-        linearLayout = (LinearLayout) findViewById(R.id.inflated_content_main);
+        mLinearLayout = (LinearLayout) findViewById(R.id.inflated_content_main);
     }
 
     private void setNavigationDrawer() {
@@ -260,9 +264,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     dy = DY;
                 }
                 mToolbarContainer.setTranslationY(diff);
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), linearLayout.getHeight() + dy);
-                linearLayout.setLayoutParams(layoutParams);
-                linearLayout.setTranslationY(linearLayout.getY() - dy);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mLinearLayout.getWidth(), mLinearLayout.getHeight() + dy);
+                mLinearLayout.setLayoutParams(layoutParams);
+                mLinearLayout.setTranslationY(mLinearLayout.getY() - dy);
             }
         } else {
             if (mToolbarContainer.getTranslationY() < 0.0) {
@@ -274,9 +278,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     dy = DY;
                 }
                 mToolbarContainer.setTranslationY(diff);
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), linearLayout.getHeight() - dy);
-                linearLayout.setLayoutParams(layoutParams);
-                linearLayout.setTranslationY(linearLayout.getY() + dy);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mLinearLayout.getWidth(), mLinearLayout.getHeight() - dy);
+                mLinearLayout.setLayoutParams(layoutParams);
+                mLinearLayout.setTranslationY(mLinearLayout.getY() + dy);
             }
         }
     }
@@ -289,23 +293,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (flingListener.flingedUp && (yTranslationInDP > -56) && (yTranslationInDP < 0)) {
             float diff = Math.round(GeneralUtils.convertDpToPixel(-56, this));
             mToolbarContainer.setTranslationY(diff);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), (int) (linearLayout.getHeight() + linearLayout.getY()));
-            linearLayout.setLayoutParams(layoutParams);
-            linearLayout.setTranslationY(0);
-        } else if (!flingListener.flingedUp && (yTranslationInDP < 56.0) && (GeneralUtils.convertPixelsToDp(linearLayout.getY(), this) < 56)) {
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mLinearLayout.getWidth(), (int) (mLinearLayout.getHeight() + mLinearLayout.getY()));
+            mLinearLayout.setLayoutParams(layoutParams);
+            mLinearLayout.setTranslationY(0);
+        } else if (!flingListener.flingedUp && (yTranslationInDP < 56.0) && (GeneralUtils.convertPixelsToDp(mLinearLayout.getY(), this) < 56)) {
             float diff = 0;
             dy = Math.round(GeneralUtils.convertDpToPixel(56, this));
             mToolbarContainer.setTranslationY(diff);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(linearLayout.getWidth(), (int) (linearLayout.getHeight() - diff));
-            linearLayout.setLayoutParams(layoutParams);
-            linearLayout.setTranslationY(dy);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mLinearLayout.getWidth(), (int) (mLinearLayout.getHeight() - diff));
+            mLinearLayout.setLayoutParams(layoutParams);
+            mLinearLayout.setTranslationY(dy);
         }
     }
 
     @Override
     public void keyboardHidden() {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        linearLayout.setLayoutParams(layoutParams);
+        mLinearLayout.setLayoutParams(layoutParams);
     }
 }
 

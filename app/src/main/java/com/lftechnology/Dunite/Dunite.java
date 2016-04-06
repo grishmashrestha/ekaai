@@ -8,6 +8,10 @@ import timber.log.Timber;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/24/16.
  */
+
+/**
+ * Base application class
+ */
 public class Dunite extends Application {
 
     private static Context context;
