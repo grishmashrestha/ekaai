@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="50dp"
-        android:paddingTop="50dp">
+        android:paddingBottom="@dimen/padding_50"
+        android:paddingTop="@dimen/padding_50">
 
         <com.lftechnology.Dunite.utils.CustomEditText
             android:id="@+id/from_unit"
@@ -18,12 +18,12 @@
             android:background="@android:color/white"
             android:inputType="numberDecimal"
             android:maxLength="12"
-            android:minWidth="50dp"
+            android:minWidth="@dimen/custom_edit_text_width"
             android:text="1"
             android:textAlignment="center"
             android:cursorVisible="false"
             android:textIsSelectable="false"
-            android:textSize="100sp"
+            android:textSize="@dimen/text_size_100"
             android:textStyle="normal" />
 
         <TextView
@@ -32,6 +32,6 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="@color/colorGrayFont"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_size_20" />
     </LinearLayout>
 </ScrollView>

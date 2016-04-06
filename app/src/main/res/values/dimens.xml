@@ -3,4 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="burger_menu">20dp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_50">50dp</dimen>
+    <dimen name="height_0">0dp</dimen>
+    <dimen name="drawer_layout_width">240dp</dimen>
+    <dimen name="drawer_layout_header_height">56dp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_100">100sp</dimen>
+    <dimen name="custom_edit_text_width">50dp</dimen>
+
 </resources>

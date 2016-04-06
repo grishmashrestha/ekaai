@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="50dp"
-        android:paddingTop="50dp">
+        android:paddingBottom="@dimen/padding_50"
+        android:paddingTop="@dimen/padding_50">
 
         <TextView
             android:id="@+id/to_unit"
@@ -20,7 +20,7 @@
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textIsSelectable="false"
-            android:textSize="100sp"
+            android:textSize="@dimen/text_size_100"
             android:textStyle="normal" />
 
         <TextView
@@ -29,6 +29,6 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_size_20" />
     </LinearLayout>
 </ScrollView>

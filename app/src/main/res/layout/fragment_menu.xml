@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="240dp"
+    android:layout_width="@dimen/drawer_layout_width"
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:background="#ffeeeeee"
@@ -7,19 +7,18 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/drawer_layout_header_height"
         android:background="?attr/colorPrimaryDark"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:padding="16dp">
-
+        android:padding="@dimen/padding_16">
 
         <TextView
             android:id="@+id/nav_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/darker_gray"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_16" />
 
     </LinearLayout>
 
