@@ -68,19 +68,19 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_bot, container, false);
-        View gestureView = mView.findViewById(R.id.content_bot);
-        gestureView.setClickable(true);
-        gestureView.setFocusable(true);
-        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
-        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
-        assert gestureView != null;
-        gestureView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                gd.onTouchEvent(motionEvent);
-                return false;
-            }
-        });
+//        View gestureView = mView.findViewById(R.id.content_bot);
+//        gestureView.setClickable(true);
+//        gestureView.setFocusable(true);
+//        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
+//        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
+//        assert gestureView != null;
+//        gestureView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                gd.onTouchEvent(motionEvent);
+//                return false;
+//            }
+//        });
 
         return mView;
     }

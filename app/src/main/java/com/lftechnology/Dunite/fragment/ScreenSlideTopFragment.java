@@ -66,19 +66,19 @@ public class ScreenSlideTopFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
 
-        View gestureView = mRootView.findViewById(R.id.content_top);
-        gestureView.setClickable(true);
-        gestureView.setFocusable(true);
-        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
-        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
-        assert gestureView != null;
-        gestureView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                gd.onTouchEvent(motionEvent);
-                return false;
-            }
-        });
+//        View gestureView = mRootView.findViewById(R.id.content_top);
+//        gestureView.setClickable(true);
+//        gestureView.setFocusable(true);
+//        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
+//        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
+//        assert gestureView != null;
+//        gestureView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                gd.onTouchEvent(motionEvent);
+//                return false;
+//            }
+//        });
 
         return mRootView;
     }
