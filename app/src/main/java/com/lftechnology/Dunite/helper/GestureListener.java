@@ -15,9 +15,7 @@ import com.lftechnology.Dunite.bus.ScrollListener;
 public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     public static final String TAG = "GestureListener";
-
-    // BEGIN_INCLUDE(init_gestureListener)
-
+    
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
                             float distanceY) {
