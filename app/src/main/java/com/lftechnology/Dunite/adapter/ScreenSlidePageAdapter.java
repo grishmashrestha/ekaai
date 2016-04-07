@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.lftechnology.Dunite.fragment.ScreenSlideBotFragment;
 import com.lftechnology.Dunite.fragment.ScreenSlideTopFragment;
 
-import timber.log.Timber;
-
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
  */

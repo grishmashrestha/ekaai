@@ -2,6 +2,7 @@ package com.lftechnology.Dunite.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/4/16.
@@ -35,6 +36,7 @@ public class ResultFormatter {
 
     private static String convertToNaturalNumber(Double input) {
         long inputInTermsOfInteger = input.longValue();
-        return String.valueOf(inputInTermsOfInteger);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+        return String.valueOf(decimalFormat.format(inputInTermsOfInteger));
     }
 }
