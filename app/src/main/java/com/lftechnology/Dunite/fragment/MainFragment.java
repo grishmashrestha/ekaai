@@ -1,14 +1,16 @@
 package com.lftechnology.Dunite.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
 import com.lftechnology.Dunite.Dunite;
 import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.adapter.ScreenSlidePageAdapter;
@@ -31,7 +33,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     private String mSelectedConversion;
     private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
     private ViewPager mPagerTop, mPagerBottom;
-    private PagerAdapter mPagerAdapterTop, mPagerAdapterBottom;
+    private ScreenSlidePageAdapter mPagerAdapterTop, mPagerAdapterBottom;
 
     public MainFragment() {
         // Required empty public constructor
@@ -132,21 +134,60 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     public void updateViewpagers(NavigationMenuChangeDetails navigationMenuChangeDetails) {
         if (mSelectedConversion.equals(navigationMenuChangeDetails.getSelectedConversion())) {
             setAdapters();
+//            updateAdapters();
         }
+    }
+
+    private void updateAdapters() {
+        mPagerAdapterTop.updateDataset(getDataset(mSelectedConversion));
+        mPagerAdapterBottom.updateDataset(getDataset(mSelectedConversion));
     }
 
     public void setAdapters() {
         mPagerTop.removeOnPageChangeListener(this);
-        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion);
+        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion, getDataset(mSelectedConversion));
         mPagerTop.setAdapter(mPagerAdapterTop);
         mPagerTop.setOffscreenPageLimit(mDataCount);
         mPagerTop.addOnPageChangeListener(this);
 
-        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion);
+        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion, getDataset(mSelectedConversion));
         mPagerBottom.setAdapter(mPagerAdapterBottom);
         mPagerBottom.setOffscreenPageLimit(mDataCount);
         mPagerBottom.setCurrentItem(1);
 
         mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
+    }
+
+    private String[] getDataset(String mSelectedConversion) {
+        String[] dataset;
+        SharedPreferences sharedPref = Dunite.getContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
+        String preference = sharedPref.getString(mSelectedConversion, AppConstant.NOT_AVAILABLE);
+        if (preference.equals(AppConstant.NOT_AVAILABLE)) {
+            switch (mSelectedConversion) {
+                case AppConstant.LENGTH:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.length_options);
+                    break;
+                case AppConstant.TEMPERATURE:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.temperature_options);
+                    break;
+                case AppConstant.TIME:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.time_options);
+                    break;
+                case AppConstant.VOLUME:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.volume_options);
+                    break;
+                case AppConstant.WEIGHT:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.weight_options);
+                    break;
+                default:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.length_options);
+                    break;
+            }
+        } else {
+            Gson gson = new Gson();
+            String[] arrayList = gson.fromJson(preference, String[].class);
+            dataset = arrayList;
+        }
+        return dataset;
     }
 }
