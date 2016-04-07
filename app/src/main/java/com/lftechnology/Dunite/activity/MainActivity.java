@@ -40,6 +40,7 @@ import com.lftechnology.Dunite.constant.AppConstant;
 import com.lftechnology.Dunite.fragment.MainFragment;
 import com.lftechnology.Dunite.helper.OnStartDragListener;
 import com.lftechnology.Dunite.helper.SimpleItemTouchHelperCallback;
+import com.lftechnology.Dunite.utils.ApplicationTheme;
 import com.lftechnology.Dunite.utils.GeneralUtils;
 import com.lftechnology.Dunite.utils.OnKeyEvents;
 import com.lftechnology.Dunite.utils.SoftKeyBoard;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @Bind(R.id.nav_header)
+    LinearLayout mNavHeader;
+    @Bind(R.id.nav_header_tv)
     TextView mTv;
     @Bind(R.id.unito_option_spinner)
     Spinner mSpinner;
@@ -206,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void setHeaderTextByFragment() {
+        mNavHeader.setBackgroundResource(ApplicationTheme.getThemeDetails(mSelectedConversion)[1]);
         mTv.setText(mSelectedConversion);
     }
 

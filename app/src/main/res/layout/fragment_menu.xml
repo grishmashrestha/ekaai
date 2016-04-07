@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/nav_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/drawer_layout_header_height"
         android:background="?attr/colorPrimaryDark"
@@ -14,10 +15,10 @@
         android:padding="@dimen/padding_16">
 
         <TextView
-            android:id="@+id/nav_header"
+            android:id="@+id/nav_header_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_16" />
 
     </LinearLayout>

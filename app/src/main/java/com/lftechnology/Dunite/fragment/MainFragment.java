@@ -19,6 +19,7 @@ import com.lftechnology.Dunite.bus.NavigationMenuChangeDetails;
 import com.lftechnology.Dunite.bus.PageScrollPosition;
 import com.lftechnology.Dunite.bus.SwapFragment;
 import com.lftechnology.Dunite.constant.AppConstant;
+import com.lftechnology.Dunite.utils.ApplicationTheme;
 import com.squareup.otto.Subscribe;
 
 /**
@@ -73,38 +74,10 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     private void setBackgroundColorAndLengthBySelectedConversion() {
-        switch (mSelectedConversion) {
-            case AppConstant.LENGTH:
-                mDataCount = Dunite.getContext().getResources().getStringArray(R.array.length_options).length;
-                mBottomBackgroundColor = R.color.colorLengthLight;
-                mSwapButtonColor = R.drawable.swap_btn_cont_blue;
-                break;
-            case AppConstant.TEMPERATURE:
-                mDataCount = Dunite.getContext().getResources().getStringArray(R.array.temperature_options).length;
-                mBottomBackgroundColor = R.color.colorTemperatureLight;
-                mSwapButtonColor = R.drawable.swap_btn_cont_red;
-                break;
-            case AppConstant.TIME:
-                mDataCount = Dunite.getContext().getResources().getStringArray(R.array.time_options).length;
-                mBottomBackgroundColor = R.color.colorTimeLight;
-                mSwapButtonColor = R.drawable.swap_btn_cont_yellow;
-                break;
-            case AppConstant.VOLUME:
-                mDataCount = Dunite.getContext().getResources().getStringArray(R.array.volume_options).length;
-                mBottomBackgroundColor = R.color.colorVolumeLight;
-                mSwapButtonColor = R.drawable.swap_btn_cont_purple;
-                break;
-            case AppConstant.WEIGHT:
-                mDataCount = Dunite.getContext().getResources().getStringArray(R.array.weight_options).length;
-                mBottomBackgroundColor = R.color.colorWeightLight;
-                mSwapButtonColor = R.drawable.swap_btn_cont_green;
-                break;
-            default:
-                mDataCount = Dunite.getContext().getResources().getStringArray(R.array.length_options).length;
-                mBottomBackgroundColor = R.color.colorLengthLight;
-                mSwapButtonColor = R.color.colorLengthDark;
-                break;
-        }
+        Integer[] themeDetails = ApplicationTheme.getThemeDetails(mSelectedConversion);
+        mDataCount = themeDetails[0];
+        mBottomBackgroundColor = themeDetails[1];
+        mSwapButtonColor = themeDetails[2];
     }
 
     @Override
