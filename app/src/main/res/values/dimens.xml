@@ -4,6 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="burger_menu">20dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
     <dimen name="padding_16">16dp</dimen>
     <dimen name="padding_50">50dp</dimen>
     <dimen name="height_0">0dp</dimen>
@@ -13,5 +14,7 @@
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_100">100sp</dimen>
     <dimen name="custom_edit_text_width">50dp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
 
 </resources>

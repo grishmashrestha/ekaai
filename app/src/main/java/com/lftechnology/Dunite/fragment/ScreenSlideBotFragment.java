@@ -1,6 +1,7 @@
 package com.lftechnology.Dunite.fragment;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -89,7 +90,7 @@ public class ScreenSlideBotFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView tv = (TextView) mView.findViewById(R.id.scroll_bot);
-        tv.setText(mDataset[mPosition]);
+        tv.setText(Html.fromHtml(mDataset[mPosition]));
     }
 
     private void convertToCurrentUnit(ConvertedValue val) {

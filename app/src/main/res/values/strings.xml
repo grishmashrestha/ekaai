@@ -33,7 +33,7 @@
     <string-array name="temperature_options">
         <item>Celsius (C)</item>
         <item>Fahrenheit (F)</item>
-        <item>kelvin (K)</item>
+        <item>Kelvin (K)</item>
     </string-array>
 
     <string-array name="weight_options">
@@ -51,11 +51,11 @@
     <string-array name="volume_options">
         <item>Gallon (fluid)</item>
         <item>Barrel (petroleum)</item>
-        <item>Cubic yard (yd3)</item>
-        <item>Cubic meter (m3)</item>
-        <item>Cubic centimeter (cm3)</item>
-        <item>milliliter (ml)</item>
-        <item>Cubic feet (ft3)</item>
+        <item>Cubic yard (yd&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
+        <item>Cubic meter (m&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
+        <item>Cubic centimeter (cm&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
+        <item>Milliliter (ml)</item>
+        <item>Cubic feet (ft&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
     </string-array>
 
     <string-array name="time_options">
@@ -79,6 +79,5 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

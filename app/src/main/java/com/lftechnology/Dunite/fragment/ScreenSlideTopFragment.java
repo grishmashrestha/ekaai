@@ -3,6 +3,7 @@ package com.lftechnology.Dunite.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.GestureDetector;
@@ -87,7 +88,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final TextView tv = (TextView) mRootView.findViewById(R.id.scroll_top);
-        tv.setText(mDataset[mPosition]);
+        tv.setText(Html.fromHtml(mDataset[mPosition]));
 
         mFromUnit = (CustomEditText) mRootView.findViewById(R.id.from_unit);
         if (mPosition == 0) {

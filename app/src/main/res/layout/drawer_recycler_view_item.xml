@@ -12,6 +12,7 @@
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
+        android:textSize="@dimen/text_size_16"
         android:paddingRight="@dimen/padding_16" />
 
     <ImageView

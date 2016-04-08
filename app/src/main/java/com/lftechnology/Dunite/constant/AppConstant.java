@@ -36,7 +36,7 @@ public class AppConstant {
     public class TemperatureConstant {
         public static final String CELSIUS = "Celsius (C)";
         public static final String FAHRENHEIT = "Fahrenheit (F)";
-        public static final String KELVIN = "kelvin (K)";
+        public static final String KELVIN = "Kelvin (K)";
     }
 
     public class TimeConstant {
@@ -58,11 +58,11 @@ public class AppConstant {
     public class VolumeConstant {
         public static final String GALLON = "Gallon (fluid)";
         public static final String BARREL = "Barrel (petroleum)";
-        public static final String CUBIC_YARD = "Cubic yard (yd3)";
-        public static final String CUBIC_METER = "Cubic meter (m3)";
-        public static final String CUBIC_CENTIMETER = "Cubic centimeter (cm3)";
-        public static final String MILLILITER = "milliliter (ml)";
-        public static final String CUBIC_FEET = "Cubic feet (ft3)";
+        public static final String CUBIC_YARD = "Cubic yard (yd<sup><small>3</small></sup>)";
+        public static final String CUBIC_METER = "Cubic meter (m<sup><small>3</small></sup>)";
+        public static final String CUBIC_CENTIMETER = "Cubic centimeter (cm<sup><small>3</small></sup>)";
+        public static final String MILLILITER = "Milliliter (ml)";
+        public static final String CUBIC_FEET = "Cubic feet (ft<sup><small>3</small></sup>)";
     }
 
     public class WeightConstant {
