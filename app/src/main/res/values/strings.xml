@@ -63,9 +63,7 @@
         <item>Hour</item>
         <item>Day</item>
         <item>Week</item>
-        <item>Month</item>
         <item>Year</item>
-        <item>Decade</item>
         <item>Century</item>
         <item>Millisecond (ms)</item>
         <item>Millennium</item>

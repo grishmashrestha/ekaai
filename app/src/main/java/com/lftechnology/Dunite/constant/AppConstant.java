@@ -44,9 +44,7 @@ public class AppConstant {
         public static final String HOUR = "Hour";
         public static final String DAY = "Day";
         public static final String WEEK = "Week";
-        public static final String MONTH = "Month";
         public static final String YEAR = "Year";
-        public static final String DECADE = "Decade";
         public static final String CENTURY = "Century";
         public static final String MILLENNIUM = "Millennium";
         public static final String MILLISECOND = "Millisecond (ms)";

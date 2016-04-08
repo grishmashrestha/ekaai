@@ -40,12 +40,6 @@ public class Temperature extends Unit {
                     case AppConstant.TemperatureConstant.CELSIUS:
                         returnValue = ((value - 32) * 5 / 9);
                         break;
-                    case AppConstant.TemperatureConstant.FAHRENHEIT:
-                        returnValue = value;
-                        break;
-                    case AppConstant.TemperatureConstant.KELVIN:
-                        returnValue = ((value + 459.67) * 5 / 9);
-                        break;
                     default:
                         returnValue = 0.0;
                 }
@@ -54,12 +48,6 @@ public class Temperature extends Unit {
                 switch (to) {
                     case AppConstant.TemperatureConstant.CELSIUS:
                         returnValue = (value - 273.15);
-                        break;
-                    case AppConstant.TemperatureConstant.FAHRENHEIT:
-                        returnValue = ((value * (9 / 5)) - 459.67);
-                        break;
-                    case AppConstant.TemperatureConstant.KELVIN:
-                        returnValue = value;
                         break;
                     default:
                         returnValue = 0.0;
