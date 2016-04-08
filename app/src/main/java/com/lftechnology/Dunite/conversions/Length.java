@@ -54,9 +54,6 @@ public class Length extends ProportionalUnit {
                     case AppConstant.LengthConstant.MILE:
                         constant = 0.621371192237334;
                         break;
-                    case AppConstant.LengthConstant.MICROMETER:
-                        constant = 1000000000.0;
-                        break;
                     case AppConstant.LengthConstant.NANOMETER:
                         constant = 1000000000000.0;
                         break;
@@ -126,15 +123,6 @@ public class Length extends ProportionalUnit {
                 switch (to) {
                     case AppConstant.LengthConstant.KILOMETER:
                         constant = 1.609344;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case AppConstant.LengthConstant.MICROMETER:
-                switch (to) {
-                    case AppConstant.LengthConstant.KILOMETER:
-                        constant = 0.000000001;
                         break;
                     default:
                         break;

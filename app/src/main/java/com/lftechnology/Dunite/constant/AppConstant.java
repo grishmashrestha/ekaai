@@ -28,9 +28,8 @@ public class AppConstant {
         public static final String METER = "Meter (m)";
         public static final String MILLIMETER = "Millimeter (mm)";
         public static final String MILE = "Mile (ml)";
-        public static final String MICROMETER = "Micrometers (um)";
         public static final String NANOMETER = "Nanometers (nm)";
-        public static final String MICRON = "Micron (u)";
+        public static final String MICRON = "Micron (µ)";
     }
 
     public class TemperatureConstant {

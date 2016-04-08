@@ -25,9 +25,8 @@
         <item>Meter (m)</item>
         <item>Millimeter (mm)</item>
         <item>Mile (ml)</item>
-        <item>Micrometers (um)</item>
+        <item>Micron (µ)</item>
         <item>Nanometers (nm)</item>
-        <item>Micron (u)</item>
     </string-array>
 
     <string-array name="temperature_options">
