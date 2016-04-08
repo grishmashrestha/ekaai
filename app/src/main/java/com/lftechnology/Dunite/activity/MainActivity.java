@@ -1,7 +1,5 @@
 package com.lftechnology.Dunite.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
@@ -28,7 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.Dunite.bus.EventBus;
@@ -36,11 +32,10 @@ import com.lftechnology.Dunite.bus.FlingListener;
 import com.lftechnology.Dunite.bus.NavigationMenuChangeDetails;
 import com.lftechnology.Dunite.bus.ScrollListener;
 import com.lftechnology.Dunite.bus.SwapFragment;
-import com.lftechnology.Dunite.constant.AppConstant;
 import com.lftechnology.Dunite.fragment.MainFragment;
 import com.lftechnology.Dunite.helper.OnStartDragListener;
 import com.lftechnology.Dunite.helper.SimpleItemTouchHelperCallback;
-import com.lftechnology.Dunite.utils.ApplicationTheme;
+import com.lftechnology.Dunite.utils.ApplicationThemeAndDataset;
 import com.lftechnology.Dunite.utils.GeneralUtils;
 import com.lftechnology.Dunite.utils.OnKeyEvents;
 import com.lftechnology.Dunite.utils.SoftKeyBoard;
@@ -128,45 +123,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mDrawerRecyclerViewDataset = getDrawerRecyclerViewDataset();
+        mDrawerRecyclerViewDataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
         mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mRecyclerView.setAdapter(mAdapter);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-    }
-
-    private String[] getDrawerRecyclerViewDataset() {
-        String[] drawerRecyclerViewDataset;
-        SharedPreferences sharedPref = getBaseContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
-        String preference = sharedPref.getString(mSelectedConversion, AppConstant.NOT_AVAILABLE);
-        if (preference.equals(AppConstant.NOT_AVAILABLE)) {
-            switch (mSelectedConversion) {
-                case AppConstant.LENGTH:
-                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.length_options);
-                    break;
-                case AppConstant.TEMPERATURE:
-                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.temperature_options);
-                    break;
-                case AppConstant.TIME:
-                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.time_options);
-                    break;
-                case AppConstant.VOLUME:
-                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.volume_options);
-                    break;
-                case AppConstant.WEIGHT:
-                    drawerRecyclerViewDataset = getResources().getStringArray(R.array.weight_options);
-                    break;
-                default:
-                    drawerRecyclerViewDataset = new String[]{};
-                    break;
-            }
-        } else {
-            Gson gson = new Gson();
-            drawerRecyclerViewDataset = gson.fromJson(preference, String[].class);
-        }
-        return drawerRecyclerViewDataset;
     }
 
     @Override
@@ -195,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
 
-                if (!Arrays.equals(getDrawerRecyclerViewDataset(), mDrawerRecyclerViewDataset)) {
+                if (!Arrays.equals(ApplicationThemeAndDataset.getDataset(mSelectedConversion), mDrawerRecyclerViewDataset)) {
                     EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
                 }
             }
@@ -209,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void setHeaderTextByFragment() {
-        mNavHeader.setBackgroundResource(ApplicationTheme.getThemeDetails(mSelectedConversion)[1]);
+        mNavHeader.setBackgroundResource(ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion)[1]);
         mTv.setText(mSelectedConversion);
     }
 
@@ -235,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     /**
      * Is called when swap button is clicked, it interchanges the top and bottom fragments
      * Also, animates the swap button
+     *
      * @param view
      */
     public void swapFragments(View view) {

@@ -1,7 +1,5 @@
 package com.lftechnology.Dunite.fragment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,16 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.google.gson.Gson;
-import com.lftechnology.Dunite.Dunite;
 import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.Dunite.bus.EventBus;
 import com.lftechnology.Dunite.bus.NavigationMenuChangeDetails;
 import com.lftechnology.Dunite.bus.PageScrollPosition;
 import com.lftechnology.Dunite.bus.SwapFragment;
-import com.lftechnology.Dunite.constant.AppConstant;
-import com.lftechnology.Dunite.utils.ApplicationTheme;
+import com.lftechnology.Dunite.utils.ApplicationThemeAndDataset;
 import com.squareup.otto.Subscribe;
 
 /**
@@ -74,7 +69,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     private void setBackgroundColorAndLengthBySelectedConversion() {
-        Integer[] themeDetails = ApplicationTheme.getThemeDetails(mSelectedConversion);
+        Integer[] themeDetails = ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion);
         mDataCount = themeDetails[0];
         mBottomBackgroundColor = themeDetails[1];
         mSwapButtonColor = themeDetails[2];
@@ -112,55 +107,24 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     private void updateAdapters() {
-        mPagerAdapterTop.updateDataset(getDataset(mSelectedConversion));
-        mPagerAdapterBottom.updateDataset(getDataset(mSelectedConversion));
+        String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+        mPagerAdapterTop.updateDataset(dataset);
+        mPagerAdapterBottom.updateDataset(dataset);
     }
 
     public void setAdapters() {
+        String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
         mPagerTop.removeOnPageChangeListener(this);
-        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion, getDataset(mSelectedConversion));
+        mPagerAdapterTop = new ScreenSlidePageAdapter(getFragmentManager(), true, mSelectedConversion, dataset);
         mPagerTop.setAdapter(mPagerAdapterTop);
         mPagerTop.setOffscreenPageLimit(mDataCount);
         mPagerTop.addOnPageChangeListener(this);
 
-        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion, getDataset(mSelectedConversion));
+        mPagerAdapterBottom = new ScreenSlidePageAdapter(getFragmentManager(), false, mSelectedConversion, dataset);
         mPagerBottom.setAdapter(mPagerAdapterBottom);
         mPagerBottom.setOffscreenPageLimit(mDataCount);
         mPagerBottom.setCurrentItem(1);
 
         mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
-    }
-
-    private String[] getDataset(String mSelectedConversion) {
-        String[] dataset;
-        SharedPreferences sharedPref = Dunite.getContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
-        String preference = sharedPref.getString(mSelectedConversion, AppConstant.NOT_AVAILABLE);
-        if (preference.equals(AppConstant.NOT_AVAILABLE)) {
-            switch (mSelectedConversion) {
-                case AppConstant.LENGTH:
-                    dataset = Dunite.getContext().getResources().getStringArray(R.array.length_options);
-                    break;
-                case AppConstant.TEMPERATURE:
-                    dataset = Dunite.getContext().getResources().getStringArray(R.array.temperature_options);
-                    break;
-                case AppConstant.TIME:
-                    dataset = Dunite.getContext().getResources().getStringArray(R.array.time_options);
-                    break;
-                case AppConstant.VOLUME:
-                    dataset = Dunite.getContext().getResources().getStringArray(R.array.volume_options);
-                    break;
-                case AppConstant.WEIGHT:
-                    dataset = Dunite.getContext().getResources().getStringArray(R.array.weight_options);
-                    break;
-                default:
-                    dataset = Dunite.getContext().getResources().getStringArray(R.array.length_options);
-                    break;
-            }
-        } else {
-            Gson gson = new Gson();
-            String[] arrayList = gson.fromJson(preference, String[].class);
-            dataset = arrayList;
-        }
-        return dataset;
     }
 }

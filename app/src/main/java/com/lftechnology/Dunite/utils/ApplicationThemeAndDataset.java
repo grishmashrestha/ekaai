@@ -1,5 +1,9 @@
 package com.lftechnology.Dunite.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
 import com.lftechnology.Dunite.Dunite;
 import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.constant.AppConstant;
@@ -7,7 +11,39 @@ import com.lftechnology.Dunite.constant.AppConstant;
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/7/16.
  */
-public class ApplicationTheme {
+public class ApplicationThemeAndDataset {
+    public static String[] getDataset(String mSelectedConversion) {
+        String[] dataset;
+        SharedPreferences sharedPref = Dunite.getContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
+        String preference = sharedPref.getString(mSelectedConversion, AppConstant.NOT_AVAILABLE);
+        if (preference.equals(AppConstant.NOT_AVAILABLE)) {
+            switch (mSelectedConversion) {
+                case AppConstant.LENGTH:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.length_options);
+                    break;
+                case AppConstant.TEMPERATURE:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.temperature_options);
+                    break;
+                case AppConstant.TIME:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.time_options);
+                    break;
+                case AppConstant.VOLUME:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.volume_options);
+                    break;
+                case AppConstant.WEIGHT:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.weight_options);
+                    break;
+                default:
+                    dataset = Dunite.getContext().getResources().getStringArray(R.array.length_options);
+                    break;
+            }
+        } else {
+            Gson gson = new Gson();
+            dataset = gson.fromJson(preference, String[].class);
+        }
+        return dataset;
+    }
+
     public static Integer[] getThemeDetails(String selectedConversion) {
         Integer[] themeSet = new Integer[3];
         switch (selectedConversion) {
