@@ -19,7 +19,7 @@
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:minWidth="@dimen/custom_edit_text_width"
-            android:text="1"
+            android:text="@string/default_string_1"
             android:textAlignment="center"
             android:cursorVisible="true"
             android:textIsSelectable="false"
