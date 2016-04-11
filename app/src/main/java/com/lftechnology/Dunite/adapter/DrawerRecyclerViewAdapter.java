@@ -88,7 +88,7 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
         SharedPreferences sharedPref = Dunite.getContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(mSelectedConversion, jsonDataset);
-        editor.commit();
+        editor.apply();
     }
 
     /**
