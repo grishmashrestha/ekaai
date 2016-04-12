@@ -125,6 +125,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
             }
         });
 
+        // Disable copy/paste in the editText
         mFromUnit.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
