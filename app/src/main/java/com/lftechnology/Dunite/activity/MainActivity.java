@@ -1,6 +1,7 @@
 package com.lftechnology.Dunite.activity;
 
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,8 +18,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView mTv;
     @Bind(R.id.unito_option_spinner)
     Spinner mSpinner;
+    @Bind(R.id.main_content)
+    RelativeLayout mMainContent;
 
     private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
     private static final int ROTATE_ANIMATION_DURATION = 300;
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String[] mDrawerRecyclerViewDataset;
     private ItemTouchHelper mItemTouchHelper;
     private boolean spinDirection = true;
+    private float lastTranslate = 0.0f;
 
     @Override
     public void onResume() {
@@ -156,10 +162,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
 
                 if (!Arrays.equals(ApplicationThemeAndDataset.getDataset(mSelectedConversion), mDrawerRecyclerViewDataset)) {
                     EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
+                }
+                super.onDrawerClosed(drawerView);
+            }
+
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                float moveFactor = (mRecyclerView.getWidth() * slideOffset);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    mMainContent.setTranslationX(moveFactor);
+                } else {
+                    TranslateAnimation anim = new TranslateAnimation(lastTranslate, moveFactor, 0.0f, 0.0f);
+                    anim.setDuration(0);
+                    anim.setFillAfter(true);
+                    mMainContent.startAnimation(anim);
+
+                    lastTranslate = moveFactor;
                 }
             }
         };
