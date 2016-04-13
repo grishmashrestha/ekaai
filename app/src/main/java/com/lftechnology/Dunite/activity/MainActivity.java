@@ -162,9 +162,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
-
-                if (!Arrays.equals(ApplicationThemeAndDataset.getDataset(mSelectedConversion), mDrawerRecyclerViewDataset)) {
+                String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+                if (!Arrays.equals(dataset, mDrawerRecyclerViewDataset)) {
                     EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
+                    mDrawerRecyclerViewDataset = dataset;
                 }
                 super.onDrawerClosed(drawerView);
             }
