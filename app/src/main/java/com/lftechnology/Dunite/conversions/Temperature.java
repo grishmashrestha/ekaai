@@ -14,11 +14,20 @@ public class Temperature extends Unit {
 
     @Override
     public Double convert() {
-        Double returnValue;
         Double value = getValue();
         String from = getFrom();
         String to = getTo();
 
+        if (from.equals(to)) {
+            return 1.0;
+        } else {
+            Double inTermsOfReferenceUnit = convertToAnotherUnit(from, getReferenceUnit(), value);
+            return convertToAnotherUnit(getReferenceUnit(), to, inTermsOfReferenceUnit);
+        }
+    }
+
+    public Double convertToAnotherUnit(String from, String to, Double value) {
+        Double returnValue;
         switch (from) {
             case AppConstant.TemperatureConstant.CELSIUS:
                 switch (to) {
