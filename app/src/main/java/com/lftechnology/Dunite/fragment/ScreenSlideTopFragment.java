@@ -6,7 +6,6 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.view.ActionMode;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +18,6 @@ import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.bus.ConvertedValue;
 import com.lftechnology.Dunite.bus.EventBus;
 import com.lftechnology.Dunite.bus.PageScrollPosition;
-import com.lftechnology.Dunite.helper.GestureListener;
 import com.lftechnology.Dunite.utils.AutoResizeFontTextView;
 import com.lftechnology.Dunite.utils.CustomEditText;
 import com.lftechnology.Dunite.utils.SoftKeyBoard;
@@ -40,6 +38,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
     private ViewGroup mRootView;
     private CustomEditText mFromUnit;
     private String mSelectedConversion;
+    private static CustomEditTextOnTouch mCustomEditTextOnTouch;
 
     public ScreenSlideTopFragment() {
     }
@@ -99,6 +98,16 @@ public class ScreenSlideTopFragment extends BaseFragment {
                 }
             }, 2);
         }
+
+        mFromUnit.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == event.ACTION_DOWN) {
+                    mCustomEditTextOnTouch.editTextOnTouch();
+                }
+                return false;
+            }
+        });
 
         mFromUnit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -193,5 +202,14 @@ public class ScreenSlideTopFragment extends BaseFragment {
             EventBus.post(new ConvertedValue(mFromUnit.getText().toString().trim(), mDataset[pos], pos, mSelectedConversion));
         }
     }
+
+    public static void setCustomEditTextOnTouch(CustomEditTextOnTouch test) {
+        mCustomEditTextOnTouch = test;
+    }
+
+    public interface CustomEditTextOnTouch {
+        void editTextOnTouch();
+    }
+
 
 }

@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void animateSwapButton(ImageView swapButton) {
+        swapButton.clearAnimation();
         Animation animation;
         if (spinDirection) {
             animation = new RotateAnimation(0.0f, 180.0f, swapButton.getWidth() / 2, swapButton.getHeight() / 2);

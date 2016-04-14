@@ -5,8 +5,6 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.EditText;
 
-import timber.log.Timber;
-
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/1/16.
  */

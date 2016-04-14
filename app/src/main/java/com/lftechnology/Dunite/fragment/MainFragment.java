@@ -6,6 +6,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.lftechnology.Dunite.R;
@@ -23,13 +28,14 @@ import com.squareup.otto.Subscribe;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+public class MainFragment extends BaseFragment implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch {
     private static final String SELECTED_CONVERSION = "selectedConversion";
 
     private String mSelectedConversion;
     private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
     private ViewPager mPagerTop, mPagerBottom;
     private ScreenSlidePageAdapter mPagerAdapterTop, mPagerAdapterBottom;
+    private ImageView mSwapButton;
 
     public MainFragment() {
         // Required empty public constructor
@@ -62,8 +68,10 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
         setAdapters();
 
-        ImageView swapButton = (ImageView) view.findViewById(R.id.swapButton);
-        swapButton.setBackgroundResource(mSwapButtonColor);
+        mSwapButton = (ImageView) view.findViewById(R.id.swapButton);
+        mSwapButton.setBackgroundResource(mSwapButtonColor);
+
+        ScreenSlideTopFragment.setCustomEditTextOnTouch(this);
 
         return view;
     }
@@ -127,4 +135,25 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
         mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
     }
+
+    @Override
+    public void editTextOnTouch() {
+        mSwapButton.clearAnimation();
+        Animation scaleOut = new ScaleAnimation(1,0,1,0,mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
+        scaleOut.setInterpolator(new AccelerateInterpolator());
+        scaleOut.setStartOffset(0); // Start fading out after 500 milli seconds
+        scaleOut.setDuration(1000); // Fadeout duration should be 1000 milli seconds
+        Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setStartOffset(0); // Start fading out after 500 milli seconds
+        fadeOut.setDuration(1000); // Fadeout duration should be 1000 milli seconds
+
+        AnimationSet animation = new AnimationSet(false); // change to false
+        animation.addAnimation(scaleOut);
+        animation.addAnimation(fadeOut);
+        animation.setRepeatCount(1);
+        mSwapButton.setAnimation(animation);
+        mSwapButton.setVisibility(View.INVISIBLE);
+    }
+
 }
