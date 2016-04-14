@@ -108,7 +108,8 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
 
         @Override
         public void onItemSelected() {
-            itemView.setBackgroundColor(Color.LTGRAY);
+            itemView.setBackgroundColor(Color.WHITE);
+            itemView.getBackground().setAlpha(100);
         }
 
         @Override
