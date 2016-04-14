@@ -23,6 +23,7 @@ public class CustomEditText extends EditText {
 
     @Override
     public boolean onKeyPreIme(int keyCode, KeyEvent event) {
+        // when back key is pressed
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (getText().toString().equals("")) {
                 setText("1");
@@ -35,6 +36,7 @@ public class CustomEditText extends EditText {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        // when done key is pressed
         if (keyCode == 66) {
             if (getText().toString().equals("")) {
                 setText("1");

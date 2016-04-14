@@ -185,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     anim.setDuration(0);
                     anim.setFillAfter(true);
                     mMainContent.startAnimation(anim);
-
                     lastTranslate = moveFactor;
                 }
             }
@@ -259,8 +258,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
      */
     @Override
     public void keyboardHidden() {
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//        mLinearLayout.setLayoutParams(layoutParams);
+        // TODO
+        //  RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        //  mLinearLayout.setLayoutParams(layoutParams);
 
         // show swap button
         mSwapButton = (ImageView) findViewById(R.id.swapButton);
