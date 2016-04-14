@@ -130,7 +130,9 @@ public class ScreenSlideTopFragment extends BaseFragment {
         mFromUnit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                SoftKeyBoard.hideSoftKeyboard(getContext(), v);
+                if (!hasFocus) {
+                    SoftKeyBoard.hideSoftKeyboard(getContext(), v);
+                }
             }
         });
 

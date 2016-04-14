@@ -18,6 +18,9 @@ public class AppConstant {
 
     public static final String NOT_AVAILABLE = "N/A";
 
+    public static final int SWAP_BUTTON_ANIMATION_TIME_800 = 800;
+    public static final int SWAP_BUTTON_ANIMATION_TIME_400 = 400;
+
     public class LengthConstant {
         public static final String NAUTICAL_MILE = "Nautical Mile";
         public static final String KILOMETER = "Kilometre (km)";

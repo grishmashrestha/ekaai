@@ -16,12 +16,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -35,6 +38,7 @@ import com.lftechnology.Dunite.bus.FlingListener;
 import com.lftechnology.Dunite.bus.NavigationMenuChangeDetails;
 import com.lftechnology.Dunite.bus.ScrollListener;
 import com.lftechnology.Dunite.bus.SwapFragment;
+import com.lftechnology.Dunite.constant.AppConstant;
 import com.lftechnology.Dunite.fragment.MainFragment;
 import com.lftechnology.Dunite.helper.OnStartDragListener;
 import com.lftechnology.Dunite.helper.SimpleItemTouchHelperCallback;
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ItemTouchHelper mItemTouchHelper;
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
+    private ImageView mSwapButton;
 
     @Override
     public void onResume() {
@@ -201,7 +206,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Spinner spinner = (Spinner) parent;
-        spinner.setSelection(position);
         mSelectedConversion = spinner.getSelectedItem().toString();
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -224,8 +228,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
      * @param view
      */
     public void swapFragments(View view) {
-        ImageView swapButton = (ImageView) findViewById(R.id.swapButton);
-        animateSwapButton(swapButton);
+        mSwapButton = (ImageView) findViewById(R.id.swapButton);
+        animateSwapButton(mSwapButton);
         EventBus.post(new SwapFragment(true));
     }
 
@@ -257,6 +261,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void keyboardHidden() {
 //        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 //        mLinearLayout.setLayoutParams(layoutParams);
+
+        // show swap button
+        mSwapButton = (ImageView) findViewById(R.id.swapButton);
+        if (mSwapButton.getVisibility() == View.INVISIBLE) {
+            mSwapButton = (ImageView) findViewById(R.id.swapButton);
+            mSwapButton.clearAnimation();
+            Animation scaleOut = new ScaleAnimation(0, 1, 0, 1, mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
+            scaleOut.setInterpolator(new AccelerateInterpolator());
+            scaleOut.setStartOffset(0); // Start fading out after 500 milli seconds
+            scaleOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_400); // Fadeout duration should be 1000 milli seconds
+
+            Animation fadeOut = new AlphaAnimation(0, 1);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+            fadeOut.setInterpolator(new AccelerateInterpolator());
+            fadeOut.setStartOffset(0); // Start fading out after 500 milli seconds
+            fadeOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_400); // Fadeout duration should be 1000 milli seconds
+
+            AnimationSet animation = new AnimationSet(false); // change to false
+            animation.addAnimation(scaleOut);
+            animation.addAnimation(fadeOut);
+            animation.setRepeatCount(1);
+            mSwapButton.setAnimation(animation);
+            mSwapButton.setVisibility(View.VISIBLE);
+        }
     }
 
     @Subscribe

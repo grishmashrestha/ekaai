@@ -19,6 +19,7 @@ import com.lftechnology.Dunite.bus.EventBus;
 import com.lftechnology.Dunite.bus.NavigationMenuChangeDetails;
 import com.lftechnology.Dunite.bus.PageScrollPosition;
 import com.lftechnology.Dunite.bus.SwapFragment;
+import com.lftechnology.Dunite.constant.AppConstant;
 import com.lftechnology.Dunite.utils.ApplicationThemeAndDataset;
 import com.squareup.otto.Subscribe;
 
@@ -138,22 +139,24 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Override
     public void editTextOnTouch() {
-        mSwapButton.clearAnimation();
-        Animation scaleOut = new ScaleAnimation(1,0,1,0,mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
-        scaleOut.setInterpolator(new AccelerateInterpolator());
-        scaleOut.setStartOffset(0); // Start fading out after 500 milli seconds
-        scaleOut.setDuration(1000); // Fadeout duration should be 1000 milli seconds
-        Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
-        fadeOut.setInterpolator(new AccelerateInterpolator());
-        fadeOut.setStartOffset(0); // Start fading out after 500 milli seconds
-        fadeOut.setDuration(1000); // Fadeout duration should be 1000 milli seconds
+        // hide swap button
+        if (mSwapButton.getVisibility() == View.VISIBLE) {
+            mSwapButton.clearAnimation();
+            Animation scaleOut = new ScaleAnimation(1,0,1,0,mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
+            scaleOut.setInterpolator(new AccelerateInterpolator());
+            scaleOut.setStartOffset(0); // Start fading out after 500 milli seconds
+            scaleOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800); // Fadeout duration should be 1000 milli seconds
+            Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+            fadeOut.setInterpolator(new AccelerateInterpolator());
+            fadeOut.setStartOffset(0); // Start fading out after 500 milli seconds
+            fadeOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800); // Fadeout duration should be 1000 milli seconds
 
-        AnimationSet animation = new AnimationSet(false); // change to false
-        animation.addAnimation(scaleOut);
-        animation.addAnimation(fadeOut);
-        animation.setRepeatCount(1);
-        mSwapButton.setAnimation(animation);
-        mSwapButton.setVisibility(View.INVISIBLE);
+            AnimationSet animation = new AnimationSet(false); // change to false
+            animation.addAnimation(scaleOut);
+            animation.addAnimation(fadeOut);
+            animation.setRepeatCount(1);
+            mSwapButton.setAnimation(animation);
+            mSwapButton.setVisibility(View.INVISIBLE);
+        }
     }
-
 }
