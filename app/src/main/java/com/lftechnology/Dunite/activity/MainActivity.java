@@ -175,7 +175,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 super.onDrawerClosed(drawerView);
             }
 
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // hide soft keyboard if it is open
+                SoftKeyBoard.hideSoftKeyboard(drawerView.getContext(), drawerView);
+                super.onDrawerOpened(drawerView);
+            }
+
             public void onDrawerSlide(View drawerView, float slideOffset) {
+                // push out/in main fragment when drawer slides in/out instead of overlaying on top of the main fragments
                 float moveFactor = (mRecyclerView.getWidth() * slideOffset);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

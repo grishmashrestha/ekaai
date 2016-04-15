@@ -127,15 +127,6 @@ public class ScreenSlideTopFragment extends BaseFragment {
             }
         });
 
-        mFromUnit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    SoftKeyBoard.hideSoftKeyboard(getContext(), v);
-                }
-            }
-        });
-
         // Disable copy/paste in the editText
         mFromUnit.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
