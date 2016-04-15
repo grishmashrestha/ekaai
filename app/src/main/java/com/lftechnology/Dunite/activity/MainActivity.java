@@ -48,6 +48,8 @@ import com.lftechnology.Dunite.utils.OnKeyEvents;
 import com.lftechnology.Dunite.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
 
+import org.w3c.dom.Text;
+
 import java.util.Arrays;
 
 import butterknife.Bind;
@@ -76,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner mSpinner;
     @Bind(R.id.main_content)
     RelativeLayout mMainContent;
+    @Bind(R.id.toolbar_title)
+    TextView mToolbarTitle;
 
     private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
     private static final int ROTATE_ANIMATION_DURATION = 300;
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
         mSpinner.setOnItemSelectedListener(this);
+        mToolbarTitle.setText(mSpinner.getSelectedItem().toString());
     }
 
     private void setNavigationDrawer() {
