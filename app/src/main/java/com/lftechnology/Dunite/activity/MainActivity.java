@@ -30,6 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.Dunite.bus.EventBus;
@@ -38,7 +39,6 @@ import com.lftechnology.Dunite.bus.ScrollListener;
 import com.lftechnology.Dunite.bus.SwapFragment;
 import com.lftechnology.Dunite.constant.AppConstant;
 import com.lftechnology.Dunite.fragment.MainFragment;
-import com.lftechnology.Dunite.helper.OnStartDragListener;
 import com.lftechnology.Dunite.utils.ApplicationThemeAndDataset;
 import com.lftechnology.Dunite.utils.GeneralUtils;
 import com.lftechnology.Dunite.utils.OnKeyEvents;
@@ -47,6 +47,7 @@ import com.squareup.otto.Subscribe;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Handles all the interactions with the app as it is a one-page application
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
@@ -139,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-//        mDrawerRecyclerViewDataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
         mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unito_options);
         mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mRecyclerView.setAdapter(mAdapter);
@@ -252,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
-     * Make sure the height of the linear layout matches full screen when the soft-keyboard is hidden
+     * Make sure the height of the linear layout matches full screen when the soft-keyboard is hidden, also animate swap button when show/hide keyboard
      */
     @Override
     public void keyboardHidden() {
@@ -344,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mDrawerLayout.closeDrawers();
         if (!mSelectedConversion.equals(selectedConversion)) {
             mSelectedConversion = selectedConversion;
-            
+
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
