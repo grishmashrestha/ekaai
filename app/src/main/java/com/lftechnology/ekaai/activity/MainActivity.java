@@ -1,6 +1,5 @@
 package com.lftechnology.ekaai.activity;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     LinearLayout mToolbarContainer;
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.drawer_recycler_view)
+    @Bind(R.id.drawer_left_recycler_view)
     RecyclerView mRecyclerView;
-    @Bind(R.id.drawer_recycler_view_linear_layout)
+    @Bind(R.id.drawer_left_linear_layout)
     LinearLayout mDrawerLinearLayout;
     @Bind(R.id.inflated_content_main)
     LinearLayout mLinearLayout;

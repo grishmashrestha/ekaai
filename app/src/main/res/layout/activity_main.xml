@@ -30,5 +30,6 @@
 
     <include layout="@layout/fragment_menu" />
 
+    <include layout="@layout/fragment_options" />
 </android.support.v4.widget.DrawerLayout>
 
