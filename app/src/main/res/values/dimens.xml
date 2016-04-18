@@ -13,7 +13,7 @@
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_100">100sp</dimen>
-    <dimen name="custom_edit_text_width">100dp</dimen>
+    <dimen name="custom_edit_text_width">150dp</dimen>
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
 
