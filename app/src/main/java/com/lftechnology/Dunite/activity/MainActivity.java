@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -35,22 +34,16 @@ import com.lftechnology.Dunite.R;
 import com.lftechnology.Dunite.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.Dunite.bus.EventBus;
 import com.lftechnology.Dunite.bus.FlingListener;
-import com.lftechnology.Dunite.bus.NavigationMenuChangeDetails;
 import com.lftechnology.Dunite.bus.ScrollListener;
 import com.lftechnology.Dunite.bus.SwapFragment;
 import com.lftechnology.Dunite.constant.AppConstant;
 import com.lftechnology.Dunite.fragment.MainFragment;
 import com.lftechnology.Dunite.helper.OnStartDragListener;
-import com.lftechnology.Dunite.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.Dunite.utils.ApplicationThemeAndDataset;
 import com.lftechnology.Dunite.utils.GeneralUtils;
 import com.lftechnology.Dunite.utils.OnKeyEvents;
 import com.lftechnology.Dunite.utils.SoftKeyBoard;
 import com.squareup.otto.Subscribe;
-
-import org.w3c.dom.Text;
-
-import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -59,7 +52,7 @@ import butterknife.ButterKnife;
  * Handles all the interactions with the app as it is a one-page application
  */
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnStartDragListener, OnKeyEvents {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnKeyEvents, DrawerRecyclerViewAdapter.UpdateFragmentInMainActivity {
     @Bind(R.id.toolbarContainer)
     LinearLayout mToolbarContainer;
     @Bind(R.id.toolbar)
@@ -88,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private DrawerRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDrawerRecyclerViewDataset;
-    private ItemTouchHelper mItemTouchHelper;
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
     private ImageView mSwapButton;
@@ -115,6 +107,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setNavigationDrawer();
     }
 
+    private void setNavigationDrawer() {
+        mDrawerToggle = setupDrawerToggle();
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+        setRecyclerView();
+    }
+
+    private void setHeaderTextByFragment() {
+        if (mSelectedConversion == null) {
+            mSelectedConversion = AppConstant.LENGTH;
+        }
+        mNavHeader.setBackgroundResource(ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion)[1]);
+        mTv.setText(AppConstant.DUNITE);
+    }
+
     private void setSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unito_options, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -127,25 +133,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
         mSpinner.setOnItemSelectedListener(this);
-        mToolbarTitle.setText(mSpinner.getSelectedItem().toString());
-    }
-
-    private void setNavigationDrawer() {
-        mDrawerToggle = setupDrawerToggle();
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     private void setRecyclerView() {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mDrawerRecyclerViewDataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+//        mDrawerRecyclerViewDataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+        mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unito_options);
         mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mRecyclerView.setAdapter(mAdapter);
-
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
-        mItemTouchHelper = new ItemTouchHelper(callback);
-        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -162,23 +159,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
-                if (!Arrays.equals(dataset, mDrawerRecyclerViewDataset)) {
-                    EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
-                    mDrawerRecyclerViewDataset = dataset;
-                }
-                super.onDrawerClosed(drawerView);
-            }
+//            @Override
+//            public void onDrawerClosed(View drawerView) {
+////                String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+////                if (!Arrays.equals(dataset, mDrawerRecyclerViewDataset)) {
+////                    EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
+////                    mDrawerRecyclerViewDataset = dataset;
+////                }
+//                super.onDrawerClosed(drawerView);
+//            }
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -210,11 +204,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return true;
     }
 
-    private void setHeaderTextByFragment() {
-        mNavHeader.setBackgroundResource(ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion)[1]);
-        mTv.setText(mSelectedConversion);
-    }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Spinner spinner = (Spinner) parent;
@@ -225,8 +214,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
         fragmentTransaction.commit();
 
-        setHeaderTextByFragment();
         setRecyclerView();
+        setHeaderTextByFragment();
+        mToolbarTitle.setText(mSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -243,11 +233,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mSwapButton = (ImageView) findViewById(R.id.swapButton);
         animateSwapButton(mSwapButton);
         EventBus.post(new SwapFragment(true));
-    }
-
-    @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
     }
 
     private void animateSwapButton(ImageView swapButton) {
@@ -351,6 +336,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mLinearLayout.getWidth(), (int) (mLinearLayout.getHeight() - diff));
             mLinearLayout.setLayoutParams(layoutParams);
             mLinearLayout.setTranslationY(dy);
+        }
+    }
+
+    @Override
+    public void updateFragment(String selectedConversion) {
+        mDrawerLayout.closeDrawers();
+        if (!mSelectedConversion.equals(selectedConversion)) {
+            mSelectedConversion = selectedConversion;
+            
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
+            fragmentTransaction.commit();
+
+            setRecyclerView();
+            setHeaderTextByFragment();
+            mToolbarTitle.setText(mSelectedConversion);
         }
     }
 }

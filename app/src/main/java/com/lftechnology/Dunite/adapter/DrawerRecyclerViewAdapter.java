@@ -26,6 +26,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import timber.log.Timber;
+
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/18/16.
  */
@@ -33,15 +35,15 @@ import java.util.List;
 /**
  * RecyclerView Adapter for Drawer Layout
  */
-public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
+public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ItemViewHolder> {
     private final List<String> mDataset;
 
-    private final OnStartDragListener mDragStartListener;
     private String mSelectedConversion;
+    private UpdateFragmentInMainActivity mainActivity;
 
-    public DrawerRecyclerViewAdapter(String[] dataset, OnStartDragListener mDragStartListener, String selectedConversion) {
-        mDataset = new ArrayList( Arrays.asList(dataset));
-        this.mDragStartListener = mDragStartListener;
+    public DrawerRecyclerViewAdapter(String[] dataset, UpdateFragmentInMainActivity mainActivity, String selectedConversion) {
+        mDataset = new ArrayList(Arrays.asList(dataset));
+        this.mainActivity = mainActivity;
         mSelectedConversion = selectedConversion;
     }
 
@@ -49,22 +51,16 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
     public DrawerRecyclerViewAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.drawer_recycler_view_item, parent, false);
-        ItemViewHolder itemViewHolder = new ItemViewHolder(v);
-        return itemViewHolder;
+        return new ItemViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final ItemViewHolder holder, int position) {
+    public void onBindViewHolder(final ItemViewHolder holder, final int position) {
         holder.textView.setText(Html.fromHtml(mDataset.get(position)));
-
-        // Start a drag whenever the handle view it touched
-        holder.handleView.setOnTouchListener(new View.OnTouchListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                    mDragStartListener.onStartDrag(holder);
-                }
-                return false;
+            public void onClick(View v) {
+                mainActivity.updateFragment(mDataset.get(position));
             }
         });
     }
@@ -74,47 +70,20 @@ public class  DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyc
         return mDataset.size();
     }
 
-    @Override
-    public boolean onItemMove(int fromPosition, int toPosition) {
-        Collections.swap(mDataset, fromPosition, toPosition);
-        notifyItemMoved(fromPosition, toPosition);
-        updateUserPreference();
-        return true;
-    }
-
-    private void updateUserPreference() {
-        Gson gson = new Gson();
-        String jsonDataset = gson.toJson(mDataset);
-        SharedPreferences sharedPref = Dunite.getContext().getSharedPreferences(AppConstant.DUNITE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(mSelectedConversion, jsonDataset);
-        editor.apply();
-    }
-
     /**
-     * Simple implementation of a view holder that implements {@link ItemTouchHelperViewHolder} and has a
-     * "handle" view that initiates a drag event when touched.
+     * Simple implementation of a view holder that implements {@link ItemTouchHelperViewHolder}
      */
-    public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         public final TextView textView;
-        public final ImageView handleView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tv_option);
-            handleView = (ImageView) itemView.findViewById(R.id.burger);
         }
+    }
 
-        @Override
-        public void onItemSelected() {
-            itemView.setBackgroundColor(Color.WHITE);
-            itemView.getBackground().setAlpha(100);
-        }
-
-        @Override
-        public void onItemClear() {
-            itemView.setBackgroundColor(0);
-        }
+    public interface UpdateFragmentInMainActivity {
+        void updateFragment(String selectedConversion);
     }
 }
