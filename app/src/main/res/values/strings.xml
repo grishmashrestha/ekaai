@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NaapTol</string>
+    <string name="app_name">Ekaai</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_temperature">TemperatureActivity</string>
     <string name="title_activity_length">LengthActivity</string>

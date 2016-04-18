@@ -10,7 +10,7 @@
         android:paddingBottom="@dimen/padding_50"
         android:paddingTop="@dimen/padding_50">
 
-        <com.lftechnology.NaapTol.utils.CustomEditText
+        <com.lftechnology.ekaai.utils.CustomEditText
             android:id="@+id/from_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
