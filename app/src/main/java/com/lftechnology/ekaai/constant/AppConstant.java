@@ -9,7 +9,7 @@ package com.lftechnology.ekaai.constant;
  */
 
 public class AppConstant {
-    public static final String EKAAI = "ekaai";
+    public static final String EKAAI = "Ekaai";
     public static final String LENGTH = "Length";
     public static final String TEMPERATURE = "Temperature";
     public static final String WEIGHT = "Weight";

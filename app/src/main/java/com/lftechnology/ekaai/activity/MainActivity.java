@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     @Bind(R.id.nav_header)
     LinearLayout mNavHeader;
     @Bind(R.id.nav_header_tv)
-    TextView mTv;
+    TextView mNavHeaderTextView;
     @Bind(R.id.main_content)
     RelativeLayout mMainContent;
     @Bind(R.id.toolbar_title)
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
 
     private void setHeaderTextByFragment() {
         mNavHeader.setBackgroundResource(ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion)[1]);
-        mTv.setText(AppConstant.EKAAI);
+        mNavHeaderTextView.setText(AppConstant.EKAAI);
     }
 
     private void setRecyclerView() {
