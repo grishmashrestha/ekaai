@@ -7,7 +7,7 @@
     <string name="title_activity_weight">WeightActivity</string>
     <string name="title_activity_volume">VolumeActivity</string>
 
-    <string-array name="unito_options">
+    <string-array name="unit_options">
         <item>Length</item>
         <item>Temperature</item>
         <item>Time</item>
