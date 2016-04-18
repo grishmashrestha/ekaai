@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -23,18 +23,15 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.lftechnology.ekaai.Ekaai;
 import com.lftechnology.ekaai.R;
-import com.lftechnology.ekaai.adapter.DrawerRecyclerViewAdapter;
+import com.lftechnology.ekaai.adapter.DrawerMenuRecyclerViewAdapter;
 import com.lftechnology.ekaai.bus.EventBus;
 import com.lftechnology.ekaai.bus.FlingListener;
 import com.lftechnology.ekaai.bus.ScrollListener;
@@ -55,7 +52,7 @@ import io.fabric.sdk.android.Fabric;
  * Handles all the interactions with the app as it is a one-page application
  */
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnKeyEvents, DrawerRecyclerViewAdapter.UpdateFragmentInMainActivity {
+public class MainActivity extends AppCompatActivity implements OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity {
     @Bind(R.id.toolbarContainer)
     LinearLayout mToolbarContainer;
     @Bind(R.id.toolbar)
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Bind(R.id.drawer_left_recycler_view)
     RecyclerView mRecyclerView;
     @Bind(R.id.drawer_left_linear_layout)
-    LinearLayout mDrawerLinearLayout;
+    LinearLayout mDrawerLeftLinearLayout;
     @Bind(R.id.inflated_content_main)
     LinearLayout mLinearLayout;
     @Bind(R.id.drawer_layout)
@@ -72,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     LinearLayout mNavHeader;
     @Bind(R.id.nav_header_tv)
     TextView mTv;
-    @Bind(R.id.unit_option_spinner)
-    Spinner mSpinner;
     @Bind(R.id.main_content)
     RelativeLayout mMainContent;
     @Bind(R.id.toolbar_title)
@@ -83,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private static final int ROTATE_ANIMATION_DURATION = 300;
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerRecyclerViewAdapter mAdapter;
+    private DrawerMenuRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDrawerRecyclerViewDataset;
     private boolean spinDirection = true;
@@ -108,9 +103,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setSelectedConversion();
+        setFragment();
         setSupportActionBar(mToolbar);
-        setSpinner();
         setNavigationDrawer();
+    }
+
+    private void setSelectedConversion() {
+        if (mSelectedConversion == null) {
+            mSelectedConversion = AppConstant.LENGTH;
+        }
     }
 
     private void setNavigationDrawer() {
@@ -122,34 +124,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     // sets the navigation drawer's width to screenSize - 56dp (i.e. the height of app bar)
     private void setNavigationDrawerWidth() {
-        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) mDrawerLinearLayout.getLayoutParams();
+        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) mDrawerLeftLinearLayout.getLayoutParams();
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels;
         linearLayoutParams.width = (int) (width - GeneralUtils.convertDpToPixel(56, Ekaai.getContext()));
-        mDrawerLinearLayout.setLayoutParams(linearLayoutParams);
+        mDrawerLeftLinearLayout.setLayoutParams(linearLayoutParams);
     }
 
     private void setHeaderTextByFragment() {
-        if (mSelectedConversion == null) {
-            mSelectedConversion = AppConstant.LENGTH;
-        }
         mNavHeader.setBackgroundResource(ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion)[1]);
         mTv.setText(AppConstant.EKAAI);
-    }
-
-    private void setSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unit_options, R.layout.spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        mSpinner.setAdapter(adapter);
-        mSpinner.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                SoftKeyBoard.hideSoftKeyboard(v.getContext(), v);
-                return false;
-            }
-        });
-        mSpinner.setOnItemSelectedListener(this);
     }
 
     private void setRecyclerView() {
@@ -157,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unit_options);
-        mAdapter = new DrawerRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
+        mAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -197,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 super.onDrawerOpened(drawerView);
             }
 
+            @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 // push out/in main fragment when drawer slides in/out instead of overlaying on top of the main fragments
                 float moveFactor = (mRecyclerView.getWidth() * slideOffset);
@@ -210,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     mMainContent.startAnimation(anim);
                     lastTranslate = moveFactor;
                 }
+                super.onDrawerSlide(drawerView, slideOffset);
             }
         };
     }
@@ -218,25 +205,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Spinner spinner = (Spinner) parent;
-        mSelectedConversion = spinner.getSelectedItem().toString();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
-        fragmentTransaction.commit();
-
-        setRecyclerView();
-        setHeaderTextByFragment();
-        mToolbarTitle.setText(mSpinner.getSelectedItem().toString());
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
     }
 
     /**
@@ -357,19 +325,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void updateFragment(String selectedConversion) {
-        mDrawerLayout.closeDrawers();
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawers();
+        }
+
         if (!mSelectedConversion.equals(selectedConversion)) {
             mSelectedConversion = selectedConversion;
-
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
-            fragmentTransaction.commit();
-
-            setRecyclerView();
-            setHeaderTextByFragment();
-            mToolbarTitle.setText(mSelectedConversion);
+            setFragment();
         }
+    }
+
+    public void setFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
+        fragmentTransaction.commit();
+
+        setRecyclerView();
+        setHeaderTextByFragment();
+        mToolbarTitle.setText(mSelectedConversion);
     }
 }
 

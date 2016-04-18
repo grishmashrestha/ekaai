@@ -19,13 +19,6 @@
             android:gravity="center_vertical"
             android:textSize="@dimen/text_size_20" />
 
-        <Spinner
-            android:id="@+id/unit_option_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
-
     </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>

@@ -21,20 +21,20 @@ import java.util.List;
 /**
  * RecyclerView Adapter for Drawer Layout
  */
-public class DrawerRecyclerViewAdapter extends RecyclerView.Adapter<DrawerRecyclerViewAdapter.ItemViewHolder> {
+public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMenuRecyclerViewAdapter.ItemViewHolder> {
     private final List<String> mDataset;
 
     private String mSelectedConversion;
     private UpdateFragmentInMainActivity mainActivity;
 
-    public DrawerRecyclerViewAdapter(String[] dataset, UpdateFragmentInMainActivity mainActivity, String selectedConversion) {
+    public DrawerMenuRecyclerViewAdapter(String[] dataset, UpdateFragmentInMainActivity mainActivity, String selectedConversion) {
         mDataset = new ArrayList(Arrays.asList(dataset));
         this.mainActivity = mainActivity;
         mSelectedConversion = selectedConversion;
     }
 
     @Override
-    public DrawerRecyclerViewAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DrawerMenuRecyclerViewAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.drawer_recycler_view_item, parent, false);
         return new ItemViewHolder(v);
