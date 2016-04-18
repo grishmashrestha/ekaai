@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lftechnology.Dunite">
+    package="com.lftechnology.NaapTol">
 
     <application
-        android:name=".Dunite"
+        android:name="com.lftechnology.NaapTol.NaapTol"
         android:allowBackup="true"
         android:icon="@drawable/naaptol_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.lftechnology.Dunite.activity.MainActivity"
+            android:name="com.lftechnology.NaapTol.activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
