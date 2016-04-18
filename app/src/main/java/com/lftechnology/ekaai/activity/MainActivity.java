@@ -1,5 +1,6 @@
 package com.lftechnology.ekaai.activity;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -31,6 +34,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.lftechnology.ekaai.Ekaai;
 import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.adapter.DrawerRecyclerViewAdapter;
 import com.lftechnology.ekaai.bus.EventBus;
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Toolbar mToolbar;
     @Bind(R.id.drawer_recycler_view)
     RecyclerView mRecyclerView;
+    @Bind(R.id.drawer_recycler_view_linear_layout)
+    LinearLayout mDrawerLinearLayout;
     @Bind(R.id.inflated_content_main)
     LinearLayout mLinearLayout;
     @Bind(R.id.drawer_layout)
@@ -113,6 +119,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mDrawerToggle = setupDrawerToggle();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         setRecyclerView();
+        setNavigationDrawerWidth();
+    }
+
+    // sets the navigation drawer's width to screenSize - 56dp (i.e. the height of app bar)
+    private void setNavigationDrawerWidth() {
+        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) mDrawerLinearLayout.getLayoutParams();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = displaymetrics.widthPixels;
+        linearLayoutParams.width = (int) (width - GeneralUtils.convertDpToPixel(56, Ekaai.getContext()));
+        mDrawerLinearLayout.setLayoutParams(linearLayoutParams);
     }
 
     private void setHeaderTextByFragment() {

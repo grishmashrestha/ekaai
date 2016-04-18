@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_recycler_view_linear_layout"
     android:layout_width="@dimen/drawer_layout_width"
     android:layout_height="match_parent"
     android:layout_gravity="start"
