@@ -1,6 +1,7 @@
 package com.lftechnology.ekaai.activity;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
     private ImageView mSwapButton;
+    private LinearLayout navigationDrawerWidth;
 
     @Override
     public void onResume() {
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         setRightNavigationDrawer();
     }
 
-     private void setSelectedConversion() {
+    private void setSelectedConversion() {
         if (mSelectedConversion == null) {
             mSelectedConversion = AppConstant.LENGTH;
         }
@@ -133,13 +135,14 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     private void setLeftNavigationDrawer() {
         mDrawerToggle = setupDrawerToggle();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerLayout.setScrimColor(Color.TRANSPARENT); // set no overlay shadow
         setLeftRecyclerView();
-        setLeftNavigationDrawerWidth();
+        setNavigationDrawerWidth(mDrawerLeftLinearLayout);
     }
 
     private void setRightNavigationDrawer() {
         setRightRecyclerView();
-        setRightNavigationDrawerWidth();
+        setNavigationDrawerWidth(mDrawerRightLinearLayout);
     }
 
     private void setRightRecyclerView() {
@@ -210,8 +213,8 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
             @Override
             public void onDrawerClosed(View drawerView) {
                 DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) drawerView.getLayoutParams();
-                int drawerGravity = layoutParam.gravity ;
-                if (drawerGravity == Gravity.RIGHT){
+                int drawerGravity = layoutParam.gravity;
+                if (drawerGravity == Gravity.RIGHT) {
                     String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
                     if (!Arrays.equals(dataset, mDrawerRecyclerViewDataset)) {
                         EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
@@ -220,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
                 }
                 super.onDrawerClosed(drawerView);
             }
+
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -233,9 +237,9 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
                 // push out/in main fragment when drawer slides in/out instead of overlaying on top of the main fragments
                 float moveFactor = (mLeftRecyclerView.getWidth() * slideOffset);
                 DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) drawerView.getLayoutParams();
-                int drawerGravity = layoutParam.gravity ;
+                int drawerGravity = layoutParam.gravity;
 
-                if (drawerGravity == Gravity.START){
+                if (drawerGravity == Gravity.START) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                         mMainContent.setTranslationX(moveFactor);
                     } else {
@@ -416,6 +420,18 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     // open right navigation drawer when the overflow menu is clicked
     public void showOptions(View view) {
         mDrawerLayout.openDrawer(Gravity.RIGHT);
+    }
+
+    public void setNavigationDrawerWidth(LinearLayout navigationDrawerLinearLayout) {
+        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) navigationDrawerLinearLayout.getLayoutParams();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = displaymetrics.widthPixels;
+        width = (int) (width - GeneralUtils.convertDpToPixel(AppConstant.APP_BAR_HEIGHT, Ekaai.getContext()));
+        // set maximum width to 400dp only
+        width = width <= (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext())) ? width : (int) (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext()));
+        linearLayoutParams.width = width;
+        navigationDrawerLinearLayout.setLayoutParams(linearLayoutParams);
     }
 }
 

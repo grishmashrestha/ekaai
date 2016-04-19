@@ -20,6 +20,8 @@ public class AppConstant {
 
     public static final int SWAP_BUTTON_ANIMATION_TIME_800 = 800;
     public static final int SWAP_BUTTON_ANIMATION_TIME_400 = 400;
+    public static final int APP_BAR_HEIGHT = 56;
+    public static final int NAVIGATION_DRAWER_MAXIMUM_WIDTH = 400;
 
     public class LengthConstant {
         public static final String NAUTICAL_MILE = "Nautical Mile";
