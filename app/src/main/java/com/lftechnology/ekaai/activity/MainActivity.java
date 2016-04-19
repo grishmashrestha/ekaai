@@ -412,6 +412,11 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
     }
+
+    // open right navigation drawer when the overflow menu is clicked
+    public void showOptions(View view) {
+        mDrawerLayout.openDrawer(Gravity.RIGHT);
+    }
 }
 
 

@@ -19,6 +19,15 @@
             android:gravity="center_vertical"
             android:textSize="@dimen/text_size_20" />
 
+        <ImageView
+            android:id="@+id/icon_options"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showOptions"
+            android:src="@drawable/overflow_menu" />
+
     </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>
