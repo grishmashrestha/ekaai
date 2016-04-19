@@ -36,7 +36,7 @@ public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMe
     @Override
     public DrawerMenuRecyclerViewAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.drawer_recycler_view_item, parent, false);
+                .inflate(R.layout.drawer_left_recycler_view_item, parent, false);
         return new ItemViewHolder(v);
     }
 
