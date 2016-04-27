@@ -5,8 +5,11 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.lftechnology.ekaai.Ekaai;
 import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.helper.ItemTouchHelperViewHolder;
 
@@ -24,13 +27,11 @@ import java.util.List;
 public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMenuRecyclerViewAdapter.ItemViewHolder> {
     private final List<String> mDataset;
 
-    private String mSelectedConversion;
     private UpdateFragmentInMainActivity mainActivity;
 
-    public DrawerMenuRecyclerViewAdapter(String[] dataset, UpdateFragmentInMainActivity mainActivity, String selectedConversion) {
+    public DrawerMenuRecyclerViewAdapter(String[] dataset, UpdateFragmentInMainActivity mainActivity) {
         mDataset = new ArrayList(Arrays.asList(dataset));
         this.mainActivity = mainActivity;
-        mSelectedConversion = selectedConversion;
     }
 
     @Override
@@ -42,6 +43,9 @@ public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMe
 
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, final int position) {
+        Glide.with(Ekaai.getContext()).load(getDrawableForCurrentPosition(position)).into(holder.imageView);
+
+//        holder.imageView.setImageResource(getDrawableForCurrentPosition(position));
         holder.textView.setText(Html.fromHtml(mDataset.get(position)));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +53,30 @@ public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMe
                 mainActivity.updateFragment(mDataset.get(position));
             }
         });
+    }
+
+    private int getDrawableForCurrentPosition(int position) {
+        int drawable;
+        switch (position) {
+            case 0:
+                drawable = R.drawable.length;
+                break;
+            case 1:
+                drawable = R.drawable.temperature;
+                break;
+            case 2:
+                drawable = R.drawable.time;
+                break;
+            case 3:
+                drawable = R.drawable.volume;
+                break;
+            case 4:
+                drawable = R.drawable.weight;
+                break;
+            default:
+                drawable = R.drawable.length;
+        }
+        return drawable;
     }
 
     @Override
@@ -62,11 +90,14 @@ public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMe
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         public final TextView textView;
+        public final ImageView imageView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tv_option);
+            imageView = (ImageView) itemView.findViewById(R.id.menu_icon);
         }
+
     }
 
     public interface UpdateFragmentInMainActivity {

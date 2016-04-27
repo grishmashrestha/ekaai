@@ -1,7 +1,10 @@
 package com.lftechnology.ekaai.activity;
 
+import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -64,26 +67,34 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends AppCompatActivity implements OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
     @Bind(R.id.toolbarContainer)
     LinearLayout mToolbarContainer;
+
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
+
     @Bind(R.id.drawer_left_recycler_view)
     RecyclerView mLeftRecyclerView;
+
     @Bind(R.id.drawer_right_recycler_view)
     RecyclerView mRightRecyclerView;
+
     @Bind(R.id.drawer_left_linear_layout)
     LinearLayout mDrawerLeftLinearLayout;
+
     @Bind(R.id.drawer_right_linear_layout)
     LinearLayout mDrawerRightLinearLayout;
+
     @Bind(R.id.inflated_content_main)
     LinearLayout mLinearLayout;
+
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+
     @Bind(R.id.nav_header)
     LinearLayout mNavHeader;
-    @Bind(R.id.nav_header_tv)
-    TextView mNavHeaderTextView;
+
     @Bind(R.id.main_content)
     RelativeLayout mMainContent;
+
     @Bind(R.id.toolbar_title)
     TextView mToolbarTitle;
 
@@ -99,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
     private ImageView mSwapButton;
-    private LinearLayout navigationDrawerWidth;
 
     @Override
     public void onResume() {
@@ -158,28 +168,19 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         mItemTouchHelper.attachToRecyclerView(mRightRecyclerView);
     }
 
-    private void setRightNavigationDrawerWidth() {
-        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) mDrawerRightLinearLayout.getLayoutParams();
+    public void setNavigationDrawerWidth(LinearLayout navigationDrawerLinearLayout) {
+        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) navigationDrawerLinearLayout.getLayoutParams();
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels;
-        linearLayoutParams.width = (int) (width - GeneralUtils.convertDpToPixel(56, Ekaai.getContext()));
-        mDrawerRightLinearLayout.setLayoutParams(linearLayoutParams);
-    }
-
-    // sets the navigation drawer's width to screenSize - 56dp (i.e. the height of app bar)
-    private void setLeftNavigationDrawerWidth() {
-        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) mDrawerLeftLinearLayout.getLayoutParams();
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels;
-        linearLayoutParams.width = (int) (width - GeneralUtils.convertDpToPixel(56, Ekaai.getContext()));
-        mDrawerLeftLinearLayout.setLayoutParams(linearLayoutParams);
+        width = (int) (width - GeneralUtils.convertDpToPixel(AppConstant.APP_BAR_HEIGHT, Ekaai.getContext()));
+        // set maximum width to 400dp only
+        width = width <= (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext())) ? width : (int) (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext()));
+        linearLayoutParams.width = width;
+        navigationDrawerLinearLayout.setLayoutParams(linearLayoutParams);
     }
 
     private void setHeaderTextByFragment() {
-        mNavHeader.setBackgroundResource(ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion)[1]);
-        mNavHeaderTextView.setText(AppConstant.EKAAI);
     }
 
     private void setLeftRecyclerView() {
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         mLayoutManager = new LinearLayoutManager(this);
         mLeftRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unit_options);
-        mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
+        mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this);
         mLeftRecyclerView.setAdapter(mLeftAdapter);
     }
 
@@ -422,17 +423,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         mDrawerLayout.openDrawer(Gravity.RIGHT);
     }
 
-    public void setNavigationDrawerWidth(LinearLayout navigationDrawerLinearLayout) {
-        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) navigationDrawerLinearLayout.getLayoutParams();
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels;
-        width = (int) (width - GeneralUtils.convertDpToPixel(AppConstant.APP_BAR_HEIGHT, Ekaai.getContext()));
-        // set maximum width to 400dp only
-        width = width <= (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext())) ? width : (int) (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext()));
-        linearLayoutParams.width = width;
-        navigationDrawerLinearLayout.setLayoutParams(linearLayoutParams);
-    }
+
 }
 
 
