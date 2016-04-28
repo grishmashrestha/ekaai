@@ -13,8 +13,8 @@
         android:layout_height="200dp"
         android:background="@drawable/header_bg_transparent"
         android:gravity="bottom"
-        android:paddingBottom="@dimen/padding_10"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_10">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,6 +24,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
                 android:src="@drawable/header_bg_transparent" />
 
@@ -31,7 +32,6 @@
                 android:id="@+id/app_icon_in_menu"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/ekaai_icon"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
@@ -49,9 +49,43 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/drawer_left_recycler_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_16"
+        android:paddingRight="@dimen/padding_16">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/drawer_left_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/padding_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="Help"
+                android:textSize="@dimen/text_size_16" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="About"
+                android:textSize="@dimen/text_size_16" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

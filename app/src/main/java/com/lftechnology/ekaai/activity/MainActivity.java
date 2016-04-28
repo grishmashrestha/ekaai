@@ -1,10 +1,7 @@
 package com.lftechnology.ekaai.activity;
 
-import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -18,7 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
 import com.lftechnology.ekaai.Ekaai;
 import com.lftechnology.ekaai.R;
@@ -65,6 +62,9 @@ import io.fabric.sdk.android.Fabric;
  */
 
 public class MainActivity extends AppCompatActivity implements OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
+    private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
+    private static final int ROTATE_ANIMATION_DURATION = 300;
+
     @Bind(R.id.toolbarContainer)
     LinearLayout mToolbarContainer;
 
@@ -89,17 +89,12 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
-    @Bind(R.id.nav_header)
-    LinearLayout mNavHeader;
-
     @Bind(R.id.main_content)
     RelativeLayout mMainContent;
 
     @Bind(R.id.toolbar_title)
     TextView mToolbarTitle;
 
-    private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
-    private static final int ROTATE_ANIMATION_DURATION = 300;
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerMenuRecyclerViewAdapter mLeftAdapter;
@@ -148,6 +143,33 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         mDrawerLayout.setScrimColor(Color.TRANSPARENT); // set no overlay shadow
         setLeftRecyclerView();
         setNavigationDrawerWidth(mDrawerLeftLinearLayout);
+        setNavigationDrawerHeaderImage();
+    }
+
+    private void setLeftRecyclerView() {
+        mLeftRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mLeftRecyclerView.setLayoutManager(mLayoutManager);
+        mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unit_options);
+        mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this);
+        mLeftRecyclerView.setAdapter(mLeftAdapter);
+    }
+
+    public void setNavigationDrawerWidth(LinearLayout navigationDrawerLinearLayout) {
+        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) navigationDrawerLinearLayout.getLayoutParams();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = displaymetrics.widthPixels;
+        width = (int) (width - GeneralUtils.convertDpToPixel(AppConstant.APP_BAR_HEIGHT, Ekaai.getContext()));
+        // set maximum width to 400dp only
+        width = width <= (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext())) ? width : (int) (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext()));
+        linearLayoutParams.width = width;
+        navigationDrawerLinearLayout.setLayoutParams(linearLayoutParams);
+    }
+
+
+    private void setNavigationDrawerHeaderImage() {
+        Glide.with(Ekaai.getContext()).load(R.drawable.ekaai_icon).into((ImageView) findViewById(R.id.app_icon_in_menu));
     }
 
     private void setRightNavigationDrawer() {
@@ -166,30 +188,6 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mRightAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRightRecyclerView);
-    }
-
-    public void setNavigationDrawerWidth(LinearLayout navigationDrawerLinearLayout) {
-        DrawerLayout.LayoutParams linearLayoutParams = (DrawerLayout.LayoutParams) navigationDrawerLinearLayout.getLayoutParams();
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels;
-        width = (int) (width - GeneralUtils.convertDpToPixel(AppConstant.APP_BAR_HEIGHT, Ekaai.getContext()));
-        // set maximum width to 400dp only
-        width = width <= (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext())) ? width : (int) (GeneralUtils.convertDpToPixel(AppConstant.NAVIGATION_DRAWER_MAXIMUM_WIDTH, Ekaai.getContext()));
-        linearLayoutParams.width = width;
-        navigationDrawerLinearLayout.setLayoutParams(linearLayoutParams);
-    }
-
-    private void setHeaderTextByFragment() {
-    }
-
-    private void setLeftRecyclerView() {
-        mLeftRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mLeftRecyclerView.setLayoutManager(mLayoutManager);
-        mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unit_options);
-        mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this);
-        mLeftRecyclerView.setAdapter(mLeftAdapter);
     }
 
     @Override
@@ -215,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
             public void onDrawerClosed(View drawerView) {
                 DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) drawerView.getLayoutParams();
                 int drawerGravity = layoutParam.gravity;
-                if (drawerGravity == Gravity.RIGHT) {
+                if (drawerGravity == GravityCompat.END) {
                     String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
                     if (!Arrays.equals(dataset, mDrawerRecyclerViewDataset)) {
                         EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
@@ -240,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
                 DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) drawerView.getLayoutParams();
                 int drawerGravity = layoutParam.gravity;
 
-                if (drawerGravity == Gravity.START) {
+                if (drawerGravity == GravityCompat.START) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                         mMainContent.setTranslationX(moveFactor);
                     } else {
@@ -409,7 +407,6 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         fragmentTransaction.commit();
 
         setLeftRecyclerView();
-        setHeaderTextByFragment();
         mToolbarTitle.setText(mSelectedConversion);
     }
 
@@ -420,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
 
     // open right navigation drawer when the overflow menu is clicked
     public void showOptions(View view) {
-        mDrawerLayout.openDrawer(Gravity.RIGHT);
+        mDrawerLayout.openDrawer(GravityCompat.END);
     }
 
 
