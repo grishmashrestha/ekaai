@@ -9,14 +9,15 @@
         android:id="@+id/tv_option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:textSize="@dimen/text_size_16"
-        android:paddingRight="@dimen/padding_16" />
+        android:paddingRight="@dimen/padding_16"
+        android:textColor="@color/nav_text_color"
+        android:textSize="@dimen/text_size_16" />
 
     <ImageView
-        android:id="@+id/burger"
+        android:id="@+id/drag_handle"
         android:layout_width="@dimen/burger_menu"
         android:layout_height="@dimen/burger_menu"
         android:layout_alignParentEnd="true"

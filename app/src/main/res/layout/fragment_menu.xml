@@ -52,23 +52,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/padding_16"
-        android:paddingRight="@dimen/padding_16">
+        android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/drawer_left_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_16"
+            android:paddingRight="@dimen/padding_16"
             android:paddingTop="@dimen/padding_10">
 
             <TextView
+                android:id="@+id/tv_help"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center_vertical"
@@ -76,12 +76,12 @@
                 android:textSize="@dimen/text_size_16" />
 
             <TextView
+                android:id="@+id/tv_about"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center_vertical"
                 android:text="About"
                 android:textSize="@dimen/text_size_16" />
-
 
         </LinearLayout>
 

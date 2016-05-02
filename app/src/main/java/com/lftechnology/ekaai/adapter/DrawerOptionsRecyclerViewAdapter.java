@@ -3,6 +3,7 @@ package com.lftechnology.ekaai.adapter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -98,18 +99,23 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
         public ItemViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tv_option);
-            handleView = (ImageView) itemView.findViewById(R.id.burger);
+            handleView = (ImageView) itemView.findViewById(R.id.drag_handle);
         }
 
         @Override
         public void onItemSelected() {
+//            handleView.setImageResource(R.drawable.drag_handle_active);
             itemView.setBackgroundColor(Color.WHITE);
             itemView.getBackground().setAlpha(100);
+            textView.setTextColor(Color.BLACK);
+            handleView.setColorFilter(Color.BLACK);
         }
 
         @Override
         public void onItemClear() {
             itemView.setBackgroundColor(0);
+            textView.setTextColor(ContextCompat.getColor(Ekaai.getContext(), R.color.nav_text_color));
+            handleView.setColorFilter(R.color.colorDragHandleIdle);
         }
     }
 

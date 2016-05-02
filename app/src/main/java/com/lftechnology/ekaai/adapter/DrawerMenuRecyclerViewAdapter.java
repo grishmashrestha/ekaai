@@ -1,11 +1,13 @@
 package com.lftechnology.ekaai.adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,11 +28,13 @@ import java.util.List;
  */
 public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMenuRecyclerViewAdapter.ItemViewHolder> {
     private final List<String> mDataset;
+    private String mSelectedConversion;
 
     private UpdateFragmentInMainActivity mainActivity;
 
-    public DrawerMenuRecyclerViewAdapter(String[] dataset, UpdateFragmentInMainActivity mainActivity) {
+    public DrawerMenuRecyclerViewAdapter(String[] dataset, UpdateFragmentInMainActivity mainActivity, String selectedConversion) {
         mDataset = new ArrayList(Arrays.asList(dataset));
+        mSelectedConversion = selectedConversion;
         this.mainActivity = mainActivity;
     }
 
@@ -43,10 +47,17 @@ public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMe
 
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, final int position) {
+        String currentData = mDataset.get(position);
         Glide.with(Ekaai.getContext()).load(getDrawableForCurrentPosition(position)).into(holder.imageView);
 
-//        holder.imageView.setImageResource(getDrawableForCurrentPosition(position));
-        holder.textView.setText(Html.fromHtml(mDataset.get(position)));
+        holder.textView.setText(Html.fromHtml(currentData));
+
+        if (mSelectedConversion.equals(currentData)) {
+            holder.relativeLayout.setBackgroundResource(R.color.colorMainTheme);
+            holder.textView.setTextColor(Color.WHITE);
+            holder.imageView.setColorFilter(Color.WHITE);
+
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,13 +102,14 @@ public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMe
 
         public final TextView textView;
         public final ImageView imageView;
+        public final RelativeLayout relativeLayout;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tv_option);
             imageView = (ImageView) itemView.findViewById(R.id.menu_icon);
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.rl_drawer_left);
         }
-
     }
 
     public interface UpdateFragmentInMainActivity {
