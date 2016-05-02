@@ -1,7 +1,9 @@
 package com.lftechnology.ekaai.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -29,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
@@ -55,7 +58,9 @@ import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.fabric.sdk.android.Fabric;
+import timber.log.Timber;
 
 /**
  * Handles all the interactions with the app as it is a one-page application
@@ -151,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         mLayoutManager = new LinearLayoutManager(this);
         mLeftRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unit_options);
-        mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this);
+        mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mLeftRecyclerView.setAdapter(mLeftAdapter);
     }
 
@@ -418,6 +423,20 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     // open right navigation drawer when the overflow menu is clicked
     public void showOptions(View view) {
         mDrawerLayout.openDrawer(GravityCompat.END);
+    }
+
+    @OnClick({R.id.tv_help, R.id.tv_about})
+    public void setOnClicks(View v) {
+        switch (v.getId()) {
+            case R.id.tv_help:
+                Toast.makeText(MainActivity.this, "adfsdf", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_about:
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("market://details?id=com.lftechnology.ekaai"));
+                startActivity(intent);
+                break;
+        }
     }
 
 
