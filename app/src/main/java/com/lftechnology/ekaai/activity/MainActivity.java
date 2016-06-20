@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
 
 
     private void setNavigationDrawerHeaderImage() {
+        Glide.with(Ekaai.getContext()).load(R.drawable.header_bg_transparent).into((ImageView) findViewById(R.id.nav_header_background));
         Glide.with(Ekaai.getContext()).load(R.drawable.ekaai_icon).into((ImageView) findViewById(R.id.app_icon_in_menu));
     }
 
