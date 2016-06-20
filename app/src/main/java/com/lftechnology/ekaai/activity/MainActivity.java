@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
             @Override
             public void onDrawerOpened(View drawerView) {
                 // hide soft keyboard if it is open
-                SoftKeyBoard.hideSoftKeyboard(drawerView.getContext(), drawerView);
+                SoftKeyBoard.hideSoftKeyboard(MainActivity.this, drawerView);
                 super.onDrawerOpened(drawerView);
             }
 
