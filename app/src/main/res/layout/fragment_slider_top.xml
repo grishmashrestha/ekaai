@@ -20,6 +20,7 @@
             android:maxLength="12"
             android:minWidth="@dimen/custom_edit_text_width"
             android:text="@string/default_string_1"
+            android:textColor="@color/nav_text_color"
             android:textAlignment="center"
             android:cursorVisible="true"
             android:textIsSelectable="false"

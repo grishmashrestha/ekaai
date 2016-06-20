@@ -1,10 +1,10 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
-    app:popupTheme="@style/AppTheme.PopupOverlay">
+    local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    local:theme="@style/AppTheme.ActionBar">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,10 +21,10 @@
 
         <ImageView
             android:id="@+id/icon_options"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
             android:onClick="showOptions"
             android:src="@drawable/overflow_menu" />
 
