@@ -65,7 +65,6 @@ import timber.log.Timber;
 /**
  * Handles all the interactions with the app as it is a one-page application
  */
-
 public class MainActivity extends AppCompatActivity implements OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
     private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
     private static final int ROTATE_ANIMATION_DURATION = 300;
