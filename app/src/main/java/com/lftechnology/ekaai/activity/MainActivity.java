@@ -41,11 +41,11 @@ import com.lftechnology.ekaai.adapter.DrawerMenuRecyclerViewAdapter;
 import com.lftechnology.ekaai.adapter.DrawerOptionsRecyclerViewAdapter;
 import com.lftechnology.ekaai.bus.EventBus;
 import com.lftechnology.ekaai.bus.FlingListener;
-import com.lftechnology.ekaai.bus.NavigationMenuChangeDetails;
 import com.lftechnology.ekaai.bus.ScrollListener;
 import com.lftechnology.ekaai.bus.SwapFragment;
 import com.lftechnology.ekaai.constant.AppConstant;
 import com.lftechnology.ekaai.fragment.MainFragment;
+import com.lftechnology.ekaai.helper.OnDatasetChangedListener;
 import com.lftechnology.ekaai.helper.OnStartDragListener;
 import com.lftechnology.ekaai.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
@@ -60,7 +60,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.fabric.sdk.android.Fabric;
-import timber.log.Timber;
 
 /**
  * Handles all the interactions with the app as it is a one-page application
@@ -109,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
     private ImageView mSwapButton;
+    private OnDatasetChangedListener onDatasetChangedListener;
 
     @Override
     public void onResume() {
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
                 if (drawerGravity == GravityCompat.END) {
                     String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
                     if (!Arrays.equals(dataset, mDrawerRecyclerViewDataset)) {
-                        EventBus.post(new NavigationMenuChangeDetails(mSelectedConversion));
+                        onDatasetChangedListener.updateViewpagersOnNavigationMenuDatasetChange(mSelectedConversion);
                         mDrawerRecyclerViewDataset = dataset;
                     }
                 }
@@ -408,7 +408,9 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     public void setFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.inflated_content_main, MainFragment.newInstance(mSelectedConversion));
+        MainFragment mainFragment = MainFragment.newInstance(mSelectedConversion);
+        onDatasetChangedListener = mainFragment;
+        fragmentTransaction.replace(R.id.inflated_content_main, mainFragment);
         fragmentTransaction.commit();
 
         setLeftRecyclerView();

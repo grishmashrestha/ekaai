@@ -16,10 +16,10 @@ import android.widget.ImageView;
 import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.ekaai.bus.EventBus;
-import com.lftechnology.ekaai.bus.NavigationMenuChangeDetails;
 import com.lftechnology.ekaai.bus.PageScrollPosition;
 import com.lftechnology.ekaai.bus.SwapFragment;
 import com.lftechnology.ekaai.constant.AppConstant;
+import com.lftechnology.ekaai.helper.OnDatasetChangedListener;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
 import com.squareup.otto.Subscribe;
 
@@ -29,7 +29,7 @@ import com.squareup.otto.Subscribe;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends BaseFragment implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch {
+public class MainFragment extends BaseFragment implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnDatasetChangedListener {
     private static final String SELECTED_CONVERSION = "selectedConversion";
 
     private String mSelectedConversion;
@@ -107,18 +107,11 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
         }
     }
 
-    @Subscribe
-    public void updateViewpagers(NavigationMenuChangeDetails navigationMenuChangeDetails) {
-        if (mSelectedConversion.equals(navigationMenuChangeDetails.getSelectedConversion())) {
+    @Override
+    public void updateViewpagersOnNavigationMenuDatasetChange(String selectedConversion) {
+        if (mSelectedConversion.equals(selectedConversion)) {
             setAdapters();
-//            updateAdapters();
         }
-    }
-
-    private void updateAdapters() {
-        String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
-        mPagerAdapterTop.updateDataset(dataset);
-        mPagerAdapterBottom.updateDataset(dataset);
     }
 
     public void setAdapters() {
@@ -142,7 +135,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
         // hide swap button
         if (mSwapButton.getVisibility() == View.VISIBLE) {
             mSwapButton.clearAnimation();
-            Animation scaleOut = new ScaleAnimation(1,0,1,0,mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
+            Animation scaleOut = new ScaleAnimation(1, 0, 1, 0, mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
             scaleOut.setInterpolator(new AccelerateInterpolator());
             scaleOut.setStartOffset(0); // Start fading out after 500 milli seconds
             scaleOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800); // Fadeout duration should be 1000 milli seconds
@@ -159,4 +152,6 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
             mSwapButton.setVisibility(View.INVISIBLE);
         }
     }
+
+
 }
