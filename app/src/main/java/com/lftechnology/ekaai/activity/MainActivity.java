@@ -42,11 +42,11 @@ import com.lftechnology.ekaai.adapter.DrawerOptionsRecyclerViewAdapter;
 import com.lftechnology.ekaai.bus.EventBus;
 import com.lftechnology.ekaai.bus.FlingListener;
 import com.lftechnology.ekaai.bus.ScrollListener;
-import com.lftechnology.ekaai.bus.SwapFragment;
 import com.lftechnology.ekaai.constant.AppConstant;
 import com.lftechnology.ekaai.fragment.MainFragment;
 import com.lftechnology.ekaai.helper.OnDatasetChangedListener;
 import com.lftechnology.ekaai.helper.OnStartDragListener;
+import com.lftechnology.ekaai.helper.OnSwapListener;
 import com.lftechnology.ekaai.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
 import com.lftechnology.ekaai.utils.GeneralUtils;
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     private float lastTranslate = 0.0f;
     private ImageView mSwapButton;
     private OnDatasetChangedListener onDatasetChangedListener;
+    private OnSwapListener onSwapListener;
 
     @Override
     public void onResume() {
@@ -285,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     public void swapFragments(View view) {
         mSwapButton = (ImageView) findViewById(R.id.swapButton);
         animateSwapButton(mSwapButton);
-        EventBus.post(new SwapFragment(true));
+        onSwapListener.swapFragments();
     }
 
     private void animateSwapButton(ImageView swapButton) {
@@ -410,6 +411,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         MainFragment mainFragment = MainFragment.newInstance(mSelectedConversion);
         onDatasetChangedListener = mainFragment;
+        onSwapListener = mainFragment;
         fragmentTransaction.replace(R.id.inflated_content_main, mainFragment);
         fragmentTransaction.commit();
 

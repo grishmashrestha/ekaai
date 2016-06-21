@@ -17,11 +17,10 @@ import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.ekaai.bus.EventBus;
 import com.lftechnology.ekaai.bus.PageScrollPosition;
-import com.lftechnology.ekaai.bus.SwapFragment;
 import com.lftechnology.ekaai.constant.AppConstant;
 import com.lftechnology.ekaai.helper.OnDatasetChangedListener;
+import com.lftechnology.ekaai.helper.OnSwapListener;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
-import com.squareup.otto.Subscribe;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +28,7 @@ import com.squareup.otto.Subscribe;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends BaseFragment implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnDatasetChangedListener {
+public class MainFragment extends BaseFragment implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnDatasetChangedListener, OnSwapListener {
     private static final String SELECTED_CONVERSION = "selectedConversion";
 
     private String mSelectedConversion;
@@ -97,14 +96,13 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     public void onPageScrollStateChanged(int state) {
     }
 
-    @Subscribe
-    public void swapFragments(SwapFragment swapFragment) {
-        if (swapFragment.swapFlag) {
-            int initialTopFragmentPosition = mPagerTop.getCurrentItem();
-            int initialBottomFragmentPosition = mPagerBottom.getCurrentItem();
-            mPagerTop.setCurrentItem(initialBottomFragmentPosition);
-            mPagerBottom.setCurrentItem(initialTopFragmentPosition);
-        }
+
+    @Override
+    public void swapFragments() {
+        int initialTopFragmentPosition = mPagerTop.getCurrentItem();
+        int initialBottomFragmentPosition = mPagerBottom.getCurrentItem();
+        mPagerTop.setCurrentItem(initialBottomFragmentPosition);
+        mPagerBottom.setCurrentItem(initialTopFragmentPosition);
     }
 
     @Override
@@ -152,6 +150,5 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
             mSwapButton.setVisibility(View.INVISIBLE);
         }
     }
-
 
 }
