@@ -25,22 +25,24 @@
                 android:id="@+id/nav_header_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true" />
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/header_background_image" />
 
             <ImageView
                 android:id="@+id/app_icon_in_menu"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/header_image"/>
 
             <TextView
                 android:id="@+id/nav_header_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/app_icon_in_menu"
-                android:text="Ekaai - Unit Converter App"
+                android:text="@string/ekaai_unit_converter_app"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_18" />
@@ -73,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center_vertical"
-                android:text="Help"
+                android:text="@string/help"
+                android:textColor="@color/nav_text_color"
                 android:textSize="@dimen/text_size_16" />
 
             <TextView
@@ -81,12 +84,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center_vertical"
-                android:text="About"
+                android:text="@string/about"
+                android:textColor="@color/nav_text_color"
                 android:textSize="@dimen/text_size_16" />
 
         </LinearLayout>
-
     </LinearLayout>
-
-
 </LinearLayout>

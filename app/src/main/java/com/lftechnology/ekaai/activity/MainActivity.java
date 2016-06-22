@@ -64,7 +64,6 @@ import io.fabric.sdk.android.Fabric;
  * Handles all the interactions with the app as it is a one-page application
  */
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
-    private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
     private static final int ROTATE_ANIMATION_DURATION = 300;
 
     @Bind(R.id.toolbarContainer)
@@ -346,6 +345,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Subscribe
     public void toggleToolBar(ScrollListener scrollListener) {
         int dy;
+        int DY = 5;
         if (scrollListener.moveUp) {
             if (GeneralUtils.convertPixelsToDp(mToolbarContainer.getTranslationY(), this) > -56.0) {
                 float diff = mToolbarContainer.getTranslationY() - DY;
