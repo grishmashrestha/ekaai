@@ -8,10 +8,6 @@ import com.lftechnology.ekaai.fragment.ScreenSlideBotFragment;
 import com.lftechnology.ekaai.fragment.ScreenSlideTopFragment;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
- */
-
-/**
  * PageAdapter for ViewPager
  */
 public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
@@ -38,10 +34,5 @@ public class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return mDataset.length;
-    }
-
-    public void updateDataset(String[] dataset) {
-        mDataset = dataset;
-        notifyDataSetChanged();
     }
 }

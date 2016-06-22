@@ -2,8 +2,8 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:theme="@style/AppTheme"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme">
 
     <RelativeLayout
         android:id="@+id/main_content"
@@ -20,13 +20,44 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/inflated_content_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbarContainer"
-            android:orientation="vertical" />
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/fragment_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/pagerTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_0"
+                    android:layout_weight="1"
+                    android:background="@android:color/white" />
+
+                <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/pagerBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_0"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/swapButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/swap_btn"
+                android:onClick="swapFragments"
+                android:src="@drawable/ic_arrows_thumb" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <include layout="@layout/fragment_menu" />

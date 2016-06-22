@@ -6,9 +6,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,14 +38,14 @@ import com.lftechnology.ekaai.Ekaai;
 import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.adapter.DrawerMenuRecyclerViewAdapter;
 import com.lftechnology.ekaai.adapter.DrawerOptionsRecyclerViewAdapter;
+import com.lftechnology.ekaai.adapter.ScreenSlidePageAdapter;
 import com.lftechnology.ekaai.bus.EventBus;
 import com.lftechnology.ekaai.bus.FlingListener;
+import com.lftechnology.ekaai.bus.PageScrollPosition;
 import com.lftechnology.ekaai.bus.ScrollListener;
 import com.lftechnology.ekaai.constant.AppConstant;
-import com.lftechnology.ekaai.fragment.MainFragment;
-import com.lftechnology.ekaai.helper.OnDatasetChangedListener;
+import com.lftechnology.ekaai.fragment.ScreenSlideTopFragment;
 import com.lftechnology.ekaai.helper.OnStartDragListener;
-import com.lftechnology.ekaai.helper.OnSwapListener;
 import com.lftechnology.ekaai.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
 import com.lftechnology.ekaai.utils.GeneralUtils;
@@ -64,7 +63,7 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Handles all the interactions with the app as it is a one-page application
  */
-public class MainActivity extends AppCompatActivity implements OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
     private static int DY = 5; // increment/decrement of mToolbar on swipe up/down
     private static final int ROTATE_ANIMATION_DURATION = 300;
 
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     LinearLayout mDrawerRightLinearLayout;
 
     @Bind(R.id.inflated_content_main)
-    LinearLayout mLinearLayout;
+    RelativeLayout mLinearLayout;
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -98,6 +97,15 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     @Bind(R.id.toolbar_title)
     TextView mToolbarTitle;
 
+    @Bind(R.id.pagerTop)
+    ViewPager mPagerTop;
+
+    @Bind(R.id.pagerBottom)
+    ViewPager mPagerBottom;
+
+    @Bind(R.id.swapButton)
+    ImageView mSwapButton;
+
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerMenuRecyclerViewAdapter mLeftAdapter;
@@ -107,9 +115,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     private ItemTouchHelper mItemTouchHelper;
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
-    private ImageView mSwapButton;
-    private OnDatasetChangedListener onDatasetChangedListener;
-    private OnSwapListener onSwapListener;
+    private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
 
     @Override
     public void onResume() {
@@ -222,13 +228,12 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
                 if (drawerGravity == GravityCompat.END) {
                     String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
                     if (!Arrays.equals(dataset, mDrawerRecyclerViewDataset)) {
-                        onDatasetChangedListener.updateViewpagersOnNavigationMenuDatasetChange(mSelectedConversion);
                         mDrawerRecyclerViewDataset = dataset;
+                        setAdapters();
                     }
                 }
                 super.onDrawerClosed(drawerView);
             }
-
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -264,7 +269,6 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
                         mMainContent.startAnimation(anim);
                         lastTranslate = moveFactor;
                     }
-
                 }
                 super.onDrawerSlide(drawerView, slideOffset);
             }
@@ -284,9 +288,11 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
      * @param view
      */
     public void swapFragments(View view) {
-        mSwapButton = (ImageView) findViewById(R.id.swapButton);
         animateSwapButton(mSwapButton);
-        onSwapListener.swapFragments();
+        int initialTopFragmentPosition = mPagerTop.getCurrentItem();
+        int initialBottomFragmentPosition = mPagerBottom.getCurrentItem();
+        mPagerTop.setCurrentItem(initialBottomFragmentPosition);
+        mPagerBottom.setCurrentItem(initialTopFragmentPosition);
     }
 
     private void animateSwapButton(ImageView swapButton) {
@@ -315,7 +321,6 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         //  mLinearLayout.setLayoutParams(layoutParams);
 
         // show swap button
-        mSwapButton = (ImageView) findViewById(R.id.swapButton);
         if (mSwapButton.getVisibility() == View.INVISIBLE) {
             mSwapButton = (ImageView) findViewById(R.id.swapButton);
             mSwapButton.clearAnimation();
@@ -407,17 +412,37 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     }
 
     public void setFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        MainFragment mainFragment = MainFragment.newInstance(mSelectedConversion);
-        onDatasetChangedListener = mainFragment;
-        onSwapListener = mainFragment;
-        fragmentTransaction.replace(R.id.inflated_content_main, mainFragment);
-        fragmentTransaction.commit();
-
+        setBackgroundColorAndLengthBySelectedConversion();
+        setAdapters();
+        mSwapButton.setBackgroundResource(mSwapButtonColor);
+        ScreenSlideTopFragment.setCustomEditTextOnTouch(this);
         setLeftRecyclerView();
         mToolbarTitle.setText(mSelectedConversion);
     }
+
+    private void setBackgroundColorAndLengthBySelectedConversion() {
+        Integer[] themeDetails = ApplicationThemeAndDataset.getThemeDetails(mSelectedConversion);
+        mDataCount = themeDetails[0];
+        mBottomBackgroundColor = themeDetails[1];
+        mSwapButtonColor = themeDetails[2];
+    }
+
+    public void setAdapters() {
+        String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+        mPagerTop.removeOnPageChangeListener(this);
+        ScreenSlidePageAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
+        mPagerTop.setAdapter(mPagerAdapterTop);
+        mPagerTop.setOffscreenPageLimit(mDataCount);
+        mPagerTop.addOnPageChangeListener(this);
+
+        ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
+        mPagerBottom.setAdapter(mPagerAdapterBottom);
+        mPagerBottom.setOffscreenPageLimit(mDataCount);
+        mPagerBottom.setCurrentItem(1);
+
+        mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
+    }
+
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
@@ -433,7 +458,7 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
     public void setOnClicks(View v) {
         switch (v.getId()) {
             case R.id.tv_help:
-                Toast.makeText(MainActivity.this, "adfsdf", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_about:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -443,7 +468,42 @@ public class MainActivity extends AppCompatActivity implements OnKeyEvents, Draw
         }
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        EventBus.post(new PageScrollPosition(position, mSelectedConversion));
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void editTextOnTouch() {
+        if (mSwapButton.getVisibility() == View.VISIBLE) {
+            mSwapButton.clearAnimation();
+            Animation scaleOut = new ScaleAnimation(1, 0, 1, 0, mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
+            scaleOut.setInterpolator(new AccelerateInterpolator());
+            scaleOut.setStartOffset(0); // Start fading out after 500 milli seconds
+            scaleOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800); // Fadeout duration should be 1000 milli seconds
+            Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+            fadeOut.setInterpolator(new AccelerateInterpolator());
+            fadeOut.setStartOffset(0); // Start fading out after 500 milli seconds
+            fadeOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800); // Fadeout duration should be 1000 milli seconds
+
+            AnimationSet animation = new AnimationSet(false); // change to false
+            animation.addAnimation(scaleOut);
+            animation.addAnimation(fadeOut);
+            animation.setRepeatCount(1);
+            mSwapButton.setAnimation(animation);
+            mSwapButton.setVisibility(View.INVISIBLE);
+        }
+    }
 }
 
 
