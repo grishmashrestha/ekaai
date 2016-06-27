@@ -22,10 +22,15 @@ import com.lftechnology.ekaai.helper.ItemTouchHelperAdapter;
 import com.lftechnology.ekaai.helper.ItemTouchHelperViewHolder;
 import com.lftechnology.ekaai.helper.OnStartDragListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/19/16.
@@ -93,13 +98,15 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
      */
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
-        public final TextView textView;
-        public final ImageView handleView;
+        @Bind(R.id.tv_option)
+        TextView textView;
+
+        @Bind(R.id.drag_handle)
+        ImageView handleView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.tv_option);
-            handleView = (ImageView) itemView.findViewById(R.id.drag_handle);
+            ButterKnife.bind(this, itemView);
         }
 
         @Override
