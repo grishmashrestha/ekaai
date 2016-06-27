@@ -105,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Bind(R.id.swapButton)
     ImageView mSwapButton;
 
+    @Bind(R.id.nav_header_background)
+    ImageView mNavHeaderBackground;
+
+    @Bind(R.id.app_icon_in_menu)
+    ImageView mAppIconInMenu;
+
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerMenuRecyclerViewAdapter mLeftAdapter;
@@ -115,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
     private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
+    private ScreenSlidePageAdapter mPagerAdapterTop, mPagerAdapterBottom;
 
     @Override
     public void onResume() {
@@ -179,8 +186,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 
     private void setNavigationDrawerHeaderImage() {
-        Glide.with(Ekaai.getContext()).load(R.drawable.header_bg_transparent).into((ImageView) findViewById(R.id.nav_header_background));
-        Glide.with(Ekaai.getContext()).load(R.drawable.ekaai_icon).into((ImageView) findViewById(R.id.app_icon_in_menu));
+        Glide.with(Ekaai.getContext()).load(R.drawable.header_bg_transparent).into(mNavHeaderBackground);
+        Glide.with(Ekaai.getContext()).load(R.drawable.ekaai_icon).into(mAppIconInMenu);
     }
 
     private void setRightNavigationDrawer() {
@@ -321,7 +328,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         // show swap button
         if (mSwapButton.getVisibility() == View.INVISIBLE) {
-            mSwapButton = (ImageView) findViewById(R.id.swapButton);
             mSwapButton.clearAnimation();
             Animation scaleOut = new ScaleAnimation(0, 1, 0, 1, mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
             scaleOut.setInterpolator(new AccelerateInterpolator());
@@ -430,12 +436,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void setAdapters() {
         String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
         mPagerTop.removeOnPageChangeListener(this);
-        ScreenSlidePageAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
+        mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
         mPagerTop.setAdapter(mPagerAdapterTop);
         mPagerTop.setOffscreenPageLimit(mDataCount);
         mPagerTop.addOnPageChangeListener(this);
 
-        ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
+        mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
         mPagerBottom.setAdapter(mPagerAdapterBottom);
         mPagerBottom.setOffscreenPageLimit(mDataCount);
         mPagerBottom.setCurrentItem(1);
