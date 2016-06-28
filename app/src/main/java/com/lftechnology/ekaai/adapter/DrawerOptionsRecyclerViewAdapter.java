@@ -22,8 +22,6 @@ import com.lftechnology.ekaai.helper.ItemTouchHelperAdapter;
 import com.lftechnology.ekaai.helper.ItemTouchHelperViewHolder;
 import com.lftechnology.ekaai.helper.OnStartDragListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,6 +29,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/19/16.
@@ -50,8 +49,7 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
     public DrawerOptionsRecyclerViewAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.drawer_right_recycler_view_item, parent, false);
-        ItemViewHolder itemViewHolder = new ItemViewHolder(v);
-        return itemViewHolder;
+        return new ItemViewHolder(v);
     }
 
     @Override
@@ -77,6 +75,7 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+        Timber.e("%s", mSelectedConversion);
         Collections.swap(mDataset, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         updateUserPreference();
@@ -111,7 +110,6 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
 
         @Override
         public void onItemSelected() {
-//            handleView.setImageResource(R.drawable.drag_handle_active);
             itemView.setBackgroundColor(Color.WHITE);
             itemView.getBackground().setAlpha(100);
             textView.setTextColor(Color.BLACK);

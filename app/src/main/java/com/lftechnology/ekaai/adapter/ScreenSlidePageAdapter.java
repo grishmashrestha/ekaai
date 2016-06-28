@@ -4,8 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.lftechnology.ekaai.bus.ConvertedValue;
 import com.lftechnology.ekaai.fragment.ScreenSlideBotFragment;
 import com.lftechnology.ekaai.fragment.ScreenSlideTopFragment;
+import com.lftechnology.ekaai.helper.OnInputValueChangeListener;
 
 /**
  * PageAdapter for ViewPager

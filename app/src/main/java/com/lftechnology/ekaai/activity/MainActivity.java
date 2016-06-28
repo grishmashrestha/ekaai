@@ -16,7 +16,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -47,6 +46,7 @@ import com.lftechnology.ekaai.constant.AppConstant;
 import com.lftechnology.ekaai.fragment.ScreenSlideTopFragment;
 import com.lftechnology.ekaai.helper.OnStartDragListener;
 import com.lftechnology.ekaai.helper.SimpleItemTouchHelperCallback;
+import com.lftechnology.ekaai.helper.ZoomOutPageTransformer;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
 import com.lftechnology.ekaai.utils.GeneralUtils;
 import com.lftechnology.ekaai.utils.OnKeyEvents;
@@ -64,8 +64,6 @@ import io.fabric.sdk.android.Fabric;
  * Handles all the interactions with the app as it is a one-page application
  */
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
-    private static final int ROTATE_ANIMATION_DURATION = 300;
-
     @Bind(R.id.toolbarContainer)
     LinearLayout mToolbarContainer;
 
@@ -113,15 +111,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerMenuRecyclerViewAdapter mLeftAdapter;
-    private DrawerOptionsRecyclerViewAdapter mRightAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDrawerRecyclerViewDataset;
     private ItemTouchHelper mItemTouchHelper;
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
     private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
-    private ScreenSlidePageAdapter mPagerAdapterTop, mPagerAdapterBottom;
+    private ItemTouchHelper.Callback callback;
+    private static final int ROTATE_ANIMATION_DURATION = 300;
 
     @Override
     public void onResume() {
@@ -141,17 +138,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        setSelectedConversion();
+        setSelectedConversion(AppConstant.LENGTH);
         setFragment();
         setSupportActionBar(mToolbar);
         setLeftNavigationDrawer();
         setRightNavigationDrawer();
     }
 
-    private void setSelectedConversion() {
-        if (mSelectedConversion == null) {
-            mSelectedConversion = AppConstant.LENGTH;
-        }
+    private void setSelectedConversion(String selectedConversion) {
+        mSelectedConversion = selectedConversion;
     }
 
     private void setLeftNavigationDrawer() {
@@ -168,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mLayoutManager = new LinearLayoutManager(this);
         mLeftRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = getResources().getStringArray(R.array.unit_options);
-        mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
+        DrawerMenuRecyclerViewAdapter mLeftAdapter = new DrawerMenuRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mLeftRecyclerView.setAdapter(mLeftAdapter);
     }
 
@@ -184,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         navigationDrawerLinearLayout.setLayoutParams(linearLayoutParams);
     }
 
-
     private void setNavigationDrawerHeaderImage() {
         Glide.with(Ekaai.getContext()).load(R.drawable.header_bg_transparent).into(mNavHeaderBackground);
         Glide.with(Ekaai.getContext()).load(R.drawable.ekaai_icon).into(mAppIconInMenu);
@@ -196,14 +190,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void setRightRecyclerView() {
-        mRightRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRightRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerViewDataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
-        mRightAdapter = new DrawerOptionsRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
+        DrawerOptionsRecyclerViewAdapter mRightAdapter = new DrawerOptionsRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mRightRecyclerView.setAdapter(mRightAdapter);
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mRightAdapter);
+        callback = new SimpleItemTouchHelperCallback(mRightAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRightRecyclerView);
     }
@@ -279,12 +272,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 super.onDrawerSlide(drawerView, slideOffset);
             }
         };
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     /**
@@ -412,8 +399,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         if (!mSelectedConversion.equals(selectedConversion)) {
             mSelectedConversion = selectedConversion;
+            mItemTouchHelper = null;
+            callback = null;
             setFragment();
-            setRightNavigationDrawer();
+            setLeftRecyclerView();
+            setRightRecyclerView();
         }
     }
 
@@ -422,7 +412,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         setAdapters();
         mSwapButton.setBackgroundResource(mSwapButtonColor);
         ScreenSlideTopFragment.setCustomEditTextOnTouch(this);
-        setLeftRecyclerView();
         mToolbarTitle.setText(mSelectedConversion);
     }
 
@@ -436,17 +425,20 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void setAdapters() {
         String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
         mPagerTop.removeOnPageChangeListener(this);
-        mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
+        ScreenSlidePageAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
         mPagerTop.setAdapter(mPagerAdapterTop);
         mPagerTop.setOffscreenPageLimit(mDataCount);
         mPagerTop.addOnPageChangeListener(this);
+        mPagerTop.setPageTransformer(true, new ZoomOutPageTransformer());
 
-        mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
+
+        ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
         mPagerBottom.setAdapter(mPagerAdapterBottom);
         mPagerBottom.setOffscreenPageLimit(mDataCount);
         mPagerBottom.setCurrentItem(1);
-
         mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
+        mPagerBottom.setPageTransformer(true, new ZoomOutPageTransformer());
+
     }
 
 
