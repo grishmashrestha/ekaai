@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Unit test for {@link Length} conversion model
+ * Unit tests for {@link Length} conversion model
  */
 public class LengthConversionTest {
     @Test
