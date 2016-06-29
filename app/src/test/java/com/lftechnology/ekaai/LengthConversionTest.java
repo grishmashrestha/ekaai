@@ -4,6 +4,12 @@ import com.lftechnology.ekaai.conversions.Length;
 
 import org.junit.Test;
 
+import static com.lftechnology.ekaai.constant.AppConstant.LengthConstant.FEET;
+import static com.lftechnology.ekaai.constant.AppConstant.LengthConstant.INCH;
+import static com.lftechnology.ekaai.constant.AppConstant.LengthConstant.KILOMETER;
+import static com.lftechnology.ekaai.constant.AppConstant.LengthConstant.MICRON;
+import static com.lftechnology.ekaai.constant.AppConstant.LengthConstant.MILE;
+import static com.lftechnology.ekaai.constant.AppConstant.LengthConstant.NAUTICAL_MILE;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertNotEquals;
@@ -12,11 +18,6 @@ import static org.junit.Assert.assertNotEquals;
  * Unit test for {@link Length} conversion model
  */
 public class LengthConversionTest {
-    private static final String NAUTICAL_MILE = "Nautical Mile";
-    private static final String KILOMETER = "Kilometre (km)";
-    private static final String MILE = "Mile (ml)";
-    private static final String INCH = "Inch (in)";
-
     @Test
     public void length_conversion_initialization_success() throws Exception {
         Length length = new Length(1.0, NAUTICAL_MILE, KILOMETER);
@@ -49,6 +50,14 @@ public class LengthConversionTest {
         Length length = new Length(10.0, KILOMETER, KILOMETER);
         assertNotEquals("False assumption", length.convert(), 5.0);
         assertEquals("True Assumption", length.convert(), 10.0);
+        assertNotNull(length.convert());
+    }
+
+    @Test
+    public void length_conversion_micron_to_feet_is_correct() throws Exception {
+        Length length = new Length(10.0, MICRON, FEET);
+        assertNotEquals("False assumption", length.convert(), 5.0);
+        assertEquals("True Assumption", length.convert(), 3.280839895013123E-5);
         assertNotNull(length.convert());
     }
 }
