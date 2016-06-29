@@ -36,9 +36,9 @@ public class TemperatureConversionTest {
 
     @Test
     public void temperature_conversion_same_unit_success() {
-        Temperature temperature = new Temperature(1.0, KELVIN, KELVIN);
+        Temperature temperature = new Temperature(2.0, KELVIN, KELVIN);
         assertEquals("True assumption", temperature.getFrom(), KELVIN);
-        assertEquals("True assumption", temperature.convert(), 1.0);
+        assertEquals("True assumption", temperature.convert(), 2.0);
 
         assertNotEquals("False assumption", temperature.getFrom(), CELSIUS);
         assertNotEquals("False assumption", temperature.convert(), 330.0);

@@ -19,7 +19,7 @@ public class Temperature extends Unit {
         String to = getTo();
 
         if (from.equals(to)) {
-            return 1.0;
+            return value;
         } else {
             Double inTermsOfReferenceUnit = convertToAnotherUnit(from, getReferenceUnit(), value);
             return convertToAnotherUnit(getReferenceUnit(), to, inTermsOfReferenceUnit);
