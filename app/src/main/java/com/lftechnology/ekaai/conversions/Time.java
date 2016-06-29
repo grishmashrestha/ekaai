@@ -8,47 +8,47 @@ import com.lftechnology.ekaai.constant.AppConstant;
 public class Time extends ProportionalUnit {
     public Time(Double val, String from, String to) {
         super(val, from, to);
-        setReferenceUnit(AppConstant.TimeConstant.SECOND);
+        setReferenceUnit(AppConstant.TimeConstant.DAY);
     }
 
     @Override
     public Double calculateConstant(String from, String to) {
         Double constant;
         switch (from) {
-            case AppConstant.TimeConstant.SECOND:
+            case AppConstant.TimeConstant.DAY:
                 switch (to) {
                     case AppConstant.TimeConstant.SECOND:
-                        constant = 1.0;
+                        constant = 86400.0;
                         break;
                     case AppConstant.TimeConstant.MINUTE:
-                        constant = 0.016666667;
+                        constant = 1440.0;
                         break;
                     case AppConstant.TimeConstant.HOUR:
-                        constant = 0.000277778;
+                        constant = 24.0;
                         break;
                     case AppConstant.TimeConstant.DAY:
-                        constant = 0.000011574;
+                        constant = 1.0;
                         break;
                     case AppConstant.TimeConstant.WEEK:
-                        constant = 1.6534E-6;
+                        constant = (1.0 / 7.0);
                         break;
                     case AppConstant.TimeConstant.YEAR:
-                        constant = 3.16888E-8;
+                        constant = (1.0 / 365.0);
                         break;
                     case AppConstant.TimeConstant.CENTURY:
-                        constant = 3.1688E-10;
+                        constant = 1.0 / (365.0 * 100.0);
                         break;
                     case AppConstant.TimeConstant.MILLENNIUM:
-                        constant = 3.1688E-11;
+                        constant = 1.0 / (365.0 * 1000.0);
                         break;
                     case AppConstant.TimeConstant.MILLISECOND:
-                        constant = 1000.0;
+                        constant = 86400000.0;
                         break;
                     case AppConstant.TimeConstant.MICROSECOND:
-                        constant = 1E6;
+                        constant = 86400000000.0;
                         break;
                     case AppConstant.TimeConstant.NANOSECOND:
-                        constant = 1E9;
+                        constant = 86400000000000.0;
                         break;
                     default:
                         constant = 0.0;
@@ -57,8 +57,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.MINUTE:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 60.0;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 1.0 / (24.0 * 60.0);
                         break;
                     default:
                         constant = 0.0;
@@ -67,18 +67,18 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.HOUR:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 3600.0;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 24.0;
                         break;
                     default:
                         constant = 0.0;
                         break;
                 }
                 break;
-            case AppConstant.TimeConstant.DAY:
+            case AppConstant.TimeConstant.SECOND:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 86400.0;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 1.0 / (24.0 * 60.0 * 60.0);
                         break;
                     default:
                         constant = 0.0;
@@ -87,8 +87,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.WEEK:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 604800.0;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 7.0;
                         break;
                     default:
                         constant = 0.0;
@@ -97,8 +97,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.YEAR:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 31536000.0;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 365.0;
                         break;
                     default:
                         constant = 0.0;
@@ -107,8 +107,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.CENTURY:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 3153600000.0;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 365.0 * 100.0;
                         break;
                     default:
                         constant = 0.0;
@@ -117,8 +117,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.MILLENNIUM:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 3.1536E10;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 365 * 1000.0;
                         break;
                     default:
                         constant = 0.0;
@@ -127,8 +127,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.MILLISECOND:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 0.001;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 1.0 / (24.0 * 60.0 * 60.0 * 1000.0);
                         break;
                     default:
                         constant = 0.0;
@@ -137,8 +137,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.MICROSECOND:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 1000000.0;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 1.0 / (24.0 * 60.0 * 60.0 * 1000000.0);
                         break;
                     default:
                         constant = 0.0;
@@ -147,8 +147,8 @@ public class Time extends ProportionalUnit {
                 break;
             case AppConstant.TimeConstant.NANOSECOND:
                 switch (to) {
-                    case AppConstant.TimeConstant.SECOND:
-                        constant = 1E-9;
+                    case AppConstant.TimeConstant.DAY:
+                        constant = 1.0 / (24.0 * 60.0 * 60.0 * 1000000000.0);
                         break;
                     default:
                         constant = 0.0;

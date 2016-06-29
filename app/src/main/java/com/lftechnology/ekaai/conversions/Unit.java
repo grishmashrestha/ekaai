@@ -6,10 +6,9 @@ package com.lftechnology.ekaai.conversions;
 public abstract class Unit {
     private String to;
     private String from;
-
     private String referenceUnit;
-
     private Double value;
+
     public Unit(Double val, String from, String to) {
         this.value = val;
         this.from = from;
