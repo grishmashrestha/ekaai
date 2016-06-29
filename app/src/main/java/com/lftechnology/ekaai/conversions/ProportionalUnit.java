@@ -28,6 +28,4 @@ public abstract class ProportionalUnit extends Unit {
     }
 
     public abstract Double calculateConstant(String from, String to);
-
-
 }
