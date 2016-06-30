@@ -107,7 +107,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
         mFromUnit.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     mCustomEditTextOnTouch.editTextOnTouch();
                 }
                 return false;

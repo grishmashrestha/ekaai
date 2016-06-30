@@ -399,8 +399,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         if (!mSelectedConversion.equals(selectedConversion)) {
             mSelectedConversion = selectedConversion;
-            mItemTouchHelper = null;
-            callback = null;
+            mItemTouchHelper.attachToRecyclerView(null);
             setFragment();
             setLeftRecyclerView();
             setRightRecyclerView();
