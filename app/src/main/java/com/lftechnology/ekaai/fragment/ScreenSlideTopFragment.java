@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.bus.ConvertedValue;
 import com.lftechnology.ekaai.bus.EventBus;
 import com.lftechnology.ekaai.bus.PageScrollPosition;
+import com.lftechnology.ekaai.constant.AppConstant;
 import com.lftechnology.ekaai.utils.AutoResizeFontTextView;
 import com.lftechnology.ekaai.utils.CustomEditText;
 import com.squareup.otto.Subscribe;
@@ -64,6 +66,10 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
+        CustomEditText fromUnit = (CustomEditText) mRootView.findViewById(R.id.from_unit);
+        if (mSelectedConversion.equals(AppConstant.TEMPERATURE))
+            fromUnit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
 
 //        View gestureView = mRootView.findViewById(R.id.content_top);
 //        gestureView.setClickable(true);
