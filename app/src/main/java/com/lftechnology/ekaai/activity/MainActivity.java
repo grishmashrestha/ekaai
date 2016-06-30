@@ -305,11 +305,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * Make sure the height of the linear layout matches full screen when the soft-keyboard is hidden, also animate swap button when show/hide keyboard
+     * Animate swap button when show/hide keyboard
      */
     @Override
     public void keyboardHidden() {
-        // TODO
+        // TODO Make sure the height of the linear layout matches full screen when the soft-keyboard is hidden
         //  RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         //  mLinearLayout.setLayoutParams(layoutParams);
 
