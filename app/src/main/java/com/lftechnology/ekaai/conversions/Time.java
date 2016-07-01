@@ -3,7 +3,7 @@ package com.lftechnology.ekaai.conversions;
 import com.lftechnology.ekaai.constant.AppConstant;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/1/16.
+ * Model representation for Time conversion system, an extension of {@link ProportionalUnit}
  */
 public class Time extends ProportionalUnit {
     public Time(Double val, String from, String to) {

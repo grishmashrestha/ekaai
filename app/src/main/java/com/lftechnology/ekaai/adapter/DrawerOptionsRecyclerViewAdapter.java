@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 import timber.log.Timber;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/19/16.
+ * RecyclerView Adapter for right navigation drawer, to populate different units within a conversion system
  */
 public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<DrawerOptionsRecyclerViewAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
     private final List<String> mDataset;

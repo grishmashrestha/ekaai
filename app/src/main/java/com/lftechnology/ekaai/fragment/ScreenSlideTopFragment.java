@@ -25,7 +25,7 @@ import com.lftechnology.ekaai.utils.CustomEditText;
 import com.squareup.otto.Subscribe;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
+ * An extension {@link BaseFragment} for representing the top view pager of {@link com.lftechnology.ekaai.activity.MainActivity}
  */
 public class ScreenSlideTopFragment extends BaseFragment {
 
@@ -70,7 +70,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
         if (mSelectedConversion.equals(AppConstant.TEMPERATURE))
             fromUnit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
-
+//        TODO: Hide/Show toolbar on fling/scroll
 //        View gestureView = mRootView.findViewById(R.id.content_top);
 //        gestureView.setClickable(true);
 //        gestureView.setFocusable(true);

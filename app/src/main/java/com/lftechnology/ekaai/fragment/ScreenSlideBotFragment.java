@@ -21,7 +21,7 @@ import com.lftechnology.ekaai.utils.ResultFormatter;
 import com.squareup.otto.Subscribe;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/26/16.
+ * An extension {@link BaseFragment} for representing the bottom view pager of {@link com.lftechnology.ekaai.activity.MainActivity}
  */
 public class ScreenSlideBotFragment extends BaseFragment {
 
@@ -66,6 +66,7 @@ public class ScreenSlideBotFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_bot, container, false);
+//        TODO: Hide/show toolbar
 //        View gestureView = mView.findViewById(R.id.content_bot);
 //        gestureView.setClickable(true);
 //        gestureView.setFocusable(true);

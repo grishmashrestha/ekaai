@@ -4,7 +4,7 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/2/16.
+ * A class to handle {@link Bus} related tasks such as registering, unregistering and posting
  */
 public class EventBus {
     private static Bus eventBus;

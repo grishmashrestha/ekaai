@@ -6,15 +6,12 @@ import android.content.Context;
 import timber.log.Timber;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 2/24/16.
- */
-
-/**
  * Base application class
  */
 public class Ekaai extends Application {
 
     private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -22,7 +19,12 @@ public class Ekaai extends Application {
         context = this;
     }
 
-    public static Context getContext(){
+    /**
+     * Gives the {@link Context} of the app
+     *
+     * @return {@link Context} the app belongs to
+     */
+    public static Context getContext() {
         return context;
     }
 }

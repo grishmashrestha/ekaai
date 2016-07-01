@@ -1,7 +1,7 @@
 package com.lftechnology.ekaai.bus;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/28/16.
+ * A class to represent data involved when listening to scroll while using {@link EventBus}
  */
 public class ScrollListener {
     public boolean moveUp;

@@ -5,8 +5,10 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.EditText;
 
+import com.lftechnology.ekaai.helper.OnKeyEventsListener;
+
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/1/16.
+ * A customized extension of {@link EditText}
  */
 public class CustomEditText extends EditText {
     public CustomEditText(Context context) {
@@ -19,6 +21,7 @@ public class CustomEditText extends EditText {
 
     public CustomEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
     }
 
     @Override
@@ -28,7 +31,7 @@ public class CustomEditText extends EditText {
             if (getText().toString().equals("")) {
                 setText("1");
             }
-            ((OnKeyEvents) getContext()).keyboardHidden();
+            ((OnKeyEventsListener) getContext()).keyboardHidden();
             return false;
         }
         return super.dispatchKeyEvent(event);
@@ -41,7 +44,7 @@ public class CustomEditText extends EditText {
             if (getText().toString().equals("")) {
                 setText("1");
             }
-            ((OnKeyEvents) getContext()).keyboardHidden();
+            ((OnKeyEventsListener) getContext()).keyboardHidden();
         }
         return super.onKeyUp(keyCode, event);
     }

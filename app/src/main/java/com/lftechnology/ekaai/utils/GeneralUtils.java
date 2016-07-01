@@ -3,9 +3,13 @@ package com.lftechnology.ekaai.utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
+import com.lftechnology.ekaai.helper.OnKeyEventsListener;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/28/16.
+ * A class to
  */
 public class GeneralUtils {
     /**
@@ -34,5 +38,19 @@ public class GeneralUtils {
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return dp;
+    }
+
+    /**
+     * Hides softkeyboard
+     *
+     * @param context {@link Context} the corresponding context
+     * @param view    {@link View} the view it belongs to
+     */
+    public static void hideSoftKeyboard(Context context, View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isAcceptingText()) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            ((OnKeyEventsListener) context).keyboardHidden();
+        }
     }
 }

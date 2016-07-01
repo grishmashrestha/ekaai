@@ -1,7 +1,7 @@
 package com.lftechnology.ekaai.conversions;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/31/16.
+ * An abstract class to represent conversion systems where units are related to each other proportionally
  */
 public abstract class ProportionalUnit extends Unit {
 

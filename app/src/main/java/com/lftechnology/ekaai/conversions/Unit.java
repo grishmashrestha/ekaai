@@ -1,7 +1,7 @@
 package com.lftechnology.ekaai.conversions;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/31/16.
+ * An abstract class to represent basic conversion systems where units may or may be proportionally related to each other
  */
 public abstract class Unit {
     private String to;

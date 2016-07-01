@@ -1,13 +1,8 @@
 package com.lftechnology.ekaai.constant;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/3/16.
- */
-
-/**
  * Contains constants used through out the application
  */
-
 public class AppConstant {
     public static final String EKAAI = "Ekaai";
     public static final String LENGTH = "Length";

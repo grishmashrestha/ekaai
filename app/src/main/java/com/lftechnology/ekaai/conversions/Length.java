@@ -3,7 +3,7 @@ package com.lftechnology.ekaai.conversions;
 import com.lftechnology.ekaai.constant.AppConstant;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/1/16.
+ * Model representation for Length conversion system, an extension of {@link ProportionalUnit}
  */
 public class Length extends ProportionalUnit {
 

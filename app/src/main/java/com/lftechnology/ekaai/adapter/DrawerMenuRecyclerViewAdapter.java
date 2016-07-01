@@ -20,11 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/18/16.
- */
-
-/**
- * RecyclerView Adapter for Drawer Layout
+ * RecyclerView Adapter for left navigation drawer, to populate the different conversion systems
  */
 public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMenuRecyclerViewAdapter.ItemViewHolder> {
     private final List<String> mDataset;

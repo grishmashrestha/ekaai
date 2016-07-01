@@ -9,15 +9,22 @@ import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.constant.AppConstant;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 4/7/16.
+ * A class to fetch dataset and theme related to the given selected conversion
  */
 public class ApplicationThemeAndDataset {
-    public static String[] getDataset(String mSelectedConversion) {
+
+    /**
+     * Returns the dataset from {@link SharedPreferences} according to the selectedConversion passed
+     *
+     * @param selectedConversion {@link String} for which dataset is required
+     * @return the dataset for the given selectedConversion
+     */
+    public static String[] getDataset(String selectedConversion) {
         String[] dataset;
         SharedPreferences sharedPref = Ekaai.getContext().getSharedPreferences(AppConstant.EKAAI, Context.MODE_PRIVATE);
-        String preference = sharedPref.getString(mSelectedConversion, AppConstant.NOT_AVAILABLE);
+        String preference = sharedPref.getString(selectedConversion, AppConstant.NOT_AVAILABLE);
         if (preference.equals(AppConstant.NOT_AVAILABLE)) {
-            switch (mSelectedConversion) {
+            switch (selectedConversion) {
                 case AppConstant.LENGTH:
                     dataset = Ekaai.getContext().getResources().getStringArray(R.array.length_options);
                     break;
@@ -44,6 +51,11 @@ public class ApplicationThemeAndDataset {
         return dataset;
     }
 
+    /**
+     *
+     * @param selectedConversion
+     * @return
+     */
     public static Integer[] getThemeDetails(String selectedConversion) {
         Integer[] themeSet = new Integer[3];
         switch (selectedConversion) {

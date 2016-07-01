@@ -1,7 +1,7 @@
 package com.lftechnology.ekaai.bus;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/14/16.
+ * A class to represent data involved when listening to page scroll while using {@link EventBus}
  */
 public class PageScrollPosition {
     private int position;

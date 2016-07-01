@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import com.lftechnology.ekaai.bus.EventBus;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/2/16.
+ * Base class for fragment
  */
 public class BaseFragment extends Fragment {
 

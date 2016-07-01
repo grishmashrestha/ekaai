@@ -3,7 +3,8 @@ package com.lftechnology.ekaai.conversions;
 import com.lftechnology.ekaai.constant.AppConstant;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/1/16.
+ * Model representation for Temperature conversion system
+ * An extension of {@link Unit} and not a {@link ProportionalUnit} as the units are not related to each other proportionally
  */
 public class Temperature extends Unit {
 

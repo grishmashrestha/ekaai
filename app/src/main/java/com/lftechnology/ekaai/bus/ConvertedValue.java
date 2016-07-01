@@ -1,14 +1,10 @@
 package com.lftechnology.ekaai.bus;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/2/16.
- */
-
-/**
- * Is used to pass message from top fragment to bottom fragment for unit conversion, via an EventBus
+ * A class used to pass message from top fragment to bottom fragment for unit conversion, via an EventBus
  */
 public class ConvertedValue {
-    private String  value, from, selectedConversion;
+    private String value, from, selectedConversion;
     private int position;
 
     public String getValue() {
@@ -47,6 +43,6 @@ public class ConvertedValue {
         this.value = value;
         this.from = from;
         this.position = position;
-        this .selectedConversion = selectedConversion;
+        this.selectedConversion = selectedConversion;
     }
 }

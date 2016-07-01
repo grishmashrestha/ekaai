@@ -10,7 +10,7 @@ import com.lftechnology.ekaai.bus.FlingListener;
 import com.lftechnology.ekaai.bus.ScrollListener;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/28/16.
+ * An extension for {@link android.view.GestureDetector.SimpleOnGestureListener} to detect scroll/fling and show/hide the toolbar on the basis of the change
  */
 public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
@@ -46,7 +46,6 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
     /**
      * Returns a human-readable string describing the type of touch that triggered a MotionEvent.
      */
-
     private static String getTouchType(MotionEvent e) {
 
         String touchTypeDescription = " ";

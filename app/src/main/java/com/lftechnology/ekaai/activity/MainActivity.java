@@ -49,8 +49,7 @@ import com.lftechnology.ekaai.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.ekaai.helper.ZoomOutPageTransformer;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
 import com.lftechnology.ekaai.utils.GeneralUtils;
-import com.lftechnology.ekaai.utils.OnKeyEvents;
-import com.lftechnology.ekaai.utils.SoftKeyBoard;
+import com.lftechnology.ekaai.helper.OnKeyEventsListener;
 import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
@@ -63,7 +62,7 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Handles all the interactions with the app as it is a one-page application
  */
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnKeyEvents, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, ScreenSlideTopFragment.CustomEditTextOnTouch, OnKeyEventsListener, DrawerMenuRecyclerViewAdapter.UpdateFragmentInMainActivity, OnStartDragListener {
     @Bind(R.id.toolbarContainer)
     LinearLayout mToolbarContainer;
 
@@ -117,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private boolean spinDirection = true;
     private float lastTranslate = 0.0f;
     private int mBottomBackgroundColor, mSwapButtonColor, mDataCount;
-    private ItemTouchHelper.Callback callback;
     private static final int ROTATE_ANIMATION_DURATION = 300;
 
     @Override
@@ -196,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         DrawerOptionsRecyclerViewAdapter mRightAdapter = new DrawerOptionsRecyclerViewAdapter(mDrawerRecyclerViewDataset, this, mSelectedConversion);
         mRightRecyclerView.setAdapter(mRightAdapter);
 
-        callback = new SimpleItemTouchHelperCallback(mRightAdapter);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mRightAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRightRecyclerView);
     }
@@ -237,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             @Override
             public void onDrawerOpened(View drawerView) {
                 // hide soft keyboard if it is open
-                SoftKeyBoard.hideSoftKeyboard(MainActivity.this, drawerView);
+                GeneralUtils.hideSoftKeyboard(MainActivity.this, drawerView);
                 super.onDrawerOpened(drawerView);
             }
 
@@ -278,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
      * Is called when swap button is clicked, it interchanges the top and bottom fragments
      * Also, animates the swap button
      *
-     * @param view
+     * @param view {@link View} it belongs to
      */
     public void swapFragments(View view) {
         animateSwapButton(mSwapButton);
@@ -437,23 +435,16 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mPagerBottom.setCurrentItem(1);
         mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
         mPagerBottom.setPageTransformer(true, new ZoomOutPageTransformer());
-
     }
-
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
     }
 
-    // open right navigation drawer when the overflow menu is clicked
-    public void showOptions(View view) {
-        mDrawerLayout.openDrawer(GravityCompat.END);
-    }
-
-    @OnClick({R.id.tv_help, R.id.tv_about})
-    public void setOnClicks(View v) {
-        switch (v.getId()) {
+    @OnClick({R.id.tv_help, R.id.tv_about, R.id.icon_options})
+    public void setOnClicks(View view) {
+        switch (view.getId()) {
             case R.id.tv_help:
                 Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
                 break;
@@ -462,12 +453,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 intent.setData(Uri.parse("market://details?id=com.lftechnology.ekaai"));
                 startActivity(intent);
                 break;
+            case R.id.icon_options:
+                // open right navigation drawer when the overflow menu is clicked
+                mDrawerLayout.openDrawer(GravityCompat.END);
+                break;
         }
     }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
     }
 
     @Override
@@ -477,7 +471,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
     @Override

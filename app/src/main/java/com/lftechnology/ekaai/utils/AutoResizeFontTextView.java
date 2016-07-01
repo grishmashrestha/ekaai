@@ -3,7 +3,7 @@ package com.lftechnology.ekaai.utils;
 import android.widget.TextView;
 
 /**
- * Created by Grishma Shrestha <grishmashrestha@lftechnology.com> on 3/4/16.
+ * A class to auto-resize the font of a {@link TextView} according to the TextView's length
  */
 public class AutoResizeFontTextView {
 
