@@ -1,13 +1,13 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dimen_0x">0dp</dimen>
+    <dimen name="dimen_1x">8dp</dimen>
+    <dimen name="dimen_2x">16dp</dimen>
+    <dimen name="dimen_3x">24dp</dimen>
+    <dimen name="dimen_4x">32dp</dimen>
     <dimen name="burger_menu">20dp</dimen>
     <dimen name="padding_10">10dp</dimen>
-    <dimen name="padding_16">16dp</dimen>
     <dimen name="padding_50">50dp</dimen>
-    <dimen name="height_0">0dp</dimen>
-    <dimen name="width_0">0dp</dimen>
+    <dimen name="margin_35">35dp</dimen>
     <dimen name="drawer_layout_width">240dp</dimen>
     <dimen name="drawer_layout_header_height">56dp</dimen>
     <dimen name="text_size_16">16sp</dimen>
@@ -17,5 +17,5 @@
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
     <dimen name="text_size_18">18sp</dimen>
-    <dimen name="margin_35">35dp</dimen>
+    <dimen name="dimen_5x">40dp</dimen>
 </resources>

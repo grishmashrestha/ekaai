@@ -2,16 +2,17 @@
     android:id="@+id/rl_drawer_left"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:paddingLeft="@dimen/padding_16"
-    android:paddingRight="@dimen/padding_16"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen_2x"
+    android:paddingRight="@dimen/dimen_2x">
 
     <ImageView
         android:id="@+id/menu_icon"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/dimen_3x"
+        android:layout_height="@dimen/dimen_3x"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dimen_4x"
         android:contentDescription="@string/unit_icons" />
 
     <TextView
@@ -20,10 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/margin_35"
         android:layout_toEndOf="@id/menu_icon"
-        android:paddingStart="0dp"
-        android:paddingEnd="@dimen/padding_16"
         android:textColor="@color/nav_text_color"
         android:textSize="@dimen/text_size_16" />
 

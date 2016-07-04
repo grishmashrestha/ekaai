@@ -35,7 +35,7 @@
                 android:layout_height="150dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:contentDescription="@string/header_image"/>
+                android:contentDescription="@string/header_image" />
 
             <TextView
                 android:id="@+id/nav_header_tv"
@@ -66,18 +66,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/padding_16"
-            android:paddingRight="@dimen/padding_16"
+            android:paddingLeft="@dimen/dimen_2x"
+            android:paddingRight="@dimen/dimen_2x"
             android:paddingTop="@dimen/padding_10">
-
-            <TextView
-                android:id="@+id/tv_help"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center_vertical"
-                android:text="@string/help"
-                android:textColor="@color/nav_text_color"
-                android:textSize="@dimen/text_size_16" />
 
             <TextView
                 android:id="@+id/tv_about"

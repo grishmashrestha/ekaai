@@ -1,5 +1,6 @@
 package com.lftechnology.ekaai.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
@@ -44,12 +45,12 @@ import com.lftechnology.ekaai.bus.PageScrollPosition;
 import com.lftechnology.ekaai.bus.ScrollListener;
 import com.lftechnology.ekaai.constant.AppConstant;
 import com.lftechnology.ekaai.fragment.ScreenSlideTopFragment;
+import com.lftechnology.ekaai.helper.OnKeyEventsListener;
 import com.lftechnology.ekaai.helper.OnStartDragListener;
 import com.lftechnology.ekaai.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.ekaai.helper.ZoomOutPageTransformer;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
 import com.lftechnology.ekaai.utils.GeneralUtils;
-import com.lftechnology.ekaai.helper.OnKeyEventsListener;
 import com.squareup.otto.Subscribe;
 
 import java.util.Arrays;
@@ -442,22 +443,43 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mItemTouchHelper.startDrag(viewHolder);
     }
 
-    @OnClick({R.id.tv_help, R.id.tv_about, R.id.icon_options})
+    @OnClick(R.id.tv_about)
     public void setOnClicks(View view) {
         switch (view.getId()) {
-            case R.id.tv_help:
-                Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.tv_about:
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("market://details?id=com.lftechnology.ekaai"));
-                startActivity(intent);
-                break;
-            case R.id.icon_options:
-                // open right navigation drawer when the overflow menu is clicked
-                mDrawerLayout.openDrawer(GravityCompat.END);
+                showAboutInAlertDialog();
                 break;
         }
+    }
+
+    private void showAboutInAlertDialog() {
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        View view = getLayoutInflater().inflate(R.layout.dialog_about_us, null);
+        view.findViewById(R.id.iv_dialog_logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getString(R.string.lft_website)));
+                startActivity(intent);
+            }
+        });
+        AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.NewDialog)
+                .setTitle(R.string.dialog_about_title)
+                .setView(view)
+                .setPositiveButton(R.string.rate_us, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(getString(R.string.lft_playstore_link)));
+                        startActivity(intent);
+
+                    }
+                })
+                .setNegativeButton(R.string.later, null)
+                .create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.NewDialog;
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.show();
     }
 
     @Override

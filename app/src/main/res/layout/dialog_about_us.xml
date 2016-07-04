@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_3x">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ekaai_gives_user_a_clean_and_simple_way_to_convert_units_easily"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet1"
+            android:singleLine="false"
+            android:text="@string/scroll_left_or_right_to_convert_from_one_unit_to_another"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet2"
+            android:singleLine="false"
+            android:text="@string/swap_between_current_units_using_the_swap_button_in_the_middle_of_the_screen"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet3"
+            android:singleLine="false"
+            android:text="@string/choose_between_various_conversion_system_by_clicking_on_the_hamburger_menu"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet4"
+            android:singleLine="false"
+            android:text="@string/swipe_right_to_view_the_list_of_units_available_for_a_conversion_system"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet5"
+            android:singleLine="false"
+            android:text="@string/reorder_those_units_as_per_your_preference_by_dragging_and_dropping"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_dialog_logo"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/dimen_3x"
+        android:src="@drawable/leapfrog_logo" />
+
+</LinearLayout>

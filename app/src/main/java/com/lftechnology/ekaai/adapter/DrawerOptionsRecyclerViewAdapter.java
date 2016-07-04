@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lftechnology.ekaai.Ekaai;
 import com.lftechnology.ekaai.R;
@@ -29,7 +30,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 /**
  * RecyclerView Adapter for right navigation drawer, to populate different units within a conversion system
@@ -56,6 +56,7 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
         holder.textView.setText(Html.fromHtml(mDataset.get(position)));
 
+        Glide.with(Ekaai.getContext()).load(R.drawable.drag_handle).into(holder.handleView);
         // Start a drag whenever the handle view it touched
         holder.handleView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -75,7 +76,6 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        Timber.e("%s", mSelectedConversion);
         Collections.swap(mDataset, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         updateUserPreference();
@@ -113,14 +113,14 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
             itemView.setBackgroundColor(Color.WHITE);
             itemView.getBackground().setAlpha(100);
             textView.setTextColor(Color.BLACK);
-            handleView.setColorFilter(Color.BLACK);
+            Glide.with(Ekaai.getContext()).load(R.drawable.drag_handle_active).into(handleView);
         }
 
         @Override
         public void onItemClear() {
             itemView.setBackgroundColor(0);
             textView.setTextColor(ContextCompat.getColor(Ekaai.getContext(), R.color.nav_text_color));
-            handleView.setColorFilter(R.color.colorDragHandleIdle);
+            Glide.with(Ekaai.getContext()).load(R.drawable.drag_handle).into(handleView);
         }
     }
 
