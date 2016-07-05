@@ -16,17 +16,17 @@
     </string-array>
 
     <string-array name="length_options">
-        <item>Nautical Mile</item>
-        <item>Kilometre (km)</item>
         <item>Centimeter (cm)</item>
-        <item>Yard (yd)</item>
-        <item>Inch (in)</item>
         <item>Feet (ft)</item>
+        <item>Inch (in)</item>
+        <item>Kilometre (km)</item>
         <item>Meter (m)</item>
-        <item>Millimeter (mm)</item>
-        <item>Mile (ml)</item>
         <item>Micron (µ)</item>
+        <item>Mile (ml)</item>
+        <item>Millimeter (mm)</item>
         <item>Nanometers (nm)</item>
+        <item>Nautical Mile</item>
+        <item>Yard (yd)</item>
     </string-array>
 
     <string-array name="temperature_options">
@@ -36,25 +36,25 @@
     </string-array>
 
     <string-array name="weight_options">
-        <item>Kilogram (kg)</item>
-        <item>Pound (lb)</item>
-        <item>Tonne (t)</item>
-        <item>Gram (g)</item>
         <item>Carat (metric)</item>
-        <item>Milligram (mg)</item>
         <item>Grain (gr)</item>
+        <item>Gram (g)</item>
+        <item>Kilogram (kg)</item>
+        <item>Milligram (mg)</item>
         <item>Newton (Earth)</item>
         <item>Ounce (oz)</item>
+        <item>Pound (lb)</item>
+        <item>Tonne (t)</item>
     </string-array>
 
     <string-array name="volume_options">
-        <item>Gallon (fluid)</item>
         <item>Barrel (petroleum)</item>
-        <item>Cubic yard (yd&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
-        <item>Cubic meter (m&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
         <item>Cubic centimeter (cm&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
-        <item>Milliliter (ml)</item>
         <item>Cubic feet (ft&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
+        <item>Cubic meter (m&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
+        <item>Cubic yard (yd&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;)</item>
+        <item>Gallon (fluid)</item>
+        <item>Milliliter (ml)</item>
     </string-array>
 
     <string-array name="time_options">
