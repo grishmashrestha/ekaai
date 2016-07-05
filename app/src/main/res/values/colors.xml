@@ -3,8 +3,6 @@
     <color name="colorPrimary">#2195F2</color>
     <color name="colorPrimaryDark">#2962FF</color>
     <color name="colorAccent">#212121</color>
-    <color name="colorDragHandleActive">#959595</color>
-    <color name="colorDragHandleIdle">#E5E5E5</color>
 
     <color name="colorLengthLight">#00BAFF</color>
     <color name="colorLengthDark">#008CC0</color>

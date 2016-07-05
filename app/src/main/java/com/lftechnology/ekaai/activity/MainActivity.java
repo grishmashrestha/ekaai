@@ -501,13 +501,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             mSwapButton.clearAnimation();
             Animation scaleOut = new ScaleAnimation(1, 0, 1, 0, mSwapButton.getWidth() / 2, mSwapButton.getHeight() / 2);
             scaleOut.setInterpolator(new AccelerateInterpolator());
-            scaleOut.setStartOffset(0); // Start fading out after 500 milli seconds
-            scaleOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800); // Fadeout duration should be 1000 milli seconds
+            scaleOut.setStartOffset(0);
+            scaleOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800);
             Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
             fadeOut.setInterpolator(new AccelerateInterpolator());
-            fadeOut.setStartOffset(0); // Start fading out after 500 milli seconds
-            fadeOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800); // Fadeout duration should be 1000 milli seconds
-
+            fadeOut.setStartOffset(0);
+            fadeOut.setDuration(AppConstant.SWAP_BUTTON_ANIMATION_TIME_800);
             AnimationSet animation = new AnimationSet(false); // change to false
             animation.addAnimation(scaleOut);
             animation.addAnimation(fadeOut);
