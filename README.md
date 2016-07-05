@@ -1,6 +1,6 @@
 # Ekaai - Unit Converter App
 
-Ekaai gives user a clean yet simple way to convert units easily.
+Ekaai gives user a clean yet simple way to convert between units.
 
 * Scroll left or right to convert from one unit to another.
 * Swap between current units using the swap button in the middle of the screen.
