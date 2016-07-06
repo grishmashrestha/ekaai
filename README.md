@@ -7,3 +7,9 @@ Ekaai gives user a clean yet simple way to convert between units.
 * Choose between various conversion system by clicking on the Hamburger Menu.
 * Swipe right to view the list of units available for a conversion system.
 * Reorder those units as per your preference by dragging and dropping.
+
+Open Source packages used:
+* https://jakewharton.github.io/butterknife/
+* https://github.com/JakeWharton/timber
+* https://square.github.io/otto/
+* https://github.com/bumptech/glide
