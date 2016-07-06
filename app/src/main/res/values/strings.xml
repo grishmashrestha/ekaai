@@ -97,4 +97,9 @@
     <string name="later">Later</string>
     <string name="lft_website">http://lftechnology.com/</string>
     <string name="lft_playstore_link">market://details?id=com.lftechnology.ekaai</string>
+    <string name="open_source_packages_used">Open Source packages used:</string>
+    <string name="https_jakewharton_github_io_butterknife">https://jakewharton.github.io/butterknife/</string>
+    <string name="https_github_com_bumptech_glide">https://github.com/bumptech/glide</string>
+    <string name="https_square_github_io_otto">https://square.github.io/otto/</string>
+    <string name="https_github_com_jakewharton_timber">https://github.com/JakeWharton/timber</string>
 </resources>

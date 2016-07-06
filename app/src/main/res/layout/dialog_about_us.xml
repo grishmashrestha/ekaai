@@ -122,6 +122,107 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_marginTop="@dimen/dimen_2x"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/open_source_packages_used"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet6"
+            android:autoLink="web"
+            android:singleLine="false"
+            android:text="@string/https_jakewharton_github_io_butterknife"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet7"
+            android:autoLink="web"
+            android:singleLine="false"
+            android:text="@string/https_github_com_jakewharton_timber"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet8"
+            android:autoLink="web"
+            android:singleLine="false"
+            android:text="@string/https_square_github_io_otto"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bullet9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/alert_bullet"
+            android:theme="@style/DialogTextViewStyle.Bullet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tv_bullet9"
+            android:autoLink="web"
+            android:singleLine="false"
+            android:text="@string/https_github_com_bumptech_glide"
+            android:theme="@style/DialogTextViewStyle" />
+
+    </RelativeLayout>
+
+
     <ImageView
         android:id="@+id/iv_dialog_logo"
         android:layout_width="200dp"
