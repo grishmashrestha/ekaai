@@ -67,6 +67,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
         CustomEditText fromUnit = (CustomEditText) mRootView.findViewById(R.id.from_unit);
+        fromUnit.setText("1");
         if (mSelectedConversion.equals(AppConstant.TEMPERATURE))
             fromUnit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 

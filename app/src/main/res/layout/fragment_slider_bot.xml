@@ -6,17 +6,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/padding_50"
-        android:paddingTop="@dimen/padding_50">
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/to_unit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/default_string_1"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
+            android:text="@string/default_string_1"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textIsSelectable="false"

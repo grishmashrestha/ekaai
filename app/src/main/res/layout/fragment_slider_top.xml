@@ -6,9 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/padding_50"
-        android:paddingTop="@dimen/padding_50">
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <com.lftechnology.ekaai.utils.CustomEditText
             android:id="@+id/from_unit"
@@ -16,13 +15,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/white"
+            android:cursorVisible="true"
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:minWidth="@dimen/custom_edit_text_width"
             android:text="@string/default_string_1"
-            android:textColor="@color/nav_text_color"
             android:textAlignment="center"
-            android:cursorVisible="true"
+            android:textColor="@color/nav_text_color"
             android:textIsSelectable="false"
             android:textSize="@dimen/text_size_100"
             android:textStyle="normal" />
