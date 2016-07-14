@@ -68,7 +68,7 @@ public class Time extends ProportionalUnit {
             case AppConstant.TimeConstant.HOUR:
                 switch (to) {
                     case AppConstant.TimeConstant.DAY:
-                        constant = 24.0;
+                        constant = 1.0 / 24.0;
                         break;
                     default:
                         constant = 0.0;
