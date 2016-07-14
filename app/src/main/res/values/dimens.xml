@@ -20,4 +20,5 @@
     <dimen name="text_size_edit_text">60sp</dimen>
     <dimen name="text_size_unit">@dimen/text_size_20</dimen>
     <dimen name="custom_edit_text_width">150dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
 </resources>
