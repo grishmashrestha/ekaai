@@ -31,8 +31,10 @@
 
             <ImageView
                 android:id="@+id/app_icon_in_menu"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/dimen_4x"
+                android:layout_marginBottom="@dimen/dimen_2x"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="@string/header_image" />
