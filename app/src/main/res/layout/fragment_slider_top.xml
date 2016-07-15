@@ -23,7 +23,7 @@
             android:textAlignment="center"
             android:textColor="@color/nav_text_color"
             android:textIsSelectable="false"
-            android:textSize="@dimen/text_size_100"
+            android:textSize="@dimen/text_size_edit_text_default"
             android:textStyle="normal" />
 
         <TextView
@@ -32,6 +32,6 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="@color/colorGrayFont"
-            android:textSize="@dimen/text_size_20" />
+            android:textSize="@dimen/text_size_unit" />
     </LinearLayout>
 </ScrollView>

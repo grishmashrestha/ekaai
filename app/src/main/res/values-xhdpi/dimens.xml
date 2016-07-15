@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_edit_text_default">100sp</dimen>
+    <dimen name="text_size_edit_text_length_7">90sp</dimen>
+    <dimen name="text_size_edit_text_length_8">80sp</dimen>
+    <dimen name="text_size_edit_text_length_9">70sp</dimen>
+    <dimen name="text_size_edit_text_length_10">60sp</dimen>
+    <dimen name="text_size_edit_text_length_12">50sp</dimen>
+    <dimen name="text_size_edit_text_length_max">40sp</dimen>
+    <dimen name="text_size_unit">20sp</dimen>
+</resources>

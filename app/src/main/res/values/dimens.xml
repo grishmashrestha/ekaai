@@ -6,19 +6,33 @@
     <dimen name="dimen_4x">32dp</dimen>
     <dimen name="dimen_5x">40dp</dimen>
     <dimen name="dimen_6x">48dp</dimen>
-    <dimen name="burger_menu">20dp</dimen>
-    <dimen name="padding_10">10dp</dimen>
-    <dimen name="margin_35">35dp</dimen>
-    <dimen name="drawer_layout_width">240dp</dimen>
-    <dimen name="drawer_layout_header_height">56dp</dimen>
+    <dimen name="dimen_7x">56dp</dimen>
+
+    <dimen name="dimen_10">10dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
+    <dimen name="dimen_150">150dp</dimen>
+    <dimen name="dimen_240">240dp</dimen>
+
+    <dimen name="burger_menu">@dimen/dimen_20</dimen>
+    <dimen name="drawer_layout_width">@dimen/dimen_240</dimen>
+    <dimen name="drawer_layout_header_height">@dimen/dimen_7x</dimen>
+    <dimen name="custom_edit_text_width">@dimen/dimen_150</dimen>
+
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_100">100sp</dimen>
-    <dimen name="text_size_edit_text">60sp</dimen>
+
     <dimen name="text_size_unit">@dimen/text_size_20</dimen>
-    <dimen name="custom_edit_text_width">150dp</dimen>
-    <dimen name="dimen_100">100dp</dimen>
+    <dimen name="nav_header_title">@dimen/text_size_18</dimen>
+    <dimen name="text_size_edit_text_default">@dimen/text_size_100</dimen>
+    <dimen name="text_size_edit_text_length_7">90sp</dimen>
+    <dimen name="text_size_edit_text_length_8">80sp</dimen>
+    <dimen name="text_size_edit_text_length_9">70sp</dimen>
+    <dimen name="text_size_edit_text_length_10">60sp</dimen>
+    <dimen name="text_size_edit_text_length_12">50sp</dimen>
+    <dimen name="text_size_edit_text_length_max">40sp</dimen>
 </resources>

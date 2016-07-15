@@ -47,7 +47,7 @@
                 android:text="@string/ekaai_unit_converter_app"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_18" />
+                android:textSize="@dimen/nav_header_title" />
 
         </RelativeLayout>
 
@@ -71,7 +71,7 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/dimen_2x"
             android:paddingRight="@dimen/dimen_2x"
-            android:paddingTop="@dimen/padding_10">
+            android:paddingTop="@dimen/dimen_10">
 
             <TextView
                 android:id="@+id/tv_about"

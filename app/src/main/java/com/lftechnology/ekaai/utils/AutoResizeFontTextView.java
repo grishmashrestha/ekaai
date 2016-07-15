@@ -2,6 +2,9 @@ package com.lftechnology.ekaai.utils;
 
 import android.widget.TextView;
 
+import com.lftechnology.ekaai.Ekaai;
+import com.lftechnology.ekaai.R;
+
 /**
  * A class to auto-resize the font of a {@link TextView} according to the TextView's length
  */
@@ -11,20 +14,21 @@ public class AutoResizeFontTextView {
         int currentHeight = tv.getHeight();
         float stringLength = s.length();
         float fontSize;
+        float density = Ekaai.getContext().getResources().getDisplayMetrics().density;
         if (stringLength <= 6) {
-            fontSize = 100;
+            fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_default) / density);
         } else if (stringLength <= 7) {
-            fontSize = 90;
+            fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_length_7) / density);
         } else if (stringLength <= 8) {
-            fontSize = 80;
+            fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_length_8) / density);
         } else if (stringLength <= 9) {
-            fontSize = 70;
+            fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_length_9) / density);
         } else if (stringLength <= 10) {
-            fontSize = 60;
+            fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_length_10) / density);
         } else if (stringLength <= 12) {
-            fontSize = 50;
+            fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_length_12) / density);
         } else {
-            fontSize = 40;
+            fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_length_max) / density);
         }
         tv.setTextSize(fontSize);
         tv.setHeight(currentHeight);

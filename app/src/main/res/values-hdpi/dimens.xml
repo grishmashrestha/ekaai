@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_edit_text">80sp</dimen>
-    <dimen name="text_size_unit">18sp</dimen>
+    <dimen name="text_size_edit_text_default">75sp</dimen>
+    <dimen name="text_size_edit_text_length_7">70sp</dimen>
+    <dimen name="text_size_edit_text_length_8">65sp</dimen>
+    <dimen name="text_size_edit_text_length_9">60sp</dimen>
+    <dimen name="text_size_edit_text_length_10">55sp</dimen>
+    <dimen name="text_size_edit_text_length_12">45sp</dimen>
+    <dimen name="text_size_edit_text_length_max">35sp</dimen>
+
+    <dimen name="text_size_unit">14sp</dimen>
 </resources>
