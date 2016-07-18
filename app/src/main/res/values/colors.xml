@@ -24,4 +24,5 @@
 
     <color name="colorGrayFont">#686868</color>
     <color name="nav_text_color">#4D4D4D</color>
+    <color name="colorHighlightedMenuItems">#E2E2E2</color>
 </resources>

@@ -49,10 +49,7 @@ public class DrawerMenuRecyclerViewAdapter extends RecyclerView.Adapter<DrawerMe
         holder.textView.setText(Html.fromHtml(currentData));
 
         if (mSelectedConversion.equals(currentData)) {
-            holder.relativeLayout.setBackgroundResource(R.color.colorPrimary);
-            holder.textView.setTextColor(Color.WHITE);
-            holder.imageView.setColorFilter(Color.WHITE);
-
+            holder.relativeLayout.setBackgroundResource(R.color.colorHighlightedMenuItems);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

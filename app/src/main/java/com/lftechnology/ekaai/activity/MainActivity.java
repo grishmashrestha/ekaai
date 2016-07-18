@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private void setLeftNavigationDrawer() {
         mDrawerToggle = setupDrawerToggle();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerLayout.setScrimColor(Color.TRANSPARENT); // set no overlay shadow
+//        mDrawerLayout.setScrimColor(Color.TRANSPARENT); // set no overlay shadow
         setLeftRecyclerView();
         setNavigationDrawerWidth(mDrawerLeftLinearLayout);
         setNavigationDrawerHeaderImage();
