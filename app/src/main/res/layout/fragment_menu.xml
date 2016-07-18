@@ -10,11 +10,11 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/nav_header"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/navigation_drawer_header_height"
         android:background="@drawable/header_bg_transparent"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:paddingBottom="3dp">
+        android:paddingBottom="@dimen/dimen_1x3">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,12 +31,12 @@
 
             <ImageView
                 android:id="@+id/app_icon_in_menu"
-                android:layout_width="@dimen/dimen_100"
-                android:layout_height="@dimen/dimen_100"
-                android:layout_marginTop="@dimen/dimen_4x"
-                android:layout_marginBottom="@dimen/dimen_2x"
+                android:layout_width="@dimen/dimen_10x10"
+                android:layout_height="@dimen/dimen_10x10"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/dimen_2x"
+                android:layout_marginTop="@dimen/dimen_4x"
                 android:contentDescription="@string/header_image" />
 
             <TextView
@@ -50,14 +50,13 @@
                 android:textSize="@dimen/nav_header_title" />
 
         </RelativeLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="3dp">
+        android:paddingTop="@dimen/dimen_1x3">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/drawer_left_recycler_view"
@@ -71,16 +70,25 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/dimen_2x"
             android:paddingRight="@dimen/dimen_2x"
-            android:paddingTop="@dimen/dimen_10">
+            android:paddingTop="@dimen/dimen_10x1">
 
             <TextView
                 android:id="@+id/tv_about"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/dimen_6x"
                 android:gravity="center_vertical"
                 android:text="@string/about"
                 android:textColor="@color/nav_text_color"
-                android:textSize="@dimen/text_size_16" />
+                android:textSize="@dimen/text_size_menu_items" />
+
+            <TextView
+                android:id="@+id/tv_help"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_6x"
+                android:gravity="center_vertical"
+                android:text="@string/help"
+                android:textColor="@color/nav_text_color"
+                android:textSize="@dimen/text_size_menu_items" />
 
         </LinearLayout>
     </LinearLayout>

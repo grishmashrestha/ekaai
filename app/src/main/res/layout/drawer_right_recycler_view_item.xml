@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="@dimen/dimen_6x"
     android:orientation="vertical"
     android:paddingLeft="@dimen/dimen_2x"
     android:paddingRight="@dimen/dimen_2x">
@@ -15,12 +15,12 @@
         android:paddingEnd="@dimen/dimen_2x"
         android:paddingStart="0dp"
         android:textColor="@color/nav_text_color"
-        android:textSize="@dimen/text_size_16" />
+        android:textSize="@dimen/text_size_option_items" />
 
     <ImageView
         android:id="@+id/drag_handle"
-        android:layout_width="@dimen/burger_menu"
-        android:layout_height="@dimen/burger_menu"
+        android:layout_width="@dimen/drag_handle_icon_size"
+        android:layout_height="@dimen/drag_handle_icon_size"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"

@@ -17,7 +17,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:textSize="@dimen/text_size_20" />
+            android:textSize="@dimen/text_size_app_bar" />
 
     </RelativeLayout>
 

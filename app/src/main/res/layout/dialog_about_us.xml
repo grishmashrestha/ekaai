@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/ekaai_gives_user_a_clean_and_simple_way_to_convert_units_easily"
         android:textColor="@android:color/black"
-        android:textSize="12sp" />
+        android:textSize="@dimen/text_size_12" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -225,8 +225,8 @@
 
     <ImageView
         android:id="@+id/iv_dialog_logo"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/dialog_logo_width"
+        android:layout_height="@dimen/dimen_10x5"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/dimen_3x"
         android:src="@drawable/leapfrog_logo" />

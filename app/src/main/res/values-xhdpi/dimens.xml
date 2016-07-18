@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_edit_text_default">100sp</dimen>
-    <dimen name="text_size_edit_text_length_7">90sp</dimen>
-    <dimen name="text_size_edit_text_length_8">80sp</dimen>
-    <dimen name="text_size_edit_text_length_9">70sp</dimen>
-    <dimen name="text_size_edit_text_length_10">60sp</dimen>
-    <dimen name="text_size_edit_text_length_12">50sp</dimen>
-    <dimen name="text_size_edit_text_length_max">40sp</dimen>
-    <dimen name="text_size_unit">20sp</dimen>
+    <dimen name="text_size_app_bar">@dimen/text_size_20</dimen>
+    <dimen name="nav_header_title">@dimen/text_size_18</dimen>
+    <dimen name="text_size_unit">@dimen/text_size_20</dimen>
+    <dimen name="text_size_menu_items">@dimen/text_size_16</dimen>
+    <dimen name="text_size_option_items">@dimen/text_size_16</dimen>
+
+    <dimen name="text_size_edit_text_default">@dimen/text_size_100</dimen>
+    <dimen name="text_size_edit_text_length_7">@dimen/text_size_90</dimen>
+    <dimen name="text_size_edit_text_length_8">@dimen/text_size_80</dimen>
+    <dimen name="text_size_edit_text_length_9">@dimen/text_size_70</dimen>
+    <dimen name="text_size_edit_text_length_10">@dimen/text_size_60</dimen>
+    <dimen name="text_size_edit_text_length_12">@dimen/text_size_50</dimen>
+    <dimen name="text_size_edit_text_length_max">@dimen/text_size_40</dimen>
+
+    <dimen name="drawer_layout_width">@dimen/dimen_10x24</dimen>
+    <dimen name="drawer_layout_header_height">@dimen/dimen_7x</dimen>
+    <dimen name="drag_handle_icon_size">@dimen/dimen_10x2</dimen>
+    <dimen name="menu_icon_size">@dimen/dimen_3x</dimen>
+    <dimen name="custom_edit_text_width">@dimen/dimen_10x15</dimen>
+    <dimen name="dialog_logo_width">@dimen/dimen_10x20</dimen>
 </resources>

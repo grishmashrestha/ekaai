@@ -1,4 +1,7 @@
 <resources>
+    <!-- Start for normal dimensions -->
+    <dimen name="dimen_1x3">3dp</dimen>
+
     <dimen name="dimen_0x">0dp</dimen>
     <dimen name="dimen_1x">8dp</dimen>
     <dimen name="dimen_2x">16dp</dimen>
@@ -8,31 +11,55 @@
     <dimen name="dimen_6x">48dp</dimen>
     <dimen name="dimen_7x">56dp</dimen>
 
-    <dimen name="dimen_10">10dp</dimen>
-    <dimen name="dimen_20">20dp</dimen>
-    <dimen name="dimen_100">100dp</dimen>
-    <dimen name="dimen_150">150dp</dimen>
-    <dimen name="dimen_240">240dp</dimen>
+    <dimen name="dimen_10x1">10dp</dimen>
+    <dimen name="dimen_10x2">20dp</dimen>
+    <dimen name="dimen_10x10">100dp</dimen>
+    <dimen name="dimen_10x5">50dp</dimen>
+    <dimen name="dimen_10x15">150dp</dimen>
+    <dimen name="dimen_10x20">200dp</dimen>
+    <dimen name="dimen_10x24">240dp</dimen>
 
-    <dimen name="burger_menu">@dimen/dimen_20</dimen>
-    <dimen name="drawer_layout_width">@dimen/dimen_240</dimen>
+    <dimen name="drawer_layout_width">@dimen/dimen_10x24</dimen>
     <dimen name="drawer_layout_header_height">@dimen/dimen_7x</dimen>
-    <dimen name="custom_edit_text_width">@dimen/dimen_150</dimen>
+    <dimen name="drag_handle_icon_size">@dimen/dimen_10x2</dimen>
+    <dimen name="menu_icon_size">@dimen/dimen_3x</dimen>
+    <dimen name="custom_edit_text_width">@dimen/dimen_10x15</dimen>
+    <dimen name="dialog_logo_width">@dimen/dimen_10x20</dimen>
 
+    <!-- End for normal dimensions-->
+
+    <!-- Start for text sizes -->
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_35">35sp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
+    <dimen name="text_size_45">45sp</dimen>
+    <dimen name="text_size_50">50sp</dimen>
+    <dimen name="text_size_55">55sp</dimen>
+    <dimen name="text_size_60">60sp</dimen>
+    <dimen name="text_size_65">65sp</dimen>
+    <dimen name="text_size_70">70sp</dimen>
+    <dimen name="text_size_75">75sp</dimen>
+    <dimen name="text_size_80">80sp</dimen>
+    <dimen name="text_size_90">90sp</dimen>
     <dimen name="text_size_100">100sp</dimen>
 
-    <dimen name="text_size_unit">@dimen/text_size_20</dimen>
+    <dimen name="text_size_app_bar">@dimen/text_size_20</dimen>
     <dimen name="nav_header_title">@dimen/text_size_18</dimen>
+    <dimen name="text_size_unit">@dimen/text_size_20</dimen>
+    <dimen name="text_size_menu_items">@dimen/text_size_16</dimen>
+    <dimen name="text_size_option_items">@dimen/text_size_16</dimen>
+
     <dimen name="text_size_edit_text_default">@dimen/text_size_100</dimen>
-    <dimen name="text_size_edit_text_length_7">90sp</dimen>
-    <dimen name="text_size_edit_text_length_8">80sp</dimen>
-    <dimen name="text_size_edit_text_length_9">70sp</dimen>
-    <dimen name="text_size_edit_text_length_10">60sp</dimen>
-    <dimen name="text_size_edit_text_length_12">50sp</dimen>
-    <dimen name="text_size_edit_text_length_max">40sp</dimen>
+    <dimen name="text_size_edit_text_length_7">@dimen/text_size_90</dimen>
+    <dimen name="text_size_edit_text_length_8">@dimen/text_size_80</dimen>
+    <dimen name="text_size_edit_text_length_9">@dimen/text_size_70</dimen>
+    <dimen name="text_size_edit_text_length_10">@dimen/text_size_60</dimen>
+    <dimen name="text_size_edit_text_length_12">@dimen/text_size_50</dimen>
+    <dimen name="text_size_edit_text_length_max">@dimen/text_size_40</dimen>
+    <dimen name="navigation_drawer_header_height">@dimen/dimen_10x20</dimen>
+    <!-- End for text sizes -->
 </resources>
