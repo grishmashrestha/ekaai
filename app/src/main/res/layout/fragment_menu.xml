@@ -3,7 +3,7 @@
     android:layout_width="@dimen/drawer_layout_width"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="#FFFFFF"
+    android:background="#2962FF"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -11,9 +11,9 @@
         android:id="@+id/nav_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/navigation_drawer_header_height"
-        android:background="@drawable/header_bg_transparent"
         android:gravity="bottom"
         android:orientation="vertical"
+        android:background="@android:color/white"
         android:paddingBottom="@dimen/dimen_1x3">
 
         <RelativeLayout
@@ -54,8 +54,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@android:color/white"
         android:paddingTop="@dimen/dimen_1x3">
 
         <android.support.v7.widget.RecyclerView
