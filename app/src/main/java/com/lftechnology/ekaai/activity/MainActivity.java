@@ -412,6 +412,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mSwapButton.setBackgroundResource(mSwapButtonColor);
         ScreenSlideTopFragment.setCustomEditTextOnTouch(this);
         mToolbarTitle.setText(mSelectedConversion);
+//        GeneralUtils.getStatusColor(mBottomBackgroundColor);
+        mToolbar.setBackgroundColor(getResources().getColor(mBottomBackgroundColor));
     }
 
     private void setBackgroundColorAndLengthBySelectedConversion() {
@@ -429,7 +431,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mPagerTop.setOffscreenPageLimit(mDataCount);
         mPagerTop.addOnPageChangeListener(this);
         mPagerTop.setPageTransformer(true, new ZoomOutPageTransformer());
-
 
         ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
         mPagerBottom.setAdapter(mPagerAdapterBottom);

@@ -2,6 +2,7 @@ package com.lftechnology.ekaai.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -53,4 +54,14 @@ public class GeneralUtils {
             ((OnKeyEventsListener) context).keyboardHidden();
         }
     }
+
+    //get darker shade of the dynamic primary color
+    public static int getStatusColor(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] *= 0.8f; // value component
+        color = Color.HSVToColor(hsv);
+        return color;
+    }
+
 }

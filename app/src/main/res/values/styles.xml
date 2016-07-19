@@ -10,7 +10,6 @@
     <style name="AppTheme.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="NewDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
