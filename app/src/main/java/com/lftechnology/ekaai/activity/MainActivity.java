@@ -19,6 +19,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -107,6 +109,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Bind(R.id.app_icon_in_menu)
     ImageView mAppIconInMenu;
+
+    @Bind(R.id.rl_nav_header_content)
+    RelativeLayout mNavHeaderContent;
 
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -410,9 +415,16 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mSwapButton.setBackgroundResource(mSwapButtonColor);
         ScreenSlideTopFragment.setCustomEditTextOnTouch(this);
         mToolbarTitle.setText(mSelectedConversion);
-        GeneralUtils.getStatusColor(mBottomBackgroundColor);
-        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(GeneralUtils.getStatusColor(getResources().getColor(mBottomBackgroundColor)));
+        }
         mToolbar.setBackgroundColor(getResources().getColor(mBottomBackgroundColor));
+        mNavHeaderContent.setBackgroundColor(getResources().getColor(mBottomBackgroundColor));
+        mAppIconInMenu.setBackground(getResources().getDrawable(mSwapButtonColor));
     }
 
     private void setBackgroundColorAndLengthBySelectedConversion() {

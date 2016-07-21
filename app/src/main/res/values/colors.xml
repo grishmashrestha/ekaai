@@ -4,13 +4,13 @@
     <color name="colorPrimaryDark">#2962FF</color>
     <color name="colorAccent">#212121</color>
 
-    <color name="colorLengthLight">#00BAFF</color>
+    <color name="colorLengthLight">#00BCD4</color>
     <color name="colorLengthDark">#008CC0</color>
 
     <color name="colorTimeLight">#FF9600</color>
     <color name="colorTimeDark">#B86C00</color>
 
-    <color name="colorTemperatureLight">#FF3C61</color>
+    <color name="colorTemperatureLight">#E91E63</color>
     <color name="colorTemperatureDark">#AE2942</color>
 
     <color name="colorVolumeLight">#A44CFF</color>

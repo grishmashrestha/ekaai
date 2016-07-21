@@ -3,7 +3,6 @@
     android:layout_width="@dimen/drawer_layout_width"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="#2962FF"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -17,9 +16,9 @@
         android:paddingBottom="@dimen/dimen_1x3">
 
         <RelativeLayout
+            android:id="@+id/rl_nav_header_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/nav_header_background"
@@ -37,6 +36,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/dimen_2x"
                 android:layout_marginTop="@dimen/dimen_4x"
+                android:padding="@dimen/dimen_1x"
                 android:contentDescription="@string/header_image" />
 
             <TextView
