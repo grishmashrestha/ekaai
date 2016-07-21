@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Bind(R.id.main_content)
     RelativeLayout mMainContent;
 
-    @Bind(R.id.toolbar_title)
+    @Bind(R.id.tv_toolbar_title)
     TextView mToolbarTitle;
 
     @Bind(R.id.pagerTop)
@@ -112,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Bind(R.id.rl_nav_header_content)
     RelativeLayout mNavHeaderContent;
+
+    @Bind(R.id.iv_toolbar_sort_options)
+    ImageView mToolbarSortOptions;
 
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -456,11 +459,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mItemTouchHelper.startDrag(viewHolder);
     }
 
-    @OnClick(R.id.tv_about)
+    @OnClick({R.id.tv_about, R.id.iv_toolbar_sort_options})
     public void setOnClicks(View view) {
         switch (view.getId()) {
             case R.id.tv_about:
                 showAboutInAlertDialog();
+                break;
+            case R.id.iv_toolbar_sort_options:
+                mDrawerLayout.openDrawer(GravityCompat.END);
                 break;
         }
     }
