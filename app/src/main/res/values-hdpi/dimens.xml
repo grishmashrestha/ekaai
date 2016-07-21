@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_edit_text_default">@dimen/text_size_75</dimen>
-    <dimen name="text_size_edit_text_length_7">@dimen/text_size_70</dimen>
-    <dimen name="text_size_edit_text_length_8">@dimen/text_size_65</dimen>
-    <dimen name="text_size_edit_text_length_9">@dimen/text_size_60</dimen>
-    <dimen name="text_size_edit_text_length_10">@dimen/text_size_55</dimen>
-    <dimen name="text_size_edit_text_length_12">@dimen/text_size_45</dimen>
-    <dimen name="text_size_edit_text_length_max">@dimen/text_size_35</dimen>
+    <!--<dimen name="text_size_edit_text_default">@dimen/text_size_75</dimen>-->
+    <!--<dimen name="text_size_edit_text_length_7">@dimen/text_size_70</dimen>-->
+    <!--<dimen name="text_size_edit_text_length_8">@dimen/text_size_65</dimen>-->
+    <!--<dimen name="text_size_edit_text_length_9">@dimen/text_size_60</dimen>-->
+    <!--<dimen name="text_size_edit_text_length_10">@dimen/text_size_55</dimen>-->
+    <!--<dimen name="text_size_edit_text_length_12">@dimen/text_size_45</dimen>-->
+    <!--<dimen name="text_size_edit_text_length_max">@dimen/text_size_35</dimen>-->
 
-    <dimen name="text_size_app_bar">@dimen/text_size_16</dimen>
-    <dimen name="nav_header_title">@dimen/text_size_14</dimen>
-    <dimen name="text_size_unit">@dimen/text_size_12</dimen>
-    <dimen name="text_size_menu_items">@dimen/text_size_12</dimen>
-    <dimen name="text_size_option_items">@dimen/text_size_12</dimen>
+    <!--<dimen name="text_size_app_bar">@dimen/text_size_16</dimen>-->
+    <!--<dimen name="nav_header_title">@dimen/text_size_14</dimen>-->
+    <!--<dimen name="text_size_unit">@dimen/text_size_12</dimen>-->
+    <!--<dimen name="text_size_menu_items">@dimen/text_size_12</dimen>-->
+    <!--<dimen name="text_size_option_items">@dimen/text_size_12</dimen>-->
 
     <dimen name="drag_handle_icon_size">@dimen/dimen_2x</dimen>
     <dimen name="menu_icon_size">@dimen/dimen_2x</dimen>

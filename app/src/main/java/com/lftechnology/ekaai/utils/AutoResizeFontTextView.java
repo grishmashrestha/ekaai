@@ -17,7 +17,7 @@ public class AutoResizeFontTextView {
         float stringLength = s.length();
         float fontSize;
         float density = Ekaai.getContext().getResources().getDisplayMetrics().density;
-        Timber.e(String.valueOf(density));
+//        Timber.e(String.valueOf(density));
         if (stringLength <= 6) {
             fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_default) / density);
         } else if (stringLength <= 7) {
@@ -33,7 +33,7 @@ public class AutoResizeFontTextView {
         } else {
             fontSize = (Ekaai.getContext().getResources().getDimension(R.dimen.text_size_edit_text_length_max) / density);
         }
-        Timber.e(String.valueOf(fontSize));
+//        Timber.e(String.valueOf(fontSize));
         tv.setTextSize(fontSize);
         tv.setHeight(currentHeight);
     }

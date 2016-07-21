@@ -3,7 +3,6 @@ package com.lftechnology.ekaai.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,7 +49,6 @@ import com.lftechnology.ekaai.helper.OnStartDragListener;
 import com.lftechnology.ekaai.helper.SimpleItemTouchHelperCallback;
 import com.lftechnology.ekaai.helper.ZoomOutPageTransformer;
 import com.lftechnology.ekaai.utils.ApplicationThemeAndDataset;
-import com.lftechnology.ekaai.utils.CustomEditText;
 import com.lftechnology.ekaai.utils.GeneralUtils;
 import com.squareup.otto.Subscribe;
 
@@ -412,7 +410,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mSwapButton.setBackgroundResource(mSwapButtonColor);
         ScreenSlideTopFragment.setCustomEditTextOnTouch(this);
         mToolbarTitle.setText(mSelectedConversion);
-//        GeneralUtils.getStatusColor(mBottomBackgroundColor);
+        GeneralUtils.getStatusColor(mBottomBackgroundColor);
+        
         mToolbar.setBackgroundColor(getResources().getColor(mBottomBackgroundColor));
     }
 
