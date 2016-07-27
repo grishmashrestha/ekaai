@@ -52,9 +52,9 @@ public class ApplicationThemeAndDataset {
     }
 
     /**
-     *
-     * @param selectedConversion
-     * @return
+     *  Return application theme related details in integer array
+     * @param selectedConversion current conversion unit
+     * @return application theme related details such as array of units, color for the bottom view pager and swap button color for the selected conversion.
      */
     public static Integer[] getThemeDetails(String selectedConversion) {
         Integer[] themeSet = new Integer[3];
