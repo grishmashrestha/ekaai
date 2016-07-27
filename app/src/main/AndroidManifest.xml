@@ -3,6 +3,7 @@
     package="com.lftechnology.ekaai">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Ekaai"
         android:allowBackup="true"
@@ -10,19 +11,30 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name="com.lftechnology.ekaai.activity.MainActivity"
+            android:name=".activity.SplashScreenActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.WalkThroughActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="8e284b3741e5288f0ca52536bda217d378561128" />
     </application>
+
 </manifest>
