@@ -113,9 +113,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Bind(R.id.rl_nav_header_content)
     RelativeLayout mNavHeaderContent;
 
-    @Bind(R.id.iv_toolbar_sort_options)
-    ImageView mToolbarSortOptions;
-
     private String mSelectedConversion;
     private ActionBarDrawerToggle mDrawerToggle;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -438,20 +435,20 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     public void setAdapters() {
-        String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
-        mPagerTop.removeOnPageChangeListener(this);
-        ScreenSlidePageAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
-        mPagerTop.setAdapter(mPagerAdapterTop);
-        mPagerTop.setOffscreenPageLimit(mDataCount);
-        mPagerTop.addOnPageChangeListener(this);
-        mPagerTop.setPageTransformer(true, new ZoomOutPageTransformer());
+            String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+            mPagerTop.removeOnPageChangeListener(this);
+            ScreenSlidePageAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
+            mPagerTop.setAdapter(mPagerAdapterTop);
+            mPagerTop.setOffscreenPageLimit(mDataCount);
+            mPagerTop.addOnPageChangeListener(this);
+            mPagerTop.setPageTransformer(true, new ZoomOutPageTransformer());
 
-        ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
-        mPagerBottom.setAdapter(mPagerAdapterBottom);
-        mPagerBottom.setOffscreenPageLimit(mDataCount);
-        mPagerBottom.setCurrentItem(1);
-        mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
-        mPagerBottom.setPageTransformer(true, new ZoomOutPageTransformer());
+            ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
+            mPagerBottom.setAdapter(mPagerAdapterBottom);
+            mPagerBottom.setOffscreenPageLimit(mDataCount);
+            mPagerBottom.setCurrentItem(1);
+            mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
+            mPagerBottom.setPageTransformer(true, new ZoomOutPageTransformer());
     }
 
     @Override
@@ -483,7 +480,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             }
         });
         AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.NewDialog)
-                .setTitle(R.string.dialog_about_title)
+                .setTitle(R.string.ekaai_unit_converter_app)
                 .setView(view)
                 .setPositiveButton(R.string.rate_us, new DialogInterface.OnClickListener() {
                     @Override
