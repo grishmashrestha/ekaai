@@ -6,7 +6,7 @@
     <dimen name="text_size_menu_items">@dimen/text_size_16</dimen>
     <dimen name="text_size_option_items">@dimen/text_size_16</dimen>
 
-    <dimen name="text_size_edit_text_default">@dimen/text_size_100</dimen>
+    <dimen name="text_size_edit_text_default">@dimen/text_size_95</dimen>
     <dimen name="text_size_edit_text_length_7">@dimen/text_size_90</dimen>
     <dimen name="text_size_edit_text_length_8">@dimen/text_size_80</dimen>
     <dimen name="text_size_edit_text_length_9">@dimen/text_size_70</dimen>

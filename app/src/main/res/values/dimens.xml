@@ -13,8 +13,10 @@
 
     <dimen name="dimen_10x1">10dp</dimen>
     <dimen name="dimen_10x2">20dp</dimen>
-    <dimen name="dimen_10x10">100dp</dimen>
     <dimen name="dimen_10x5">50dp</dimen>
+    <dimen name="dimen_10x6">60dp</dimen>
+    <dimen name="dimen_10x10">100dp</dimen>
+    <dimen name="dimen_10x12">120dp</dimen>
     <dimen name="dimen_10x15">150dp</dimen>
     <dimen name="dimen_10x20">200dp</dimen>
     <dimen name="dimen_10x24">240dp</dimen>
@@ -45,7 +47,7 @@
     <dimen name="text_size_75">75sp</dimen>
     <dimen name="text_size_80">80sp</dimen>
     <dimen name="text_size_90">90sp</dimen>
-    <dimen name="text_size_100">100sp</dimen>
+    <dimen name="text_size_95">95sp</dimen>
 
     <dimen name="text_size_app_bar">@dimen/text_size_20</dimen>
     <dimen name="nav_header_title">@dimen/text_size_18</dimen>
@@ -53,7 +55,7 @@
     <dimen name="text_size_menu_items">@dimen/text_size_16</dimen>
     <dimen name="text_size_option_items">@dimen/text_size_16</dimen>
 
-    <dimen name="text_size_edit_text_default">@dimen/text_size_100</dimen>
+    <dimen name="text_size_edit_text_default">@dimen/text_size_95</dimen>
     <dimen name="text_size_edit_text_length_7">@dimen/text_size_90</dimen>
     <dimen name="text_size_edit_text_length_8">@dimen/text_size_80</dimen>
     <dimen name="text_size_edit_text_length_9">@dimen/text_size_70</dimen>
@@ -61,5 +63,8 @@
     <dimen name="text_size_edit_text_length_12">@dimen/text_size_50</dimen>
     <dimen name="text_size_edit_text_length_max">@dimen/text_size_40</dimen>
     <dimen name="navigation_drawer_header_height">@dimen/dimen_10x20</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
     <!-- End for text sizes -->
 </resources>
