@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_walk_through_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_2x">
+
+    <ImageView
+        android:id="@+id/app_icon_in_menu"
+        android:layout_width="@dimen/dimen_10x12"
+        android:layout_height="@dimen/dimen_10x12"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_10x10"
+        android:contentDescription="@string/header_image"
+        android:padding="@dimen/dimen_1x"/>
+
+    <TextView
+        android:id="@+id/nav_header_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_icon_in_menu"
+        android:layout_marginTop="@dimen/dimen_1x"
+        android:text="@string/ekaai_unit_converter_app"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_18" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nav_header_tv"
+        android:layout_marginTop="@dimen/dimen_5x"
+        android:text="@string/a_simple_and_easy_to_use_unit_converter_to_handle_any_conversion_you_ll_ever_need"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_16" />
+
+</RelativeLayout>
