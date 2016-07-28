@@ -20,9 +20,15 @@
         android:layout_height="@dimen/dimen_5x"
         android:layout_alignParentBottom="true"
         android:background="@color/colorTransparentBlack"
+        android:clickable="true"
         android:gravity="center_vertical"
         android:text="@string/get_started"
-        android:clickable="true"
         android:textAlignment="center" />
 
+    <com.pixelcan.inkpageindicator.InkPageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_get_started"
+        android:padding="@dimen/dimen_1x" />
 </RelativeLayout>

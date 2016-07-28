@@ -17,10 +17,10 @@ import com.lftechnology.ekaai.adapter.WalkThroughAdapter;
 import com.lftechnology.ekaai.constant.AppConstant;
 import com.lftechnology.ekaai.helper.ZoomOutPageTransformer;
 import com.lftechnology.ekaai.utils.GeneralUtils;
+import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 public class WalkThroughActivity extends AppCompatActivity {
     private static final String FIRST_LOGIN = "FIRST_LOGIN";
@@ -38,10 +38,13 @@ public class WalkThroughActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(GeneralUtils.getStatusColor(getResources().getColor(R.color.colorLengthLight)));
         }
-        ViewPager vp = (ViewPager) findViewById(R.id.vp_walk_through_pager);
+        ViewPager walkThroughViewpager = (ViewPager) findViewById(R.id.vp_walk_through_pager);
         WalkThroughAdapter mPagerAdapterTop = new WalkThroughAdapter(getSupportFragmentManager());
-        vp.setAdapter(mPagerAdapterTop);
-        vp.setPageTransformer(true, new ZoomOutPageTransformer());
+        walkThroughViewpager.setAdapter(mPagerAdapterTop);
+        walkThroughViewpager.setPageTransformer(true, new ZoomOutPageTransformer());
+
+        InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator.setViewPager(walkThroughViewpager);
 
     }
 
