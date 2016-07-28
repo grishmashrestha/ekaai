@@ -32,7 +32,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 if (firstLogin) {
                     intent = new Intent(SplashScreenActivity.this, WalkThroughActivity.class);
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putBoolean(FIRST_LOGIN, true); // TODO change to false when initial work is done
+                    editor.putBoolean(FIRST_LOGIN, false);
                     editor.apply();
                 } else {
                     intent = new Intent(SplashScreenActivity.this, MainActivity.class);

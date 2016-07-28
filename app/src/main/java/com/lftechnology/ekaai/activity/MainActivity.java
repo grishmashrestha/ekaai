@@ -435,20 +435,20 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     public void setAdapters() {
-            String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
-            mPagerTop.removeOnPageChangeListener(this);
-            ScreenSlidePageAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
-            mPagerTop.setAdapter(mPagerAdapterTop);
-            mPagerTop.setOffscreenPageLimit(mDataCount);
-            mPagerTop.addOnPageChangeListener(this);
-            mPagerTop.setPageTransformer(true, new ZoomOutPageTransformer());
+        String[] dataset = ApplicationThemeAndDataset.getDataset(mSelectedConversion);
+        mPagerTop.removeOnPageChangeListener(this);
+        ScreenSlidePageAdapter mPagerAdapterTop = new ScreenSlidePageAdapter(getSupportFragmentManager(), true, mSelectedConversion, dataset);
+        mPagerTop.setAdapter(mPagerAdapterTop);
+        mPagerTop.setOffscreenPageLimit(mDataCount);
+        mPagerTop.addOnPageChangeListener(this);
+        mPagerTop.setPageTransformer(true, new ZoomOutPageTransformer());
 
-            ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
-            mPagerBottom.setAdapter(mPagerAdapterBottom);
-            mPagerBottom.setOffscreenPageLimit(mDataCount);
-            mPagerBottom.setCurrentItem(1);
-            mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
-            mPagerBottom.setPageTransformer(true, new ZoomOutPageTransformer());
+        ScreenSlidePageAdapter mPagerAdapterBottom = new ScreenSlidePageAdapter(getSupportFragmentManager(), false, mSelectedConversion, dataset);
+        mPagerBottom.setAdapter(mPagerAdapterBottom);
+        mPagerBottom.setOffscreenPageLimit(mDataCount);
+        mPagerBottom.setCurrentItem(1);
+        mPagerBottom.setBackgroundResource(mBottomBackgroundColor);
+        mPagerBottom.setPageTransformer(true, new ZoomOutPageTransformer());
     }
 
     @Override
@@ -456,11 +456,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mItemTouchHelper.startDrag(viewHolder);
     }
 
-    @OnClick({R.id.tv_about, R.id.iv_toolbar_sort_options})
+    @OnClick({R.id.tv_about, R.id.iv_toolbar_sort_options, R.id.tv_help})
     public void setOnClicks(View view) {
         switch (view.getId()) {
             case R.id.tv_about:
                 showAboutInAlertDialog();
+                break;
+            case R.id.tv_help:
+                startActivity(new Intent(MainActivity.this, WalkThroughActivity.class));
                 break;
             case R.id.iv_toolbar_sort_options:
                 mDrawerLayout.openDrawer(GravityCompat.END);
