@@ -1,5 +1,6 @@
 package com.lftechnology.ekaai.fragment;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -45,6 +46,12 @@ public class WalkThroughFragment extends BaseFragment {
             VideoView videoView = (VideoView) mRootView.findViewById(R.id.vv_walk_through_demo);
             String path = "android.resource://" + Ekaai.getContext().getPackageName() + "/" + R.raw.ekaai_demo;
             videoView.setVideoURI(Uri.parse(path));
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.setLooping(true);
+                }
+            });
             videoView.start();
         }
         return mRootView;
