@@ -22,7 +22,7 @@
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/menu_icon"
-        android:textColor="@color/nav_text_color"
+        android:textColor="@color/colorNavText"
         android:textSize="@dimen/text_size_menu_items" />
 
 </RelativeLayout>

@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:paddingEnd="@dimen/dimen_2x"
         android:paddingStart="0dp"
-        android:textColor="@color/nav_text_color"
+        android:textColor="@color/colorNavText"
         android:textSize="@dimen/text_size_option_items" />
 
     <ImageView

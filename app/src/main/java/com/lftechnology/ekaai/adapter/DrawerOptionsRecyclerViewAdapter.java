@@ -119,7 +119,7 @@ public class DrawerOptionsRecyclerViewAdapter extends RecyclerView.Adapter<Drawe
         @Override
         public void onItemClear() {
             itemView.setBackgroundColor(0);
-            textView.setTextColor(ContextCompat.getColor(Ekaai.getContext(), R.color.nav_text_color));
+            textView.setTextColor(ContextCompat.getColor(Ekaai.getContext(), R.color.colorNavText));
             Glide.with(Ekaai.getContext()).load(R.drawable.drag_handle).into(handleView);
         }
     }

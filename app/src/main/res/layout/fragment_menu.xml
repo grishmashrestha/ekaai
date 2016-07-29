@@ -79,7 +79,7 @@
                 android:layout_height="@dimen/dimen_6x"
                 android:gravity="center_vertical"
                 android:text="@string/about"
-                android:textColor="@color/nav_text_color"
+                android:textColor="@color/colorNavText"
                 android:textSize="@dimen/text_size_menu_items" />
 
             <TextView
@@ -88,7 +88,7 @@
                 android:layout_height="@dimen/dimen_6x"
                 android:gravity="center_vertical"
                 android:text="@string/help"
-                android:textColor="@color/nav_text_color"
+                android:textColor="@color/colorNavText"
                 android:textSize="@dimen/text_size_menu_items" />
 
         </LinearLayout>

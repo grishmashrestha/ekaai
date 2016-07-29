@@ -52,7 +52,8 @@ public class ApplicationThemeAndDataset {
     }
 
     /**
-     *  Return application theme related details in integer array
+     * Return application theme related details in integer array
+     *
      * @param selectedConversion current conversion unit
      * @return application theme related details such as array of units, color for the bottom view pager and swap button color for the selected conversion.
      */
@@ -62,32 +63,32 @@ public class ApplicationThemeAndDataset {
             case AppConstant.LENGTH:
                 themeSet[0] = Ekaai.getContext().getResources().getStringArray(R.array.length_options).length;
                 themeSet[1] = R.color.colorLengthLight;
-                themeSet[2] = R.drawable.swap_btn_cont_blue;
+                themeSet[2] = R.drawable.swap_btn_blue;
                 break;
             case AppConstant.TEMPERATURE:
                 themeSet[0] = Ekaai.getContext().getResources().getStringArray(R.array.temperature_options).length;
                 themeSet[1] = R.color.colorTemperatureLight;
-                themeSet[2] = R.drawable.swap_btn_cont_red;
+                themeSet[2] = R.drawable.swap_btn_red;
                 break;
             case AppConstant.TIME:
                 themeSet[0] = Ekaai.getContext().getResources().getStringArray(R.array.time_options).length;
                 themeSet[1] = R.color.colorTimeLight;
-                themeSet[2] = R.drawable.swap_btn_cont_yellow;
+                themeSet[2] = R.drawable.swap_btn_yellow;
                 break;
             case AppConstant.VOLUME:
                 themeSet[0] = Ekaai.getContext().getResources().getStringArray(R.array.volume_options).length;
                 themeSet[1] = R.color.colorVolumeLight;
-                themeSet[2] = R.drawable.swap_btn_cont_purple;
+                themeSet[2] = R.drawable.swap_btn_purple;
                 break;
             case AppConstant.WEIGHT:
                 themeSet[0] = Ekaai.getContext().getResources().getStringArray(R.array.weight_options).length;
                 themeSet[1] = R.color.colorWeightLight;
-                themeSet[2] = R.drawable.swap_btn_cont_green;
+                themeSet[2] = R.drawable.swap_btn_green;
                 break;
             default:
                 themeSet[0] = Ekaai.getContext().getResources().getStringArray(R.array.length_options).length;
                 themeSet[1] = R.color.colorLengthLight;
-                themeSet[2] = R.color.colorLengthDark;
+                themeSet[2] = R.drawable.swap_btn_blue;
                 break;
         }
         return themeSet;

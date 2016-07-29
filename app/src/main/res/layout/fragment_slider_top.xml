@@ -21,7 +21,7 @@
             android:minWidth="@dimen/custom_edit_text_width"
             android:text="@string/default_string_1"
             android:textAlignment="center"
-            android:textColor="@color/nav_text_color"
+            android:textColor="@color/colorNavText"
             android:textIsSelectable="false"
             android:textSize="@dimen/text_size_edit_text_default"
             android:textStyle="normal" />
