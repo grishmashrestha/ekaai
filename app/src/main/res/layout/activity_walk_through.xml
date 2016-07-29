@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_walk_through_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLengthLight"
     android:fitsSystemWindows="true"
     android:theme="@style/AppTheme"
     tools:context="com.lftechnology.ekaai.activity.WalkThroughActivity">
+
+    <ImageView
+        android:id="@+id/iv_walk_through_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_walk_through_pager"

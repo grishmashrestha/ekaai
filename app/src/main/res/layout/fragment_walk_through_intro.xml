@@ -3,6 +3,7 @@
     android:id="@+id/rl_walk_through_fragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:padding="@dimen/dimen_2x">
 
     <ImageView
@@ -10,7 +11,6 @@
         android:layout_width="@dimen/dimen_10x12"
         android:layout_height="@dimen/dimen_10x12"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dimen_10x10"
         android:contentDescription="@string/header_image"
         android:padding="@dimen/dimen_1x"/>
 

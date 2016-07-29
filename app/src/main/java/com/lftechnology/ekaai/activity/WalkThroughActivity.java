@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.lftechnology.ekaai.Ekaai;
 import com.lftechnology.ekaai.R;
 import com.lftechnology.ekaai.adapter.WalkThroughAdapter;
@@ -38,6 +40,10 @@ public class WalkThroughActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(GeneralUtils.getStatusColor(getResources().getColor(R.color.colorLengthLight)));
         }
+
+        ImageView ivWalkThroughBackground = (ImageView) findViewById(R.id.iv_walk_through_background);
+        Glide.with(Ekaai.getContext()).load(R.drawable.ekaai_walkthrough_background).into(ivWalkThroughBackground);
+
         ViewPager walkThroughViewpager = (ViewPager) findViewById(R.id.vp_walk_through_pager);
         WalkThroughAdapter mPagerAdapterTop = new WalkThroughAdapter(getSupportFragmentManager());
         walkThroughViewpager.setAdapter(mPagerAdapterTop);

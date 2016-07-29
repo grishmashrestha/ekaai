@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dimen_3x">
+    android:gravity="center">
 
     <VideoView
         android:id="@+id/vv_walk_through_demo"
@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/vv_walk_through_demo"
+        android:layout_marginTop="@dimen/dimen_2x"
         android:text="@string/a_simple_and_easy_to_use_unit_converter_to_handle_any_conversion_you_ll_ever_need"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_16" />
