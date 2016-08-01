@@ -9,7 +9,7 @@ Ekaai gives user a clean yet simple way to convert between units.
 * Reorder those units as per your preference by dragging and dropping.
 
 Open Source packages used:
-* https://jakewharton.github.io/butterknife/
-* https://github.com/JakeWharton/timber
-* https://square.github.io/otto/
-* https://github.com/bumptech/glide
+* [Butter Knife](https://jakewharton.github.io/butterknife/)
+* [Timber](https://github.com/JakeWharton/timber)
+* [Ottp](https://square.github.io/otto/)
+* [Glide](https://github.com/bumptech/glide)
