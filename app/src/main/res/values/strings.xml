@@ -17,9 +17,9 @@
 
     <string-array name="length_options">
         <item>Meter (m)</item>
-        <item>Kilometre (km)</item>
         <item>Feet (ft)</item>
         <item>Mile (ml)</item>
+        <item>Kilometre (km)</item>
         <item>Inch (in)</item>
         <item>Centimeter (cm)</item>
         <item>Yard (yd)</item>
