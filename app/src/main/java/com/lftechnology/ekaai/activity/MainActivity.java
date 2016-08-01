@@ -464,6 +464,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 break;
             case R.id.tv_help:
                 startActivity(new Intent(MainActivity.this, WalkThroughActivity.class));
+                finish();
                 break;
             case R.id.iv_toolbar_sort_options:
                 mDrawerLayout.openDrawer(GravityCompat.END);
