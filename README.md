@@ -13,3 +13,4 @@ Open Source packages used:
 * [Timber](https://github.com/JakeWharton/timber)
 * [Otto](https://square.github.io/otto/)
 * [Glide](https://github.com/bumptech/glide)
+* [Android ViewPagerIndicator](https://github.com/InkApplications/Android-ViewPagerIndicator)
