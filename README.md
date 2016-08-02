@@ -11,5 +11,5 @@ Ekaai gives user a clean yet simple way to convert between units.
 Open Source packages used:
 * [Butter Knife](https://jakewharton.github.io/butterknife/)
 * [Timber](https://github.com/JakeWharton/timber)
-* [Ottp](https://square.github.io/otto/)
+* [Otto](https://square.github.io/otto/)
 * [Glide](https://github.com/bumptech/glide)
