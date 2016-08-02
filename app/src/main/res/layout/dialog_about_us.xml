@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/tv_bullet1"
             android:singleLine="false"
-            android:text="@string/scroll_left_or_right_to_convert_from_one_unit_to_another"
+            android:text="@string/swipe_left_or_right_to_convert_from_one_unit_to_another"
             android:theme="@style/DialogTextViewStyle" />
 
     </RelativeLayout>

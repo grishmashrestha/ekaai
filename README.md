@@ -2,7 +2,7 @@
 
 Ekaai gives user a clean yet simple way to convert between units.
 
-* Scroll left or right to convert from one unit to another.
+* Swipe left or right to convert from one unit to another.
 * Swap between current units using the swap button in the middle of the screen.
 * Choose between various conversion system by clicking on the Hamburger Menu.
 * Swipe right to view the list of units available for a conversion system.

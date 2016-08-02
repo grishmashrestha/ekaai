@@ -87,7 +87,7 @@
     <string name="header_image">header image</string>
     <string name="alert_bullet">• </string>
     <string name="ekaai_gives_user_a_clean_and_simple_way_to_convert_units_easily">Ekaai gives user a clean and simple way to convert between units.</string>
-    <string name="scroll_left_or_right_to_convert_from_one_unit_to_another">Scroll left or right to convert from one unit to another.</string>
+    <string name="swipe_left_or_right_to_convert_from_one_unit_to_another">Swipe left or right to convert from one unit to another.</string>
     <string name="swap_between_current_units_using_the_swap_button_in_the_middle_of_the_screen">Swap between current units using the swap button in the middle of the screen.</string>
     <string name="choose_between_various_conversion_system_by_clicking_on_the_hamburger_menu">Choose between various conversion system by clicking on the Hamburger Menu.</string>
     <string name="swipe_right_to_view_the_list_of_units_available_for_a_conversion_system">Swipe right to view the list of units available for a conversion system.</string>
