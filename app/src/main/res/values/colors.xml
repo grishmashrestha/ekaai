@@ -31,4 +31,5 @@
     <color name="colorNavText">#4D4D4D</color>
     <color name="colorHighlightedMenuItems">#E2E2E2</color>
     <color name="colorTransparentBlack">#33000000</color>
+    <color name="colorFragmentOptionsBackgroundColor">#ffeeeeee</color>
 </resources>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_bar_margin_top">@dimen/dimen_3x</dimen>
+</resources>
