@@ -102,5 +102,5 @@
     <string name="https_square_github_io_otto">https://square.github.io/otto/</string>
     <string name="https_github_com_jakewharton_timber">https://github.com/JakeWharton/timber</string>
     <string name="get_started">GET STARTED</string>
-    <string name="a_simple_and_easy_to_use_unit_converter_to_handle_any_conversion_you_ll_ever_need">A simple and easy-to-use unit converter to handle any conversion you\'ll ever need.</string>
+    <string name="a_simple_and_easy_to_use_unit_converter">A simple and easy-to-use unit converter to handle any conversion you\'ll ever need.</string>
 </resources>

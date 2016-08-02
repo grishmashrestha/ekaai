@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/nav_header_tv"
         android:layout_marginTop="@dimen/dimen_5x"
-        android:text="@string/a_simple_and_easy_to_use_unit_converter_to_handle_any_conversion_you_ll_ever_need"
+        android:text="@string/a_simple_and_easy_to_use_unit_converter"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_16" />
 
