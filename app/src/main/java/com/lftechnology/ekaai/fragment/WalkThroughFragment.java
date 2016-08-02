@@ -16,6 +16,8 @@ import com.lftechnology.ekaai.R;
 public class WalkThroughFragment extends BaseFragment {
     public static final String POSITION = "position";
     private int mPosition;
+    private ViewGroup mRootView;
+
 
     public static WalkThroughFragment newInstance(int position) {
         WalkThroughFragment fragment = new WalkThroughFragment();
@@ -35,14 +37,21 @@ public class WalkThroughFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup mRootView;
         if (mPosition == 0) {
             mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_walk_through_intro, container, false);
+        } else {
+            mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_walk_through_demo, container, false);
+        }
+        return mRootView;
+    }
+
+    @Override
+    public void onResume() {
+        if (mPosition == 0) {
             ImageView logo = (ImageView) mRootView.findViewById(R.id.app_icon_in_menu);
             Glide.with(Ekaai.getContext()).load(R.drawable.ekaai_icon).into(logo);
             logo.setBackground(Ekaai.getContext().getResources().getDrawable(R.drawable.swap_btn_cont_blue));
         } else {
-            mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_walk_through_demo, container, false);
             VideoView videoView = (VideoView) mRootView.findViewById(R.id.vv_walk_through_demo);
             String path = "android.resource://" + Ekaai.getContext().getPackageName() + "/" + R.raw.ekaai_demo;
             videoView.setVideoURI(Uri.parse(path));
@@ -54,7 +63,7 @@ public class WalkThroughFragment extends BaseFragment {
             });
             videoView.start();
         }
-        return mRootView;
+        super.onResume();
     }
 }
 

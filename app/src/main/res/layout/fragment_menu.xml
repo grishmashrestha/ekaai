@@ -3,17 +3,17 @@
     android:layout_width="@dimen/drawer_layout_width"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:fitsSystemWindows="true"
     android:layout_marginTop="@dimen/app_bar_margin_top"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/nav_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/navigation_drawer_header_height"
+        android:background="@android:color/white"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:background="@android:color/white"
         android:paddingBottom="@dimen/dimen_1x3">
 
         <RelativeLayout
@@ -37,8 +37,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/dimen_2x"
                 android:layout_marginTop="@dimen/dimen_4x"
-                android:padding="@dimen/dimen_1x"
-                android:contentDescription="@string/header_image" />
+                android:contentDescription="@string/header_image"
+                android:padding="@dimen/dimen_1x" />
 
             <TextView
                 android:id="@+id/nav_header_tv"
@@ -56,8 +56,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@android:color/white"
+        android:orientation="vertical"
         android:paddingTop="@dimen/dimen_1x3">
 
         <android.support.v7.widget.RecyclerView

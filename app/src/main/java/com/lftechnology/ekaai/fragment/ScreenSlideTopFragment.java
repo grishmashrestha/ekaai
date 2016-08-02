@@ -2,6 +2,7 @@ package com.lftechnology.ekaai.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -64,33 +65,20 @@ public class ScreenSlideTopFragment extends BaseFragment {
         }
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_slider_top, container, false);
-        mFromUnit = (CustomEditText) mRootView.findViewById(R.id.from_unit);
-        if (mSelectedConversion.equals(AppConstant.TEMPERATURE))
-            mFromUnit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-
-//        TODO: Hide/Show toolbar on fling/scroll
-//        View gestureView = mRootView.findViewById(R.id.content_top);
-//        gestureView.setClickable(true);
-//        gestureView.setFocusable(true);
-//        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
-//        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
-//        assert gestureView != null;
-//        gestureView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                gd.onTouchEvent(motionEvent);
-//                return false;
-//            }
-//        });
-
         return mRootView;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        super.onResume();
+        mFromUnit = (CustomEditText) mRootView.findViewById(R.id.from_unit);
+        if (mSelectedConversion.equals(AppConstant.TEMPERATURE))
+            mFromUnit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
         final TextView tv = (TextView) mRootView.findViewById(R.id.scroll_top);
         tv.setText(Html.fromHtml(mDataset[mPosition]));
 
@@ -154,6 +142,21 @@ public class ScreenSlideTopFragment extends BaseFragment {
 
             }
         });
+
+//        TODO: Hide / Show toolbar on fling / scroll
+//        View gestureView = mRootView.findViewById(R.id.content_top);
+//        gestureView.setClickable(true);
+//        gestureView.setFocusable(true);
+//        GestureDetector.SimpleOnGestureListener gestureListener = new GestureListener();
+//        final GestureDetector gd = new GestureDetector(getActivity(), gestureListener);
+//        assert gestureView != null;
+//        gestureView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                gd.onTouchEvent(motionEvent);
+//                return false;
+//            }
+//        });
     }
 
     /**
@@ -189,7 +192,7 @@ public class ScreenSlideTopFragment extends BaseFragment {
      *                           position denotes which is the selected page, visible in the view
      *                           selectedConversion denotes from which conversion method this was invoked,
      *                           viz. length, temperature, time, weight or volume.
-     *                           if the invoking selectecConversion and the fragments mSelectedConversion matches,
+     *                           if the invoking selectedConversion and the fragments mSelectedConversion matches,
      *                           then only it will invoke the EventBus.
      */
     @Subscribe

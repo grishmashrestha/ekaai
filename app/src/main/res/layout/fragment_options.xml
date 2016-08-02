@@ -3,8 +3,8 @@
     android:layout_width="@dimen/drawer_layout_width"
     android:layout_height="match_parent"
     android:layout_gravity="end"
-    android:background="@color/colorFragmentOptionsBackgroundColor"
     android:layout_marginTop="@dimen/app_bar_margin_top"
+    android:background="@color/colorFragmentOptionsBackgroundColor"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
